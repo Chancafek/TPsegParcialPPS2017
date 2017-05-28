@@ -16,7 +16,7 @@ export class HomePage {
   	if (!tokenNotExpired('access_token')) { // retorna false si el token no existe o es inválido
       /*
         si no es válido lo mando a registrarse o iniciar sesión,
-        para desarrollo lo dejo comentado por si necesi acceder a otras páginas del menu
+        para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
       */
     	//this.navCtrl.setRoot('WelcomePage');
     }

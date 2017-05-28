@@ -17,7 +17,7 @@ export class WelcomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
      /*
         Deshabilito el sidemenu,
-        para desarrollo lo dejo comentado por si necesi acceder a otras páginas del menu
+        para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
      */
     //this.menu.enable(false);
   }
