@@ -19,7 +19,11 @@ export class LoginPage {
   user: User;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
-    this.menu.enable(false);
+    /*
+        Deshabilito el sidemenu,
+        para desarrollo lo dejo comentado por si necesi acceder a otras páginas del menu
+    */
+    //this.menu.enable(false);
     this.user = new User();
   }
 
