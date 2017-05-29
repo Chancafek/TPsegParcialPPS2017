@@ -1,22 +1,25 @@
+import { SignupPage } from './../pages/signup/signup';
+import { LoginPage } from './../pages/login/login';
+import { HomePage } from './../pages/home/home';
+import { WelcomePage } from './../pages/welcome/welcome';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = 'HomePage';
 
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'WelcomePage'},
-    { title: 'HomePage'},
-    { title: 'LoginPage'},
-    { title: 'SignupPage'}
+    { title: 'WelcomePage', component: WelcomePage},
+    { title: 'HomePage', component: HomePage},
+    { title: 'LoginPage', component: LoginPage},
+    { title: 'SignupPage', component: SignupPage}
   ]
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

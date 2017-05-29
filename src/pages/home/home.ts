@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { tokenNotExpired } from 'angular2-jwt';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
