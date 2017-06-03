@@ -1,7 +1,3 @@
-import { SignupPage } from './../pages/signup/signup';
-import { LoginPage } from './../pages/login/login';
-import { HomePage } from './../pages/home/home';
-import { WelcomePage } from './../pages/welcome/welcome';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,10 +12,10 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'WelcomePage', component: WelcomePage},
-    { title: 'HomePage', component: HomePage},
-    { title: 'LoginPage', component: LoginPage},
-    { title: 'SignupPage', component: SignupPage}
+    { title: 'WelcomePage'},
+    { title: 'HomePage'},
+    { title: 'LoginPage'},
+    { title: 'SignupPage'}
   ]
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

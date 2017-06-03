@@ -24,8 +24,16 @@ page-welcome {
     margin: auto;
     background: url('../assets/img/appicon.png') repeat transparent;
     background-size: 100%;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 50%;
     width: 128px;
     height: 128px;
+    animation: splash-logo-spin infinite 20s linear;
+  }
+
+  @keyframes splash-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
   .splash-intro {
     font-size: 18px;
