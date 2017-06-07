@@ -4,6 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+/* Ionic cloud settings */
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
@@ -21,6 +24,25 @@ export const firebaseConfig = {
     messagingSenderId: "535933385921"
 };
 
+const cloudSettings: CloudSettings = {
+  core: {
+    'app_id': '3f768b3b'
+  },
+  push: {
+    sender_id: '535933385921',
+    pluginConfig: {
+      ios: {
+        badge: true,
+        sound: true
+      },
+      android: {
+        iconColor: '#343434',
+        forceShow: true
+      }
+    }
+  }
+}
+
 @NgModule({
   declarations: [
     MyApp
@@ -30,7 +52,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
