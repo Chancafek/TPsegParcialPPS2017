@@ -50,13 +50,10 @@ const cloudSettings: CloudSettings = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-<<<<<<< HEAD
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     CloudModule.forRoot(cloudSettings)
-=======
->>>>>>> a6f48ded361257197499664a37a2ab7ff0312a7f
   ],
   bootstrap: [IonicApp],
   entryComponents: [
