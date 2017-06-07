@@ -1,0 +1,6 @@
+export enum ERol{
+    ADMINISTADOR=1,
+    ALUMNO=2,
+    MAESTRO=3,
+    ADMINISTRATIVO=4
+}
