@@ -33,13 +33,12 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      
       if (platform.is('cordova'))
       {
         this.notification.registerToken();
         this.notification.getNotifications();
-        
       }
-      this.notification.postNotification('asd');
     });
   }
 

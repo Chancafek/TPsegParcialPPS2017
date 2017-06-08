@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
+import { NotificationProvider } from '../../providers/notification/notification';
 
 /**
  * Generated class for the WelcomePage page.
@@ -14,7 +15,7 @@ import { MenuController } from 'ionic-angular';
   templateUrl: 'welcome.html',
 })
 export class WelcomePage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController, public notification: NotificationProvider) {
      /*
         Deshabilito el sidemenu,
         para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
@@ -23,7 +24,7 @@ export class WelcomePage {
   }
 
   ionViewDidLoad() {
-
+    this.notification.postNotification('Prueba de notificacion');
   }
   login() {
     this.navCtrl.push('LoginPage');
