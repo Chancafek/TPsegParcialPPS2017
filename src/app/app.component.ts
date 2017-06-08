@@ -6,7 +6,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Push, PushToken } from '@ionic/cloud-angular';
+
+import { NotificationProvider } from '../providers/notification/notification';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +24,10 @@ export class MyApp {
     { title: 'SignupPage', component: SignupPage}
   ]
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public push: Push) {
+  constructor(platform: Platform, statusBar: StatusBar,
+              splashScreen: SplashScreen,
+              public notification: NotificationProvider)
+  {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -31,9 +35,11 @@ export class MyApp {
       splashScreen.hide();
       if (platform.is('cordova'))
       {
-        this.registerToken();
-        this.getNotifications();
+        this.notification.registerToken();
+        this.notification.getNotifications();
+        
       }
+      this.notification.postNotification('asd');
     });
   }
 
@@ -41,24 +47,6 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.title);
-  }
-
-  private registerToken(){
-    this.push.register().then((t: PushToken) => {
-      return this.push.saveToken(t,{
-        ignore_user: true
-      });
-    }).then((t: PushToken) => {
-      console.log('Token saved:', t.token);
-    });
-  }
-
-  // se puede agregar en el lugar que se necesite
-  private getNotifications(){
-    this.push.rx.notification()
-    .subscribe((msg) => {
-      alert(msg.title + ': ' + msg.text);
-    });
   }
 }
 

@@ -24,7 +24,7 @@ export class LoginPage {
         para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
     */
     //this.menu.enable(false);
-    this.user = new User();
+    //this.user = new User();
   }
 
   ionViewDidLoad() {
