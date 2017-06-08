@@ -8,7 +8,7 @@ export class Encuesta {
     private id_user: Number;
 
 
-    constructor(preguntas: Pregunta[], tema: String, id_user?: Number, id?: Number) {
+    constructor(tema: String, preguntas?: Pregunta[], id_user?: Number, id?: Number) {
         this.id = id;
         this.id_user = id_user;
         this.preguntas = preguntas;
@@ -31,4 +31,7 @@ export class Encuesta {
 		return this.id_user;
 	}
 
+	public addPregunta(pregunta: Pregunta): void{
+		this.preguntas.push(pregunta);
+	}
 }
