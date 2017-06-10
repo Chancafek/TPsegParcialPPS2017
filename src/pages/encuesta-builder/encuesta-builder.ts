@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { PreguntaBuilderPage } from "../pregunta-builder/pregunta-builder";
-
 import { Encuesta } from "../../models/encuesta";
 
 /**
@@ -31,7 +29,6 @@ export class EncuestaBuilderPage {
 
   crear() {
     this.encuesta = new Encuesta(this.tematica, null, null, null);
-    this.navCtrl.push(PreguntaBuilderPage, { encuesta: this.encuesta })
   }
 
 }

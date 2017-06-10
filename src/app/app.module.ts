@@ -4,8 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { PreguntaBuilderPage } from "../pages/pregunta-builder/pregunta-builder";
-
 import { HttpModule } from '@angular/http';
 
 import { NotificationProvider } from '../providers/notification/notification';
@@ -64,8 +62,7 @@ const cloudSettings: CloudSettings = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    PreguntaBuilderPage
+    MyApp
   ],
   providers: [
     StatusBar,
