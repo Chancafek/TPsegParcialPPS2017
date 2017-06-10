@@ -2,6 +2,7 @@ import { SignupPage } from './../pages/signup/signup';
 import { LoginPage } from './../pages/login/login';
 import { HomePage } from './../pages/home/home';
 import { WelcomePage } from './../pages/welcome/welcome';
+import { EncuestaBuilderPage } from "../pages/encuesta-builder/encuesta-builder";
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -21,7 +22,8 @@ export class MyApp {
     { title: 'WelcomePage', component: WelcomePage},
     { title: 'HomePage', component: HomePage},
     { title: 'LoginPage', component: LoginPage},
-    { title: 'SignupPage', component: SignupPage}
+    { title: 'SignupPage', component: SignupPage},
+    { title: 'EncuestaBuilderPage', component: EncuestaBuilderPage}
   ]
 
   constructor(platform: Platform, statusBar: StatusBar,

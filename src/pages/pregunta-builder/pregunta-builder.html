@@ -7,12 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>preguntaBuilder</ion-title>
+    <ion-title>Crear pregunta</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <form #preguntaForm="ngForm" (ngSubmit)="done()">
+    <ion-item>
+      <ion-textarea placeholder="Descripción"></ion-textarea>
+    </ion-item>
+  </form>
 </ion-content>
