@@ -1,4 +1,5 @@
 import { Encuesta } from '../../models/encuesta';
+import { Pregunta } from '../../models/pregunta';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -16,6 +17,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class PreguntaBuilderPage implements OnInit {
 
   private encuesta: Encuesta;
+
+  private consigna : String;
+  private tipo : Number;
+  private opciones = {};
+  private respuestas = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

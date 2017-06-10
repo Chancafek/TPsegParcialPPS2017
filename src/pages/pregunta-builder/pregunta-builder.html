@@ -16,7 +16,14 @@
 <ion-content padding>
   <form #preguntaForm="ngForm" (ngSubmit)="done()">
     <ion-item>
-      <ion-textarea placeholder="Descripción"></ion-textarea>
+      <ion-textarea placeholder="Descripción" [(ngModel)]="pregunta.desc"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="pregunta.tipo">
+        <ion-option value="1">Texto</ion-option>
+        <ion-option value="2">Radio</ion-option>
+        <ion-option value="3">Checks</ion-option>
+      </ion-select>
     </ion-item>
   </form>
 </ion-content>

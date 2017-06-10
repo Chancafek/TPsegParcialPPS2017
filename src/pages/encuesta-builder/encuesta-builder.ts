@@ -28,7 +28,12 @@ export class EncuestaBuilderPage {
   }
 
   crear() {
+    /* Debemos instanciar la encuesta con el id del usuario */
+
     this.encuesta = new Encuesta(this.tematica, null, null, null);
+    this.navCtrl.push('PreguntaBuilderPage', {encuesta:this.encuesta});
+
+    
   }
 
 }
