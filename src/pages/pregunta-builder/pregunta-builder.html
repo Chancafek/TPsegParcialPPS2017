@@ -27,17 +27,21 @@
         <ion-option value="3">Texto</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>Opción 1</ion-label>
-      <ion-input [(ngModel)]="opcion1" name="opcion1" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>Opción 2</ion-label>
-      <ion-input [(ngModel)]="opcion2" name="opcion2" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>Opción 3</ion-label>
-      <ion-input [(ngModel)]="opcion3" name="opcion3" required></ion-input>
-    </ion-item>
+
+    <!--Muestro solo si es check o radio-->
+    <div *ngIf="pregunta.tipo == 1 || pregunta.tipo == 2">
+      <ion-item>
+        <ion-label color="primary" floating>Opción 1</ion-label>
+        <ion-input [(ngModel)]="opcion1" name="opcion1" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" floating>Opción 2</ion-label>
+        <ion-input [(ngModel)]="opcion2" name="opcion2" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" floating>Opción 3</ion-label>
+        <ion-input [(ngModel)]="opcion3" name="opcion3" required></ion-input>
+      </ion-item>
+    </div>
   </form>
 </ion-content>
