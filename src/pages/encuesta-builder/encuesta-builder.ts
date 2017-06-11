@@ -16,7 +16,7 @@ import { Encuesta } from "../../models/encuesta";
 })
 export class EncuestaBuilderPage {
 
-  private encuesta: Encuesta;
+  private encuesta: Encuesta = new Encuesta();
 
   private tematica: String;
 
@@ -29,10 +29,8 @@ export class EncuestaBuilderPage {
 
   crear() {
     /* Debemos instanciar la encuesta con el id del usuario */
-
-    this.encuesta = new Encuesta(this.tematica, null, null, null);
+    
     this.navCtrl.push('PreguntaBuilderPage', {encuesta:this.encuesta});
-
     
   }
 

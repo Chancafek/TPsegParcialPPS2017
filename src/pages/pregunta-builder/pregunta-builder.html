@@ -16,14 +16,28 @@
 <ion-content padding>
   <form #preguntaForm="ngForm" (ngSubmit)="done()">
     <ion-item>
-      <ion-textarea placeholder="Descripción" [(ngModel)]="pregunta.desc"></ion-textarea>
+      <ion-label color="primary" floating>Descripción</ion-label>
+      <ion-textarea [(ngModel)]="pregunta.consigna" name="consigna" rows="4" required></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-select [(ngModel)]="pregunta.tipo">
-        <ion-option value="1">Texto</ion-option>
+      <ion-label color="primary" stacked>Tipo de pregunta</ion-label>
+      <ion-select [(ngModel)]="pregunta.tipo" placeholder="Seleccione el tipo" name="tipo" interface="popover" required>
+        <ion-option value="1">Checks</ion-option>
         <ion-option value="2">Radio</ion-option>
-        <ion-option value="3">Checks</ion-option>
+        <ion-option value="3">Texto</ion-option>
       </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Opción 1</ion-label>
+      <ion-input [(ngModel)]="opcion1" name="opcion1" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Opción 2</ion-label>
+      <ion-input [(ngModel)]="opcion2" name="opcion2" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Opción 3</ion-label>
+      <ion-input [(ngModel)]="opcion3" name="opcion3" required></ion-input>
     </ion-item>
   </form>
 </ion-content>

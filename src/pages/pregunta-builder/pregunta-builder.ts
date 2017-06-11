@@ -18,10 +18,7 @@ export class PreguntaBuilderPage implements OnInit {
 
   private encuesta: Encuesta;
 
-  private consigna : String;
-  private tipo : Number;
-  private opciones = {};
-  private respuestas = {};
+  private pregunta: Pregunta = new Pregunta();
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -32,5 +29,6 @@ export class PreguntaBuilderPage implements OnInit {
 
   ngOnInit() {
     this.encuesta = this.navParams.get("encuesta");
+    console.log(this.encuesta);
   }
 }

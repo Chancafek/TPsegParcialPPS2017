@@ -19,8 +19,8 @@
       <h3>Ingrese la temática de la encuesta</h3>
       <form #encuestaForm="ngForm" (ngSubmit)="crear()">
         <ion-item>
-          <ion-label color="primary" stacked>Temática</ion-label>
-          <ion-input [(ngModel)]="tematica" name="tematica" type=text required minlength="3"></ion-input>
+          <ion-label color="primary" floating>Temática</ion-label>
+          <ion-input [(ngModel)]="encuesta.tema" name="tematica" type=text required minlength="3"></ion-input>
         </ion-item>
         <button ion-button block type="submit" [disabled]="!encuestaForm.form.valid">Crear encuesta</button>
       </form>
