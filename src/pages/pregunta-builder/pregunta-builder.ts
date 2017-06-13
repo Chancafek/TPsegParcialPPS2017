@@ -31,4 +31,8 @@ export class PreguntaBuilderPage implements OnInit {
     this.encuesta = this.navParams.get("encuesta");
     console.log(this.encuesta);
   }
+
+  onChangeTipo(event:Event){
+    this.pregunta = new Pregunta();
+  }
 }
