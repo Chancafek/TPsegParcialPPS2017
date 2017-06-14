@@ -20,6 +20,14 @@ export class PreguntaBuilderPage implements OnInit {
 
   private pregunta: Pregunta = new Pregunta();
 
+  private opcion1: String;
+  private opcion2: String;
+  private opcion3: String;
+
+  private respuesta1: Boolean;
+  private respuesta2: Boolean;
+  private respuesta3: Boolean;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -33,6 +41,12 @@ export class PreguntaBuilderPage implements OnInit {
   }
 
   onChangeTipo(event:Event){
-    this.pregunta = new Pregunta();
+    this.opcion1=undefined;
+    this.opcion2=undefined;
+    this.opcion3=undefined;
+    this.respuesta1=undefined;
+    this.respuesta2=undefined;
+    this.respuesta3=undefined;
   }
+
 }
