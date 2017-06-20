@@ -10,7 +10,8 @@ export class Pregunta {
     public respuestas: String[];
 
     constructor() {
-        
+        this.opciones = new Array<String>();
+        this.respuestas = new Array<String>();
     }
 
 }

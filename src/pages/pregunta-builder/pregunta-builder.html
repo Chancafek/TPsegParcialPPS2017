@@ -24,9 +24,9 @@
       <ion-label color="primary" stacked>Tipo de pregunta</ion-label>
       <ion-select [(ngModel)]="pregunta.tipo" placeholder="Seleccione el tipo" name="tipo" interface="popover" (ionChange)="onChangeTipo($event)"
         required>
-        <ion-option value="1">Checks</ion-option>
-        <ion-option value="2">Radio</ion-option>
-        <ion-option value="3">Texto</ion-option>
+        <ion-option value=1>Checks</ion-option>
+        <ion-option value=2>Radio</ion-option>
+        <ion-option value=3>Texto</ion-option>
       </ion-select>
     </ion-item>
 
@@ -52,14 +52,14 @@
       <ion-item-divider color="light">Respuesta</ion-item-divider>
       <ion-item>
         <ion-label color="primary" floating>Respuesta</ion-label>
-        <ion-input [(ngModel)]="opcion1" name="respuesta" required></ion-input>
+        <ion-input [(ngModel)]="respuestaTexto" name="respuesta" required></ion-input>
       </ion-item>
     </div>
 
     <!--Muestro solo si es radio-->
     <div class="divider" *ngIf="pregunta.tipo == 2">
       <ion-item-divider color="light">Respuesta</ion-item-divider>
-      <ion-list radio-group [(ngModel)]="opcion1" name="respuesta">
+      <ion-list radio-group [(ngModel)]="respuestaRadio" name="respuestaRadio" required>
         <ion-item>
           <ion-label>Opción 1</ion-label>
           <ion-radio value="1"></ion-radio>
@@ -79,17 +79,19 @@
     <div class="divider" *ngIf="pregunta.tipo == 1">
       <ion-item-divider color="light">Respuesta</ion-item-divider>
       <ion-item>
-        <ion-label>Opcion 1</ion-label>
-        <ion-checkbox [(ngModel)]="respuesta1" name="respuesta1"></ion-checkbox>
+        <ion-label>Opción 1</ion-label>
+        <ion-checkbox [(ngModel)]="respuestaCheck1" name="respuestaCheck1"></ion-checkbox>
       </ion-item>
       <ion-item>
-        <ion-label>Opcion 2</ion-label>
-        <ion-checkbox [(ngModel)]="respuesta2" name="respuesta2"></ion-checkbox>
+        <ion-label>Opción 2</ion-label>
+        <ion-checkbox [(ngModel)]="respuestaCheck2" name="respuestaCheck2"></ion-checkbox>
       </ion-item>
       <ion-item>
-        <ion-label>Opcion 3</ion-label>
-        <ion-checkbox [(ngModel)]="respuesta3" name="respuesta3"></ion-checkbox>
+        <ion-label>Opción 3</ion-label>
+        <ion-checkbox [(ngModel)]="respuestaCheck3" name="respuestaCheck3"></ion-checkbox>
       </ion-item>
     </div>
+
+    <button *ngIf="pregunta.tipo != null" ion-button block type="submit" [disabled]="!preguntaForm.form.valid">Terminar pregunta</button>
   </form>
 </ion-content>

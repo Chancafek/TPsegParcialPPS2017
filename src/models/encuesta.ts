@@ -9,7 +9,7 @@ export class Encuesta {
 
 
     constructor() {
-    
+        this.preguntas = new Array<Pregunta>();
     }
 
 }
