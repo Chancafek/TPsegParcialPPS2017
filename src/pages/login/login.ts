@@ -3,8 +3,8 @@ import { UserProvider } from './../../providers/user/user';
 import { MenuController } from 'ionic-angular';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { FormGroup, Validators, FormControl } from "@angular/forms";
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 /**
  * Generated class for the LoginPage page.
@@ -31,7 +31,9 @@ export class LoginPage {
     private menu: MenuController,
     private _userService: UserProvider,
     private _authService: AuthProvider,
-    public toastCtrl: ToastController
+    public alertCtrl: AlertController,
+    private fb: FormBuilder,
+    private loadingCtrl: LoadingController
     ) {
     /*
         Deshabilito el sidemenu,
@@ -39,9 +41,9 @@ export class LoginPage {
     */
     //this.menu.enable(false);
     this.user = new User();
-    this.loginForm = new FormGroup({
-      email : new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      password : new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12)]))
+    this.loginForm = fb.group({
+      'email' : [null, Validators.compose([Validators.required, Validators.email])],
+      'password' : [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12)])]
     });
   }
 
@@ -56,17 +58,23 @@ export class LoginPage {
   logForm() {
     this.submitAttempt = true;
     this.loading = true;
+    let loader = this.loadingCtrl.create({
+      content: "Verificando datos...",
+    });
+    loader.present();
     if(this.loginForm.valid) {
       this._authService.attempt(this.loginForm.value)
         .subscribe(
           res => {
             this.loading = false;
-            this.presentToast('Te has logueado satisfactoriamente!');
+            loader.dismiss();
+            this.presentAlerta('Exito!', 'Te has logueado satisfactoriamente!');
             setTimeout(() => this.navCtrl.setRoot('HomePage'), 2500);
           },
           error => {
             this.loading = false;
-            // this.presentToast(error);
+            loader.dismiss();
+            this.presentAlerta('Falló!', 'Parece que hubo un error.');
             this.errors = error;
             console.log(error);
           }
@@ -74,10 +82,11 @@ export class LoginPage {
     }
   }
 
-  presentToast(mensaje: string) {
-    let toast = this.toastCtrl.create({
-      message: mensaje,
-      duration: 2000
+  presentAlerta(titulo: string, mensaje: string) {
+    let toast = this.alertCtrl.create({
+      title: titulo,
+      subTitle: mensaje,
+      buttons: ['OK']
     });
     toast.present();
   }
