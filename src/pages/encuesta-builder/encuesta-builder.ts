@@ -18,13 +18,12 @@ export class EncuestaBuilderPage {
 
   private encuesta: Encuesta = new Encuesta();
 
-  private tematica: String;
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EncuestaBuilderPage');
+    this.encuesta = new Encuesta();
   }
 
   crear() {

@@ -90,7 +90,7 @@ export class PreguntaBuilderPage implements OnInit {
             handler: () => {
               console.log('Guardo y finalizo');
               this.insertPregunta();
-              this.encuestaService.saveEncuesta(this.encuesta).subscribe(
+              this.encuestaService.save(this.encuesta).subscribe(
                 response=>{
                   console.log(response);
                 },
@@ -155,7 +155,7 @@ export class PreguntaBuilderPage implements OnInit {
     } else if (ETipoPregunta.TEXT.toLocaleString() == this.pregunta.tipo.toLocaleString()) {
 
       this.pregunta.tipo = ETipoPregunta.TEXT;
-      this.pregunta.respuestas.push(this.respuestaTexto);
+      this.pregunta.opciones.push(this.respuestaTexto);
 
     }
 
