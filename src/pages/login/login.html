@@ -7,13 +7,15 @@
 
 
 <ion-content>
-  <form (submit)="doLogin()">
+  <form (submit)="logForm()">
     <ion-list>
       <ion-item>
         <ion-label fixed>Email</ion-label>
         <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
       </ion-item>
-
+      <ion-item *ngIf="errors && errors.email" style="background-color: rgba(100, 100, 100, 0.25);">
+        <p class="error-msg">{{ errors.email | first | capitalize }}</p>
+      </ion-item>
       <!--
       Want to use a Username instead of an Email? Here you go:
 
@@ -22,13 +24,18 @@
         <ion-input type="text" [(ngModel)]="user.username"></ion-input>
       </ion-item>
       -->
-
       <ion-item>
         <ion-label fixed>Contraseña</ion-label>
         <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
       </ion-item>
+      <ion-item *ngIf="errors && errors.password" style="background-color: rgba(100, 100, 100, 0.25);">
+        <p class="error-msg">{{ errors.password | first | capitalize }} </p>
+      </ion-item>
       <div padding>
-        <button ion-button color="primary" block>Ingresar</button>
+        <button ion-button color="primary" block [disabled]="loading">Ingresar</button>
+      </div>
+      <div padding>
+        <small>No tenes cuenta? <a (click)="goRegistro()">Registrate Acá</a> </small>
       </div>
     </ion-list>
   </form>
