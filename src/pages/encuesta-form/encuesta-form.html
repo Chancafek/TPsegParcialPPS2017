@@ -1,0 +1,57 @@
+<!--
+  Generated template for the EncuestaFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>encuestaForm</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #encuestaForm="ngForm" (ngSubmit)="send()">
+    <!--<h3>{{pregunta.consigna}}</h3>
+
+    <ion-list *ngIf="pregunta.tipo==1">
+      <ion-item>
+        <ion-label>{{pregunta.opcion1}}</ion-label>
+        <ion-checkbox [(ngModel)]="respuestaCheck1" name="respuestaCheck1"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{pregunta.opcion2}}</ion-label>
+        <ion-checkbox [(ngModel)]="respuestaCheck2" name="respuestaCheck2"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{pregunta.opcion3}}</ion-label>
+        <ion-checkbox [(ngModel)]="respuestaCheck3" name="respuestaCheck3"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="pregunta.tipo==2" radio-group [(ngModel)]="respuesta" name="respuesta" required>
+      <ion-item>
+        <ion-label>A. {{pregunta.opcion1}}</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>B. {{pregunta.opcion2}}</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>C. {{pregunta.opcion3}}</ion-label>
+        <ion-radio value="3"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <ion-item ngIf="pregunta.tipo==3">
+      <ion-label color="primary" floating>Respuesta</ion-label>
+      <ion-input [(ngModel)]="respuestaTexto" name="respuesta" required></ion-input>
+    </ion-item>-->
+
+    <button ion-button type="submit" [disabled]="!encuestaForm.form.valid">Siguente</button>
+  </form>
+</ion-content>

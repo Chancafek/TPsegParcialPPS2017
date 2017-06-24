@@ -15,20 +15,20 @@ import 'rxjs/add/operator/map';
 export class EncuestaProvider {
 
   baseUrl: string = window.location.protocol + "//localhost/api_educadroid/public/";
-  //baseUrl: string = "http://lgferreyra.esy.es/ppsParcial/ws/public/";
+  //baseUrl: string = "??A DONDE LO SUBIMOS??";
   data: Encuesta[];
 
   constructor(public http: Http) {
 
   }
 
-  getEncuestas(): Observable<Encuesta[]> {
+  getAll(): Observable<Encuesta[]> {
     return this.http.get(this.baseUrl + "encuestas")
       .map(response => response.json() as Encuesta[])
       .catch(this.handleError);
   }
 
-  saveEncuesta(encuesta: Encuesta): Observable<Response> {
+  save(encuesta: Encuesta): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -36,12 +36,18 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
-  deployEncuesta(encuesta: Encuesta, division: String, materia: String): Observable<Boolean> {
+  deploy(encuesta: Encuesta, division: String, materia: String): Observable<Boolean> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.baseUrl + "encuestas/deploy/", encuesta, options)
+    return this.http.post(this.baseUrl + "encuestas/deploy/", { encuesta: encuesta, division: division, materia: materia }, options)
       .map(response => response.ok);
+  }
+
+  getById(id: Number): Observable<Encuesta> {
+    return this.http.get(this.baseUrl + "encuestas/" + id)
+      .map(response => response.json() as Encuesta)
+      .catch(this.handleError);
   }
 
   private handleError(error: Response | any) {
