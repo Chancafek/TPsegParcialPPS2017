@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
 import { NotificationProvider } from '../providers/notification/notification';
+import { UserProvider } from '../providers/user/user';
+import { EncuestaProvider } from '../providers/encuesta/encuesta';
 
 /* Ionic cloud settings */
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
@@ -68,7 +70,9 @@ const cloudSettings: CloudSettings = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NotificationProvider
+    NotificationProvider,
+    UserProvider,
+    EncuestaProvider
   ]
 })
 export class AppModule {}

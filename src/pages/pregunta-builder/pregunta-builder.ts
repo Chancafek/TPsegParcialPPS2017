@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ETipoPregunta } from "../../models/ETipoPregunta";
 import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 
+import { EncuestaProvider } from "../../providers/encuesta/encuesta";
+
 /**
  * Generated class for the PreguntaBuilderPage page.
  *
@@ -34,7 +36,8 @@ export class PreguntaBuilderPage implements OnInit {
   private respuestaRadio: String;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController) {
+    public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController,
+    public encuestaService: EncuestaProvider) {
   }
 
   ionViewDidLoad() {
@@ -86,12 +89,23 @@ export class PreguntaBuilderPage implements OnInit {
             role: 'destructive',
             handler: () => {
               console.log('Guardo y finalizo');
+              this.insertPregunta();
+              this.encuestaService.saveEncuesta(this.encuesta).subscribe(
+                response=>{
+                  console.log(response);
+                },
+                error=>{
+                  console.error(error);
+                }
+              );
             }
           },
           {
             text: 'Guardar y agregar otra pregunta',
             handler: () => {
               console.log('Guardo y agrego otra');
+              this.insertPregunta();
+              this.navCtrl.push('PreguntaBuilderPage', {encuesta:this.encuesta})
             }
           },
           {
