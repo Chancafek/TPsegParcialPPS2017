@@ -5,3 +5,44 @@ page-login {
 .linker {
   cursor: pointer;
 }
+
+.img-portrait{
+    background-color: rgba(0,0,0,0);
+    background-size: cover;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.mi-alert {
+    // background: #fff;
+    padding: 7px;
+    font-size: .7em;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: 2s alertAnim forwards;
+    padding: 5px 20px;
+}
+@keyframes alertAnim {
+    from {
+        opacity:0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity:1;
+        transform: translateY(0);
+    }
+}
+
+.no-scroll {
+    scroll-content {
+        overflow-y: hidden;
+    }
+}
+
+.scroll {
+    scroll-content {
+        overflow-y: scroll;
+    }
+}
+
