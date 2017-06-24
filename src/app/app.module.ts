@@ -20,6 +20,7 @@ import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthProvider } from '../providers/auth/auth';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBJlf1cacuUbTVvwg8JdZoBapDFcxtoa1Q",
@@ -72,7 +73,8 @@ const cloudSettings: CloudSettings = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NotificationProvider,
     UserProvider,
-    EncuestaProvider
+    EncuestaProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}
