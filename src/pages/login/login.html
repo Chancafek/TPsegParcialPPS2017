@@ -6,21 +6,27 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content ion-fixed>
+  <ion-row>
+  <ion-col text-center>
+    <ion-img class="img-portrait" src="assets/img/appicon.png"></ion-img>
+  </ion-col>
+</ion-row>
+
   <form (submit)="logForm()" [formGroup]="loginForm">
     <ion-list>
       <ion-item>
         <ion-label fixed>Email</ion-label>
         <ion-input type="email" formControlName="email" name="email"></ion-input>
       </ion-item>
-      <ion-item *ngIf="(errors && errors.email) || (loginForm.controls.email.touched && !submitAttempt)">
-        <small [hidden]="loginForm.controls.email.valid || (!loginForm.controls.email.touched && !submitAttempt)">
+      <ion-row *ngIf="(errors && errors.email) || (loginForm.controls['email'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="loginForm.controls['email'].valid || (!loginForm.controls['email'].touched && !submitAttempt)">
           El email es requerido (Ingrese un email válido).
-        </small>
-        <small *ngIf="errors && errors.email">
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.email">
           {{ errors.email | first | capitalize }}
-        </small>
-      </ion-item>
+        </div>
+      </ion-row>
       <!--
       Want to use a Username instead of an Email? Here you go:
 
@@ -33,16 +39,16 @@
         <ion-label fixed>Contraseña</ion-label>
         <ion-input type="password" formControlName="password" name="password"></ion-input>
       </ion-item>
-      <ion-item *ngIf="(errors && errors.password) || (loginForm.controls.password.touched && !submitAttempt)">
-      <small [hidden]="loginForm.controls.password.valid || (!loginForm.controls.password.touched && !submitAttempt)">
+      <ion-row *ngIf="(errors && errors.password) || (loginForm.controls['password'].touched && !submitAttempt)">
+      <div class="mi-alert" [hidden]="loginForm.controls['password'].valid || (!loginForm.controls['password'].touched && !submitAttempt)">
         La contraseña es requerida (Entre 6 y 12 caracteres).
-      </small>
-      <small *ngIf="errors && errors.password">
+      </div>
+      <div class="mi-alert" *ngIf="errors && errors.password">
         {{ errors.password | first | capitalize }}
-      </small>
-      </ion-item>
+      </div>
+      </ion-row>
       <div padding>
-        <button ion-button color="primary" block [disabled]="loading">Ingresar</button>
+        <button ion-button color="primary" block [disabled]="loading || !loginForm.valid">Ingresar</button>
       </div>
       <div padding text-center>
         <small>No tenes cuenta? <a class="linker" (click)="goRegistro()">Registrate Acá</a> </small>
