@@ -1,3 +1,4 @@
+import { IdentityProvider } from './../../providers/identifier/identifier';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { tokenNotExpired } from 'angular2-jwt';
@@ -8,10 +9,15 @@ import { tokenNotExpired } from 'angular2-jwt';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  user: any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    private identifier: IdentityProvider
+    ) {
 
   }
+
   ionViewDidLoad() {
     /* Verifico que el usuario este logueado */
   	if (!tokenNotExpired('access_token')) { // retorna false si el token no existe o es inválido
@@ -21,5 +27,6 @@ export class HomePage {
       */
     	//this.navCtrl.setRoot('WelcomePage');
     }
+    this.user= this.identifier.getIdentity()
   }
 }

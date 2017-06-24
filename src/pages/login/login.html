@@ -7,14 +7,19 @@
 
 
 <ion-content>
-  <form (submit)="logForm()">
+  <form (submit)="logForm()" [formGroup]="loginForm">
     <ion-list>
       <ion-item>
         <ion-label fixed>Email</ion-label>
-        <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
+        <ion-input type="email" formControlName="email" name="email"></ion-input>
       </ion-item>
-      <ion-item *ngIf="errors && errors.email" style="background-color: rgba(100, 100, 100, 0.25);">
-        <p class="error-msg">{{ errors.email | first | capitalize }}</p>
+      <ion-item *ngIf="(errors && errors.email) || (loginForm.controls.email.touched && !submitAttempt)">
+        <small [hidden]="loginForm.controls.email.valid || (!loginForm.controls.email.touched && !submitAttempt)">
+          El email es requerido (Ingrese un email válido).
+        </small>
+        <small *ngIf="errors && errors.email">
+          {{ errors.email | first | capitalize }}
+        </small>
       </ion-item>
       <!--
       Want to use a Username instead of an Email? Here you go:
@@ -26,16 +31,21 @@
       -->
       <ion-item>
         <ion-label fixed>Contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+        <ion-input type="password" formControlName="password" name="password"></ion-input>
       </ion-item>
-      <ion-item *ngIf="errors && errors.password" style="background-color: rgba(100, 100, 100, 0.25);">
-        <p class="error-msg">{{ errors.password | first | capitalize }} </p>
+      <ion-item *ngIf="(errors && errors.password) || (loginForm.controls.password.touched && !submitAttempt)">
+      <small [hidden]="loginForm.controls.password.valid || (!loginForm.controls.password.touched && !submitAttempt)">
+        La contraseña es requerida (Entre 6 y 12 caracteres).
+      </small>
+      <small *ngIf="errors && errors.password">
+        {{ errors.password | first | capitalize }}
+      </small>
       </ion-item>
       <div padding>
         <button ion-button color="primary" block [disabled]="loading">Ingresar</button>
       </div>
-      <div padding>
-        <small>No tenes cuenta? <a (click)="goRegistro()">Registrate Acá</a> </small>
+      <div padding text-center>
+        <small>No tenes cuenta? <a class="linker" (click)="goRegistro()">Registrate Acá</a> </small>
       </div>
     </ion-list>
   </form>

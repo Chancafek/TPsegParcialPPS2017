@@ -4,6 +4,7 @@ import { MenuController } from 'ionic-angular';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { FormGroup, Validators, FormControl } from "@angular/forms";
 
 /**
  * Generated class for the LoginPage page.
@@ -21,6 +22,8 @@ export class LoginPage {
   user: User;
   loading = false;
   errors: any;
+  submitAttempt = false;
+  loginForm: FormGroup;
 
   constructor(
     public navCtrl: NavController,
@@ -36,6 +39,10 @@ export class LoginPage {
     */
     //this.menu.enable(false);
     this.user = new User();
+    this.loginForm = new FormGroup({
+      email : new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      password : new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12)]))
+    });
   }
 
   ionViewDidEnter() {
@@ -47,17 +54,24 @@ export class LoginPage {
   }
 
   logForm() {
+    this.submitAttempt = true;
     this.loading = true;
-    this._authService.attempt(this.user)
-      .subscribe(
-        res => {
-          this.presentToast('Te has logueado satisfactoriamente!');
-          setTimeout(() => this.navCtrl.setRoot('HomePage'), 2500);
-        },
-        error => {
-          this.presentToast(error);
-        }
-      );
+    if(this.loginForm.valid) {
+      this._authService.attempt(this.loginForm.value)
+        .subscribe(
+          res => {
+            this.loading = false;
+            this.presentToast('Te has logueado satisfactoriamente!');
+            setTimeout(() => this.navCtrl.setRoot('HomePage'), 2500);
+          },
+          error => {
+            this.loading = false;
+            // this.presentToast(error);
+            this.errors = error;
+            console.log(error);
+          }
+        );
+    }
   }
 
   presentToast(mensaje: string) {
