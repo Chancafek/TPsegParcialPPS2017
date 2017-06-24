@@ -11,7 +11,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CapitalizePipe implements PipeTransform {
   /**
-   * Takes a value and makes it lowercase.
+   * Convierte la primera letra de un string en mayúscula.
+   * Ej.: {{ ionic | capitalize }} = Ionic
    */
   transform(value: string, args?: any): any {
     if (value) {
