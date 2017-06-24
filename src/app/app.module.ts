@@ -1,3 +1,4 @@
+import { IdentityProvider } from './../providers/identifier/identifier';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -5,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { NotificationProvider } from '../providers/notification/notification';
 import { UserProvider } from '../providers/user/user';
@@ -21,6 +23,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBJlf1cacuUbTVvwg8JdZoBapDFcxtoa1Q",
@@ -61,6 +64,8 @@ const cloudSettings: CloudSettings = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     CloudModule.forRoot(cloudSettings),
+    FormsModule,
+    ReactiveFormsModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -73,6 +78,7 @@ const cloudSettings: CloudSettings = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NotificationProvider,
     UserProvider,
+    IdentityProvider,
     EncuestaProvider,
     AuthProvider
   ]
