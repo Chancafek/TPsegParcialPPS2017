@@ -5,6 +5,7 @@ import { WelcomePage } from './../pages/welcome/welcome';
 import { EncuestaBuilderPage } from "../pages/encuesta-builder/encuesta-builder";
 import { PreguntaBuilderPage } from '../pages/pregunta-builder/pregunta-builder';
 import { EncuestaFormPage } from "../pages/encuesta-form/encuesta-form";
+import { EncuestaListPage } from "../pages/encuesta-list/encuesta-list";
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,7 +28,8 @@ export class MyApp {
     { title: 'SignupPage', component: SignupPage},
     { title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
     { title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
-    { title: 'EncuestaFormPage', component: EncuestaFormPage}
+    { title: 'EncuestaFormPage', component: EncuestaFormPage},
+    { title: 'EncuestaListPage', component: EncuestaListPage}
   ]
 
   constructor(platform: Platform, statusBar: StatusBar,

@@ -8,6 +8,7 @@ export class Pregunta {
     public tipo: ETipoPregunta;
     public opciones: String[];
     public respuestas: String[];
+    public resultado: Boolean;
 
     constructor() {
         this.opciones = new Array<String>();

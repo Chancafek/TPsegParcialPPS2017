@@ -36,17 +36,25 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
-  deploy(encuesta: Encuesta, division: String, materia: String): Observable<Boolean> {
+  deploy(encuesta: Encuesta, division: String, materia: String): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.baseUrl + "encuestas/deploy/", { encuesta: encuesta, division: division, materia: materia }, options)
-      .map(response => response.ok);
+      .catch(this.handleError);
   }
 
   getById(id: Number): Observable<Encuesta> {
     return this.http.get(this.baseUrl + "encuestas/" + id)
       .map(response => response.json() as Encuesta)
+      .catch(this.handleError);
+  }
+
+  saveResultados(encuesta: Encuesta): Observable<Response>{
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.baseUrl + "encuestas/resultados/", encuesta, options)
       .catch(this.handleError);
   }
 
