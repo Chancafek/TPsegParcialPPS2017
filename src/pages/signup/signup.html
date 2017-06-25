@@ -1,18 +1,124 @@
-<!--
-  Generated template for the SignupPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title text-center>Registro EducaDroid</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content class="minidroid"padding>
 
-<ion-content padding>
+  <form (submit)="registerForm()" [formGroup]="regForm" novalidate>
+    <ion-list>
 
+      <ion-item>
+        <ion-label stacked>Nombre</ion-label>
+        <ion-input type="text" formControlName="nombre" name="nombre"></ion-input>
+      </ion-item>
+      <ion-row class="bg-white" *ngIf="(errors && errors.nombre) || (regForm.controls['nombre'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="regForm.controls['nombre'].valid || (!regForm.controls['nombre'].touched && !submitAttempt)">
+          El nombre es requerido
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.nombre">
+          {{ errors.nombre | first | capitalize }}
+        </div>
+      </ion-row>
+
+      <ion-item>
+        <ion-label stacked>Apellido</ion-label>
+        <ion-input type="text" formControlName="apellido" name="apellido"></ion-input>
+      </ion-item>
+      <ion-row class="bg-white" *ngIf="(errors && errors.apellido) || (regForm.controls['apellido'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="regForm.controls['apellido'].valid || (!regForm.controls['apellido'].touched && !submitAttempt)">
+          El apellido es requerido
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.apellido">
+          {{ errors.apellido | first | capitalize }}
+        </div>
+      </ion-row>
+
+      <ion-item>
+        <ion-label stacked>Nro Documento</ion-label>
+        <ion-input type="text" formControlName="documento" name="documento"></ion-input>
+      </ion-item>
+      <ion-row class="bg-white" *ngIf="(errors && errors.documento) || (regForm.controls['documento'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="regForm.controls['documento'].valid || (!regForm.controls['documento'].touched && !submitAttempt)">
+          El Nro de documento es requerido
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.documento">
+          {{ errors.documento | first | capitalize }}
+        </div>
+      </ion-row>
+
+      <ion-item>
+        <ion-label stacked>Fecha Nacimiento</ion-label>
+        <ion-datetime placeholder="dd-mm-aaaa" displayFormat="DD-MM-YYYY" [(ngModel)]="today" doneText="Aceptar" formControlName="fnacimiento" name="fnacimiento"></ion-datetime>
+      </ion-item>
+      <ion-row class="bg-white" *ngIf="(errors && errors.fnacimiento) || (regForm.controls['fnacimiento'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="regForm.controls['fnacimiento'].valid || (!regForm.controls['fnacimiento'].touched && !submitAttempt)">
+          El fecha de nacimiento es requerida
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.fnacimiento">
+          {{ errors.fnacimiento | first | capitalize }}
+        </div>
+      </ion-row>
+
+      <ion-item>
+        <ion-label stacked>Sexo</ion-label>
+        <ion-select formControlName="sexo" name="sexo">
+          <ion-option value="m" selected>Masculino</ion-option>
+          <ion-option value="f">Femenino</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-row class="bg-white" *ngIf="(errors && errors.sexo) || (regForm.controls['sexo'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="regForm.controls['sexo'].valid || (!regForm.controls['sexo'].touched && !submitAttempt)">
+          El sexo es requerido.
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.sexo">
+          {{ errors.sexo | first | capitalize }}
+        </div>
+      </ion-row>
+
+      <ion-item>
+        <ion-label stacked>Dirección</ion-label>
+        <ion-input type="text" formControlName="direccion" name="direccion" placeholder="Dirección"></ion-input>
+      </ion-item>
+      <ion-row class="bg-white" *ngIf="(errors && errors.direccion) || (regForm.controls['direccion'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="regForm.controls['direccion'].valid || (!regForm.controls['direccion'].touched && !submitAttempt)">
+          El dirección es requerida.
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.direccion">
+          {{ errors.sexo | first | capitalize }}
+        </div>
+      </ion-row>
+
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="email" formControlName="email" name="email" placeholder="Ingrese su email"></ion-input>
+      </ion-item>
+      <ion-row class="bg-white" *ngIf="(errors && errors.email) || (regForm.controls['email'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="regForm.controls['email'].valid || (!regForm.controls['email'].touched && !submitAttempt)">
+          El email es requerido (Ingrese un email válido).
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.email">
+          {{ errors.email | first | capitalize }}
+        </div>
+      </ion-row>
+
+      <ion-item>
+        <ion-label stacked>Contraseña</ion-label>
+        <ion-input type="password" formControlName="password" name="password" placeholder="Ingrese una contraseña"></ion-input>
+      </ion-item>
+      <ion-row class="bg-white" *ngIf="(errors && errors.password) || (regForm.controls['password'].touched && !submitAttempt)">
+        <div class="mi-alert" [hidden]="regForm.controls['password'].valid || (!regForm.controls['password'].touched && !submitAttempt)">
+          La contraseña es requerida (Entre 6 y 12 caracteres).
+        </div>
+        <div class="mi-alert" *ngIf="errors && errors.password">
+          {{ errors.password | first | capitalize }}
+        </div>
+      </ion-row>
+      <div padding>
+        <button ion-button color="primary" block>Registrarse</button>
+      </div>
+    </ion-list>
+  </form>
 </ion-content>
