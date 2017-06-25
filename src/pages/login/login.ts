@@ -74,7 +74,7 @@ export class LoginPage {
           error => {
             this.loading = false;
             loader.dismiss();
-            this.presentAlerta('Falló!', 'Parece que hubo un error.');
+            this.presentAlerta('Falló!', 'Parece que hubo un error');
             this.errors = error;
             console.log(error);
           }
