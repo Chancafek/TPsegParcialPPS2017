@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Encuesta } from "../../models/encuesta";
 import { Pregunta } from "../../models/pregunta";
+import { ETipoPregunta } from "../../models/ETipoPregunta";
+import { EncuestaProvider } from "../../providers/encuesta/encuesta";
 
 /**
  * Generated class for the EncuestaFormPage page.
@@ -14,14 +16,14 @@ import { Pregunta } from "../../models/pregunta";
   selector: 'page-encuesta-form',
   templateUrl: 'encuesta-form.html',
 })
-export class EncuestaFormPage {
+export class EncuestaFormPage implements OnInit {
 
-  private pregunta: Pregunta;
   private encuesta: Encuesta;
 
-  private opcion1: String;
-  private opcion2: String;
-  private opcion3: String;
+  private pregunta: Pregunta;
+
+  /* Base 0 */
+  private numeroPregunta: number = 0;
 
   private respuestaCheck1: Boolean;
   private respuestaCheck2: Boolean;
@@ -32,14 +34,127 @@ export class EncuestaFormPage {
   private respuestaRadio: String;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public encuestaService: EncuestaProvider, public alertCtrl: AlertController) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EncuestaFormPage');
   }
 
-  send(){
-    
+  ngOnInit() {
+
+    if (this.navParams.get('encuesta') != null) {
+
+      this.encuesta = this.navParams.get('encuesta');
+
+      if (this.navParams.get('numeroPregunta') == null) {
+
+        this.pregunta = this.encuesta.preguntas[0];
+
+      } else {
+
+        this.numeroPregunta = this.navParams.get('numeroPregunta');
+        this.pregunta = this.encuesta.preguntas[this.numeroPregunta];
+
+      }
+
+    } else if (this.navParams.get('idEncuesta') != null) {
+
+      let id: Number = this.navParams.get('idEncuesta');
+      this.encuestaService.getById(id).subscribe(
+        response => {
+          this.encuesta = response;
+          this.pregunta = this.encuesta.preguntas[0];
+        },
+        error => console.error(error)
+      );
+
+    }
+  }
+
+  send() {
+
+    if (ETipoPregunta.CHECKBOX.toLocaleString() == this.pregunta.tipo.toLocaleString() &&
+      !(this.respuestaCheck1 || this.respuestaCheck2 || this.respuestaCheck3)) {
+
+      let alert = this.alertCtrl.create({
+        title: 'Atención',
+        subTitle: 'Indique al menos una opción correcta',
+        buttons: ['OK']
+      });
+
+      alert.present();
+
+    } else {
+
+      this.pregunta.resultado = this.corregirPregunta();
+      if (this.encuesta.preguntas.length > this.numeroPregunta + 1) {
+        this.navCtrl.push('EncuestaFormPage', { numeroPregunta: this.numeroPregunta + 1, encuesta: this.encuesta });
+      } else {
+        //ACA IMPLEMENTAR UNA SALIDA DEL FORMULARIO
+        this.encuestaService.saveResultados(this.encuesta).subscribe(
+          response => {
+            console.log(response);
+            let alert = this.alertCtrl.create({
+              title: 'Información',
+              subTitle: 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.',
+              buttons: ['OK']
+            });
+
+            alert.present();
+
+            this.navCtrl.popTo('EncuestaListPage');
+          },
+          error => {
+            console.error(error);
+          }
+        )
+      }
+
+    }
+
+  }
+
+  corregirPregunta(): Boolean {
+
+    let resultado = true;
+
+    switch (this.pregunta.tipo) {
+      case 1:
+
+        if (this.respuestaCheck1 != this.pregunta.respuestas.some(x => x === "1")) {
+          return false;
+        }
+
+        if (this.respuestaCheck2 != this.pregunta.respuestas.some(x => x === "2")) {
+          return false;
+        }
+
+        if (this.respuestaCheck3 != this.pregunta.respuestas.some(x => x === "3")) {
+          return false;
+        }
+
+        break;
+
+      case 2:
+
+        if (this.respuestaRadio != this.pregunta.respuestas[0]) {
+          return false;
+        }
+
+        break;
+
+      case 3:
+
+        if (this.respuestaTexto.toLowerCase() != this.pregunta.opciones[0].toLowerCase()) {
+          return false;
+        }
+
+        break;
+    }
+
+    return resultado;
   }
 }
