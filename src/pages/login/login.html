@@ -16,10 +16,10 @@
   <form (submit)="logForm()" [formGroup]="loginForm" novalidate>
     <ion-list>
       <ion-item>
-        <ion-label fixed>Email</ion-label>
+        <ion-label stacked>Email</ion-label>
         <ion-input type="email" formControlName="email" name="email"></ion-input>
       </ion-item>
-      <ion-row *ngIf="(errors && errors.email) || (loginForm.controls['email'].touched && !submitAttempt)">
+      <ion-row class="bg-white" *ngIf="(errors && errors.email) || (loginForm.controls['email'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="loginForm.controls['email'].valid || (!loginForm.controls['email'].touched && !submitAttempt)">
           El email es requerido (Ingrese un email válido).
         </div>
@@ -36,10 +36,10 @@
       </ion-item>
       -->
       <ion-item>
-        <ion-label fixed>Contraseña</ion-label>
+        <ion-label stacked>Contraseña</ion-label>
         <ion-input type="password" formControlName="password" name="password"></ion-input>
       </ion-item>
-      <ion-row *ngIf="(errors && errors.password) || (loginForm.controls['password'].touched && !submitAttempt)">
+      <ion-row class="bg-white" *ngIf="(errors && errors.password) || (loginForm.controls['password'].touched && !submitAttempt)">
       <div class="mi-alert" [hidden]="loginForm.controls['password'].valid || (!loginForm.controls['password'].touched && !submitAttempt)">
         La contraseña es requerida (Entre 6 y 12 caracteres).
       </div>
