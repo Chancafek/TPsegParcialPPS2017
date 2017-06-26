@@ -7,7 +7,8 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>encuestaForm</ion-title>
+    <ion-title>Cuestionario</ion-title>
+    <ion-title><ion-label>Tema: {{encuesta.tema}}</ion-label></ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -47,7 +48,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-item ngIf="pregunta.tipo==3">
+    <ion-item *ngIf="pregunta.tipo==3">
       <ion-label color="primary" floating>Respuesta</ion-label>
       <ion-input [(ngModel)]="respuestaTexto" name="respuestaTexto" required></ion-input>
     </ion-item>

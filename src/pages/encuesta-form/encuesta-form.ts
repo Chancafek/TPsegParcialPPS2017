@@ -18,9 +18,9 @@ import { EncuestaProvider } from "../../providers/encuesta/encuesta";
 })
 export class EncuestaFormPage implements OnInit {
 
-  private encuesta: Encuesta;
+  private encuesta: Encuesta = new Encuesta();
 
-  private pregunta: Pregunta;
+  private pregunta: Pregunta = new Pregunta();
 
   /* Base 0 */
   private numeroPregunta: number = 0;
@@ -51,22 +51,24 @@ export class EncuestaFormPage implements OnInit {
 
       if (this.navParams.get('numeroPregunta') == null) {
 
-        this.pregunta = this.encuesta.preguntas[0];
+        this.pregunta = Pregunta.buildPregunta(this.encuesta.preguntas[0]);
 
       } else {
 
         this.numeroPregunta = this.navParams.get('numeroPregunta');
-        this.pregunta = this.encuesta.preguntas[this.numeroPregunta];
+        this.pregunta = Pregunta.buildPregunta(this.encuesta.preguntas[this.numeroPregunta]);
 
       }
 
     } else if (this.navParams.get('idEncuesta') != null) {
 
       let id: Number = this.navParams.get('idEncuesta');
+      console.log("voy a cargar este cuestionario : " + id);
       this.encuestaService.getById(id).subscribe(
         response => {
           this.encuesta = response;
-          this.pregunta = this.encuesta.preguntas[0];
+          this.pregunta = Pregunta.buildPregunta(this.encuesta.preguntas[0]);
+          console.log(this.pregunta);
         },
         error => console.error(error)
       );
@@ -90,28 +92,29 @@ export class EncuestaFormPage implements OnInit {
     } else {
 
       this.pregunta.resultado = this.corregirPregunta();
-      if (this.encuesta.preguntas.length > this.numeroPregunta + 1) {
-        this.navCtrl.push('EncuestaFormPage', { numeroPregunta: this.numeroPregunta + 1, encuesta: this.encuesta });
-      } else {
-        //ACA IMPLEMENTAR UNA SALIDA DEL FORMULARIO
-        this.encuestaService.saveResultados(this.encuesta).subscribe(
-          response => {
-            console.log(response);
-            let alert = this.alertCtrl.create({
-              title: 'Información',
-              subTitle: 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.',
-              buttons: ['OK']
-            });
+      console.log(this.pregunta.resultado);
+      // if (this.encuesta.preguntas.length > this.numeroPregunta + 1) {
+      //   this.navCtrl.push('EncuestaFormPage', { numeroPregunta: this.numeroPregunta + 1, encuesta: this.encuesta });
+      // } else {
+      //   //ACA IMPLEMENTAR UNA SALIDA DEL FORMULARIO
+      //   this.encuestaService.saveResultados(this.encuesta).subscribe(
+      //     response => {
+      //       console.log(response);
+      //       let alert = this.alertCtrl.create({
+      //         title: 'Información',
+      //         subTitle: 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.',
+      //         buttons: ['OK']
+      //       });
 
-            alert.present();
+      //       alert.present();
 
-            this.navCtrl.popTo('EncuestaListPage');
-          },
-          error => {
-            console.error(error);
-          }
-        )
-      }
+      //       this.navCtrl.popTo('EncuestaListPage');
+      //     },
+      //     error => {
+      //       console.error(error);
+      //     }
+      //   )
+      // }
 
     }
 

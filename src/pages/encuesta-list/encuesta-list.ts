@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Encuesta } from "../../models/encuesta";
+import { EncuestaProvider } from "../../providers/encuesta/encuesta";
+import { IdentityProvider } from "../../providers/identifier/identifier";
 
 /**
  * Generated class for the EncuestaListPage page.
@@ -12,13 +15,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-encuesta-list',
   templateUrl: 'encuesta-list.html',
 })
-export class EncuestaListPage {
+export class EncuestaListPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private encuestas: Encuesta[] = new Array<Encuesta>();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+   public encuestaService:EncuestaProvider, public indentityService:IdentityProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EncuestaListPage');
+  }
+
+  ngOnInit(){
+    this.encuestaService.getAll().subscribe(
+      response=>this.encuestas=response,
+      error=>console.error(error),
+      ()=>console.log(this.encuestas)
+    );
+  }
+
+  action(encuesta :Encuesta){
+    this.navCtrl.push('EncuestaFormPage', {idEncuesta:encuesta.id});
   }
 
 }

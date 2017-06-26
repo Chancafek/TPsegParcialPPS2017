@@ -91,10 +91,11 @@ export class PreguntaBuilderPage implements OnInit {
               console.log('Guardo y finalizo');
               this.insertPregunta();
               this.encuestaService.save(this.encuesta).subscribe(
-                response=>{
+                response => {
                   console.log(response);
+                  this.navCtrl.popToRoot();
                 },
-                error=>{
+                error => {
                   console.error(error);
                 }
               );
@@ -105,13 +106,31 @@ export class PreguntaBuilderPage implements OnInit {
             handler: () => {
               console.log('Guardo y agrego otra');
               this.insertPregunta();
-              this.navCtrl.push('PreguntaBuilderPage', {encuesta:this.encuesta})
+              this.navCtrl.push('PreguntaBuilderPage', { encuesta: this.encuesta })
             }
           },
           {
-            text: 'Cancelar',
+            text: 'Cancelar cuestionario',
             handler: () => {
               console.log('Sigo editando la pregunta');
+              let alert = this.alertCtrl.create({
+                title: 'Atención',
+                subTitle: 'Los datos no guardados se perderán ¿Desea salir?',
+                buttons: [{
+                  text: 'No',
+                  role: 'cancel',
+                  handler: data => {
+                    console.log('Cancel clicked');
+                  }
+                },
+                {
+                  text: 'Si',
+                  handler: data => {
+                    this.navCtrl.popToRoot();
+                  }
+                }]
+              });
+              alert.present();
             }
           }
         ]
