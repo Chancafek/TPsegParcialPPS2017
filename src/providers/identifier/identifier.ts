@@ -22,11 +22,13 @@ export class IdentityProvider {
         if(token) {
           const decodedToken = this.jwtHelper.decodeToken(token);
           let subject = {
-              id : decodedToken.sub,
+              id : decodedToken.user.id,
               nombre: decodedToken.user.nombre,
               apellido: decodedToken.user.apellido,
               email : decodedToken.user.email,
               role : decodedToken.role,
+              sexo: decodedToken.user.sexo,
+              image: decodedToken.user.image
           };
           return subject;
         } else {
@@ -36,6 +38,7 @@ export class IdentityProvider {
 
     getUserProfile(id?: any): Observable<User> {
         if (id == null || id === '') {
+            console.log('id from token: ' + this.getIdentity().id);
             id = this.getIdentity().id;
         }
         return this.http.get(`${this.url}/users/${id}`, this.jwt())
@@ -65,5 +68,9 @@ export class IdentityProvider {
 
     isAdmin() {
       return this.getIdentity().role == 1;
+    }
+
+    isMale() {
+      return this.getIdentity().sexo == 'm';
     }
 }
