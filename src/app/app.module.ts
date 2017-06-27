@@ -1,3 +1,6 @@
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { Geolocation } from '@ionic-native/geolocation';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { IdentityProvider } from './../providers/identifier/identifier';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -23,6 +26,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
+import { GeolocalizacionProvider } from '../providers/geolocalizacion/geolocalizacion';
 
 
 export const firebaseConfig = {
@@ -75,12 +79,17 @@ const cloudSettings: CloudSettings = {
   providers: [
     StatusBar,
     SplashScreen,
+    Diagnostic,
+    GeolocalizacionProvider,
+    Geolocation,
+    AndroidPermissions,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NotificationProvider,
     UserProvider,
     IdentityProvider,
     EncuestaProvider,
-    AuthProvider
+    AuthProvider,
+    GeolocalizacionProvider
   ]
 })
 export class AppModule {}
