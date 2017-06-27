@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -81,6 +82,7 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     Diagnostic,
     GeolocalizacionProvider,
+    Camera,
     Geolocation,
     AndroidPermissions,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
