@@ -5,6 +5,7 @@ import { User } from './../../models/user';
 import { MenuController, LoadingController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the SignupPage page.
@@ -33,7 +34,8 @@ export class SignupPage {
     private fb: FormBuilder,
     private loadingCtrl: LoadingController,
     private _userService: UserProvider,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private geolocation: Geolocation
     ) {
       /*
         Deshabilito el sidemenu,
@@ -52,7 +54,11 @@ export class SignupPage {
       'sexo' : ['m', Validators.required],
       'direccion' : [null, Validators.compose([Validators.required, Validators.minLength(5)])]
     });
-    this.coords = this.getPosition();
+    const gloc = localStorage.getItem('educadroid_coords');
+    if(gloc == null) {
+      this.coords = this.getPosition();
+    }
+
   }
 
   getPosition() {
@@ -61,11 +67,20 @@ export class SignupPage {
       latitud: 0,
       longitud: 0
     }
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        direccion_cords.latitud = position.coords.latitude;
-        direccion_cords.longitud = position.coords.longitude;
-      });
+
+    this.geolocation.getCurrentPosition().then((position) => {
+      direccion_cords.latitud = position.coords.latitude;
+      direccion_cords.longitud = position.coords.longitude;
+      localStorage.setItem('educadroid_coords', JSON.stringify(direccion_cords));
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => {
+    //     direccion_cords.latitud = position.coords.latitude;
+    //     direccion_cords.longitud = position.coords.longitude;
+    //   });
     return direccion_cords;
   }
 
