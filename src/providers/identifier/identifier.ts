@@ -30,7 +30,7 @@ export class IdentityProvider {
           };
           return subject;
         } else {
-          console.log('error token no encontrado');
+          console.log('Error token no encontrado');
         }
     }
 
@@ -49,5 +49,21 @@ export class IdentityProvider {
             const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser });
             return new RequestOptions({ headers: headers });
         }
+    }
+
+    isAlumno() {
+      return this.getIdentity().role == 3;
+    }
+
+    isProfesor() {
+      return this.getIdentity().role == 2;
+    }
+
+    isAdministrativo() {
+      return this.getIdentity().role == 4;
+    }
+
+    isAdmin() {
+      return this.getIdentity().role == 1;
     }
 }
