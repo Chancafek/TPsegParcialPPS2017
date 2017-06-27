@@ -1,7 +1,4 @@
 import { GeolocalizacionProvider } from './../../providers/geolocalizacion/geolocalizacion';
-import { Diagnostic } from '@ionic-native/diagnostic';
-import { AndroidPermissions } from '@ionic-native/android-permissions';
-import { Geolocation } from '@ionic-native/geolocation';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
@@ -24,9 +21,6 @@ export class WelcomePage {
     public navParams: NavParams,
     private menu: MenuController,
     public notification: NotificationProvider,
-    private androidPermissions: AndroidPermissions,
-    private diagnostic: Diagnostic,
-    private geolocation: Geolocation,
     private alertCtrl : AlertController,
     private localizador: GeolocalizacionProvider
     ) {

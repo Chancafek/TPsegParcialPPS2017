@@ -1,3 +1,4 @@
+import { GeolocalizacionProvider } from './../../providers/geolocalizacion/geolocalizacion';
 import { Domicilio } from './../../models/domicilio';
 import { UserProvider } from './../../providers/user/user';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';;
@@ -35,7 +36,7 @@ export class SignupPage {
     private loadingCtrl: LoadingController,
     private _userService: UserProvider,
     private alertCtrl: AlertController,
-    private geolocation: Geolocation
+    private localizador: GeolocalizacionProvider
     ) {
       /*
         Deshabilito el sidemenu,
@@ -56,32 +57,9 @@ export class SignupPage {
     });
     const gloc = localStorage.getItem('educadroid_coords');
     if(gloc == null) {
-      this.coords = this.getPosition();
+      this.localizador.getLocalizacion();
     }
 
-  }
-
-  getPosition() {
-
-    let direccion_cords = {
-      latitud: 0,
-      longitud: 0
-    }
-
-    this.geolocation.getCurrentPosition().then((position) => {
-      direccion_cords.latitud = position.coords.latitude;
-      direccion_cords.longitud = position.coords.longitude;
-      localStorage.setItem('educadroid_coords', JSON.stringify(direccion_cords));
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     direccion_cords.latitud = position.coords.latitude;
-    //     direccion_cords.longitud = position.coords.longitude;
-    //   });
-    return direccion_cords;
   }
 
   setUserData() {
