@@ -18,6 +18,7 @@ import { NotificationProvider } from '../providers/notification/notification';
 })
 export class MyApp {
   rootPage:any = 'HomePage';
+  activePage: any = 'HomePage';
 
   @ViewChild(Nav) nav: Nav;
 
@@ -54,6 +55,11 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.title);
+    this.activePage = page.title;
+  }
+
+  checkActive(page) {
+    return this.activePage === page.title;
   }
 }
 
