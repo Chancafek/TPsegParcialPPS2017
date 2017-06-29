@@ -1,3 +1,19 @@
-page-profile {
+.profile-img {
+  border-radius: 50%;
+  margin: auto;
+  max-width: 256px;
+  // border: 4px solid $LIGHT_TRANSPARENCY;
+}
+.profile-img-actionsheet {
+  .ion-md-images {
+    color: #7963e6;
+  }
 
+}
+.ion-md-camera {
+  color: #000;
+}
+
+.ion-md-redo {
+  color: #d52a29;
 }

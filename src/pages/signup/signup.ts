@@ -1,3 +1,4 @@
+import { GeolocalizacionProvider } from './../../providers/geolocalizacion/geolocalizacion';
 import { Domicilio } from './../../models/domicilio';
 import { UserProvider } from './../../providers/user/user';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';;
@@ -5,6 +6,7 @@ import { User } from './../../models/user';
 import { MenuController, LoadingController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the SignupPage page.
@@ -33,7 +35,8 @@ export class SignupPage {
     private fb: FormBuilder,
     private loadingCtrl: LoadingController,
     private _userService: UserProvider,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private localizador: GeolocalizacionProvider
     ) {
       /*
         Deshabilito el sidemenu,
@@ -52,21 +55,11 @@ export class SignupPage {
       'sexo' : ['m', Validators.required],
       'direccion' : [null, Validators.compose([Validators.required, Validators.minLength(5)])]
     });
-    this.coords = this.getPosition();
-  }
-
-  getPosition() {
-
-    let direccion_cords = {
-      latitud: 0,
-      longitud: 0
+    const gloc = localStorage.getItem('educadroid_coords');
+    if(gloc == null) {
+      this.localizador.getLocalizacion();
     }
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        direccion_cords.latitud = position.coords.latitude;
-        direccion_cords.longitud = position.coords.longitude;
-      });
-    return direccion_cords;
+
   }
 
   setUserData() {

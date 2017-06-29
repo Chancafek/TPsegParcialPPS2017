@@ -1,5 +1,6 @@
+import { GeolocalizacionProvider } from './../../providers/geolocalizacion/geolocalizacion';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 import { NotificationProvider } from '../../providers/notification/notification';
 
@@ -15,16 +16,27 @@ import { NotificationProvider } from '../../providers/notification/notification'
   templateUrl: 'welcome.html',
 })
 export class WelcomePage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController, public notification: NotificationProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private menu: MenuController,
+    public notification: NotificationProvider,
+    private alertCtrl : AlertController,
+    private localizador: GeolocalizacionProvider
+    ) {
      /*
         Deshabilito el sidemenu,
         para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
      */
     //this.menu.enable(false);
+    let gl = localStorage.getItem('educadroid_coords');
+    if (gl == null) {
+      this.localizador.getLocalizacion();
+    }
   }
 
   ionViewDidLoad() {
-    this.notification.postNotification('Prueba de notificacion');
+    // this.notification.postNotification('Prueba de notificacion');
   }
   login() {
     this.navCtrl.push('LoginPage');

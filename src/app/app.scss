@@ -14,3 +14,25 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+$DARK_TRANSPARENCY: rgba(0, 0, 0, 0.3);
+$LIGHT_TRANSPARENCY: rgba(255, 255, 255, 0.3);
+
+.activeHighlighter {
+  background-color: #29a5f2;
+  color: #F8F8F8;
+}
+.user-img-profile {
+  border-radius: 50%;
+  text-align: center;
+  margin: auto;
+  max-height: 150px;
+  // border: 4px solid $LIGHT_TRANSPARENCY;
+}
+.orange-bg {
+  background-color: #1e9cef;
+}
+
+.menu-side-item {
+  background-color: #1e9cef;
+  color: #F8F8F8;
+}

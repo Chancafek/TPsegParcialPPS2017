@@ -1,3 +1,6 @@
+import { ProfilePage } from './../pages/profile/profile';
+import { AuthProvider } from './../providers/auth/auth';
+import { IdentityProvider } from './../providers/identifier/identifier';
 import { SignupPage } from './../pages/signup/signup';
 import { LoginPage } from './../pages/login/login';
 import { HomePage } from './../pages/home/home';
@@ -18,11 +21,14 @@ import { NotificationProvider } from '../providers/notification/notification';
 })
 export class MyApp {
   rootPage:any = 'HomePage';
+  activePage: any = 'HomePage';
+  imgProfile: any = 'male.png';
 
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
     { title: 'WelcomePage', component: WelcomePage},
+    { title: 'ProfilePage', component: ProfilePage},
     { title: 'HomePage', component: HomePage},
     { title: 'LoginPage', component: LoginPage},
     { title: 'SignupPage', component: SignupPage},
@@ -32,11 +38,14 @@ export class MyApp {
     { title: 'EncuestaListPage', component: EncuestaListPage}
   ]
 
-  constructor(platform: Platform, statusBar: StatusBar,
+  constructor(private platform: Platform, statusBar: StatusBar,
               splashScreen: SplashScreen,
-              public notification: NotificationProvider)
+              public notification: NotificationProvider,
+              private identifier: IdentityProvider,
+              private auth: AuthProvider
+              )
   {
-    platform.ready().then(() => {
+    this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
@@ -48,12 +57,31 @@ export class MyApp {
         this.notification.getNotifications();
       }
     });
+      if (this.auth.loggedIn()) {
+        let u_img = this.identifier.getIdentity().image;
+        if (u_img == null) {
+          if (!this.identifier.isMale()) {
+            this.imgProfile = 'female.png';
+          }
+        } else {
+          this.imgProfile = u_img;
+        }
+      }
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.title);
+    this.activePage = page.title;
+  }
+
+  checkActive(page) {
+    return this.activePage === page.title;
+  }
+
+  exitApp() {
+    this.platform.exitApp();
   }
 }
 
