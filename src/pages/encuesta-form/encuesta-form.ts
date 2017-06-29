@@ -25,9 +25,11 @@ export class EncuestaFormPage implements OnInit {
   /* Base 0 */
   private numeroPregunta: number = 0;
 
-  private respuestaCheck1: Boolean;
-  private respuestaCheck2: Boolean;
-  private respuestaCheck3: Boolean;
+  private resultados: Boolean[] = new Array<Boolean>();
+
+  private respuestaCheck1: Boolean = false;
+  private respuestaCheck2: Boolean = false;
+  private respuestaCheck3: Boolean = false;
 
   private respuestaTexto: String;
 
@@ -56,6 +58,7 @@ export class EncuestaFormPage implements OnInit {
       } else {
 
         this.numeroPregunta = this.navParams.get('numeroPregunta');
+        this.resultados = this.navParams.get('resultados');
         this.pregunta = Pregunta.buildPregunta(this.encuesta.preguntas[this.numeroPregunta]);
 
       }
@@ -91,30 +94,30 @@ export class EncuestaFormPage implements OnInit {
 
     } else {
 
-      this.pregunta.resultado = this.corregirPregunta();
-      console.log(this.pregunta.resultado);
-      // if (this.encuesta.preguntas.length > this.numeroPregunta + 1) {
-      //   this.navCtrl.push('EncuestaFormPage', { numeroPregunta: this.numeroPregunta + 1, encuesta: this.encuesta });
-      // } else {
-      //   //ACA IMPLEMENTAR UNA SALIDA DEL FORMULARIO
-      //   this.encuestaService.saveResultados(this.encuesta).subscribe(
-      //     response => {
-      //       console.log(response);
-      //       let alert = this.alertCtrl.create({
-      //         title: 'Información',
-      //         subTitle: 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.',
-      //         buttons: ['OK']
-      //       });
+      this.resultados.push(this.corregirPregunta());
+      console.log(this.resultados);
+      if (this.encuesta.preguntas.length > this.numeroPregunta + 1) {
+        this.navCtrl.push('EncuestaFormPage', { numeroPregunta: this.numeroPregunta + 1, encuesta: this.encuesta, resultados:this.resultados });
+      } else {
+        //ACA IMPLEMENTAR UNA SALIDA DEL FORMULARIO
+        this.encuestaService.saveResultados(this.encuesta,null,this.resultados).subscribe(
+          response => {
+            console.log("grabé!",response);
+            let alert = this.alertCtrl.create({
+              title: 'Información',
+              subTitle: 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.',
+              buttons: ['OK']
+            });
 
-      //       alert.present();
+            alert.present();
 
-      //       this.navCtrl.popTo('EncuestaListPage');
-      //     },
-      //     error => {
-      //       console.error(error);
-      //     }
-      //   )
-      // }
+            this.navCtrl.popTo('EncuestaListPage');
+          },
+          error => {
+            console.error(error);
+          }
+        )
+      }
 
     }
 

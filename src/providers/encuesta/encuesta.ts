@@ -50,11 +50,13 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
-  saveResultados(encuesta: Encuesta): Observable<Response>{
+  saveResultados(encuesta: Encuesta, user_id:Number, resultados:Boolean[]): Observable<Response>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.baseUrl + "encuestas/resultados/", encuesta, options)
+    return this.http.post(this.baseUrl + "resultados", {
+      preguntas:encuesta.preguntas,user_id:user_id==null?2:user_id,resultados:resultados
+    }, options)
       .catch(this.handleError);
   }
 
