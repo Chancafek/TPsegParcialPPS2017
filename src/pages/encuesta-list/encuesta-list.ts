@@ -19,12 +19,11 @@ export class EncuestaListPage implements OnInit {
 
   private encuestas: Encuesta[] = new Array<Encuesta>();
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public encuestaService:EncuestaProvider,
-    public indentityService:IdentityProvider
-    ) {
+  private isProfesor:boolean;
+  private isAlumno:boolean;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+   public encuestaService:EncuestaProvider, public indentityService:IdentityProvider) {
   }
 
   ionViewDidLoad() {
@@ -38,6 +37,8 @@ export class EncuestaListPage implements OnInit {
         error => console.error(error),
         () => console.log(this.encuestas)
     );
+    this.isProfesor = this.indentityService.isProfesor();
+    this.isAlumno = this.indentityService.isAlumno();
   }
 
   action(encuesta :Encuesta){
