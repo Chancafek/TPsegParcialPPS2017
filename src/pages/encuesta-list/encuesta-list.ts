@@ -19,8 +19,12 @@ export class EncuestaListPage implements OnInit {
 
   private encuestas: Encuesta[] = new Array<Encuesta>();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-   public encuestaService:EncuestaProvider, public indentityService:IdentityProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public encuestaService:EncuestaProvider,
+    public indentityService:IdentityProvider
+    ) {
   }
 
   ionViewDidLoad() {
@@ -28,10 +32,11 @@ export class EncuestaListPage implements OnInit {
   }
 
   ngOnInit(){
-    this.encuestaService.getAll().subscribe(
-      response=>this.encuestas=response,
-      error=>console.error(error),
-      ()=>console.log(this.encuestas)
+    this.encuestaService.getAll()
+      .subscribe(
+        response => this.encuestas=response,
+        error => console.error(error),
+        () => console.log(this.encuestas)
     );
   }
 
