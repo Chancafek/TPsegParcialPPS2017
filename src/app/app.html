@@ -14,12 +14,12 @@
         </ion-item>
       </ion-row>
       <ion-list class="orange-bg">
-        <button menuClose ion-item *ngFor="let p of pages" [class.menu-side-item]="!checkActive(p)" [class.activeHighlighter]="checkActive(p)" (click)="openPage(p)">
-          <ion-icon name="cart" item-start></ion-icon>
-          {{p.title}}
+        <button no-lines menuClose ion-item *ngFor="let p of pages" [class.menu-side-item]="!checkActive(p)" [class.activeHighlighter]="checkActive(p)" (click)="openPage(p)">
+          <ion-icon name="cart" item-end></ion-icon>
+          {{p.mask}}
         </button>
         <button menuClose ion-item class="menu-side-item" (click)="exitApp()">
-          <ion-icon name="power" item-start></ion-icon>
+          <ion-icon name="power" item-end></ion-icon>
           Salir de la App
         </button>
       </ion-list>

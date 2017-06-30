@@ -16,9 +16,11 @@
 // automatically applied to the <body> element in the app.
 $DARK_TRANSPARENCY: rgba(0, 0, 0, 0.3);
 $LIGHT_TRANSPARENCY: rgba(255, 255, 255, 0.3);
+$MAIN_SKY_BLUE: #1e9cef;
+$SIDE_MENU_ITEM_HOVER: #29a5f2;
 
 .activeHighlighter {
-  background-color: #29a5f2;
+  background-color: $SIDE_MENU_ITEM_HOVER;
   color: #F8F8F8;
 }
 .user-img-profile {
