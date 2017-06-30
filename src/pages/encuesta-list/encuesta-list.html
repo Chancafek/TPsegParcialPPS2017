@@ -20,6 +20,14 @@
       <p item-start>Encuestas</p>
       <p item-right>Preguntas</p>
     </ion-list-header>
+<<<<<<< HEAD
+
+    <button ion-item *ngFor="let item of encuestas" (click)="action(item)">
+      {{item.tema}}
+      <ion-badge color="secondary" item-right>{{item.preguntas.length}}</ion-badge>
+    </button>
+
+=======
     
     <ion-item *ngFor="let item of encuestas">
       {{item.tema}}
@@ -27,6 +35,7 @@
       <button *ngIf="isProfesor" ion-button outline item-end (click)="deploy()">Deploy</button>
     </ion-item>
     
+>>>>>>> master
     <ion-item *ngIf="encuestas.length==0">No hay encuestas</ion-item>
 
   </ion-list>
