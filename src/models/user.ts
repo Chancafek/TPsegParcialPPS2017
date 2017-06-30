@@ -15,7 +15,7 @@ export class User {
   public image?: String;
   public sexo?: String;
   public domicilio?: Domicilio;
-
+  public rol_id?: number;
   constructor() {
 
   }
