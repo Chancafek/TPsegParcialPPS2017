@@ -41,6 +41,12 @@ export class UserProvider {
             .catch((error: any) => Observable.throw(error.json().message || 'Server Error'));
     }
 
+    getUserByRol(id: any): Observable<User[]> {
+        return this.http.get(`${this.url}/users/rol/${id}`, this.jwt())
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().message || 'Server Error'));
+    }
+
     private jwt() {
         const currentUser = JSON.parse(localStorage.getItem('token_argenta'));
         if (currentUser) {

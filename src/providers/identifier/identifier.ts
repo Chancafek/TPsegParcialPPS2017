@@ -38,7 +38,7 @@ export class IdentityProvider {
 
     getUserProfile(id?: any): Observable<User> {
         if (id == null || id === '') {
-            console.log('id from token: ' + this.getIdentity().id);
+            // console.log('id from token: ' + this.getIdentity().id);
             id = this.getIdentity().id;
         }
         return this.http.get(`${this.url}/users/${id}`, this.jwt())
