@@ -27,15 +27,15 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'WelcomePage', component: WelcomePage},
-    { title: 'ProfilePage', component: ProfilePage},
-    { title: 'HomePage', component: HomePage},
-    { title: 'LoginPage', component: LoginPage},
-    { title: 'SignupPage', component: SignupPage},
-    { title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
-    { title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
-    { title: 'EncuestaFormPage', component: EncuestaFormPage},
-    { title: 'EncuestaListPage', component: EncuestaListPage}
+    { mask: 'Bienvenido', title: 'WelcomePage', component: WelcomePage},
+    { mask: 'Mi Perfil', title: 'ProfilePage', component: ProfilePage},
+    { mask:'Inicio', title: 'HomePage', component: HomePage},
+    { mask: 'Login', title: 'LoginPage', component: LoginPage},
+    { mask: 'Registro', title: 'SignupPage', component: SignupPage},
+    { mask: 'Encuestas', title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
+    { mask: 'Preguntas', title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
+    { mask: 'Form Encuestas', title: 'EncuestaFormPage', component: EncuestaFormPage},
+    { mask: 'Lista Encuestas', title: 'EncuestaListPage', component: EncuestaListPage}
   ]
 
   constructor(private platform: Platform, statusBar: StatusBar,

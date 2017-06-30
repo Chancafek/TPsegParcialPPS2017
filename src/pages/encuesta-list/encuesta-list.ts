@@ -19,8 +19,8 @@ export class EncuestaListPage implements OnInit {
 
   private encuestas: Encuesta[] = new Array<Encuesta>();
 
-  private isProfesor:boolean;
-  private isAlumno:boolean;
+  //private isProfesor:boolean;
+  //private isAlumno:boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
    public encuestaService:EncuestaProvider, public indentityService:IdentityProvider) {
@@ -31,13 +31,14 @@ export class EncuestaListPage implements OnInit {
   }
 
   ngOnInit(){
-    this.encuestaService.getAll().subscribe(
-      response=>this.encuestas=response,
-      error=>console.error(error),
-      ()=>console.log(this.encuestas)
+    this.encuestaService.getAll()
+      .subscribe(
+        response => this.encuestas=response,
+        error => console.error(error),
+        () => console.log(this.encuestas)
     );
-    this.isProfesor = this.indentityService.isProfesor();
-    this.isAlumno = this.indentityService.isAlumno();
+    //this.isProfesor = this.indentityService.isProfesor();
+    //this.isAlumno = this.indentityService.isAlumno();
   }
 
   action(encuesta :Encuesta){

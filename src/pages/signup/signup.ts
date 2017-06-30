@@ -75,6 +75,9 @@ export class SignupPage {
     if(this.coords) {
       this.user.domicilio.latitud = this.coords.latitud;
       this.user.domicilio.longitud = this.coords.longitud;
+    } else {
+      this.user.domicilio.latitud = 0;
+      this.user.domicilio.longitud = 0;
     }
   }
 

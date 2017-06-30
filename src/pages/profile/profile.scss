@@ -1,3 +1,6 @@
+$HOVER_SKY: #29a5f2;
+$MAIN_SKY: #1e9cef;
+
 .profile-img {
   border-radius: 50%;
   margin: auto;
@@ -17,3 +20,11 @@
 .ion-md-redo {
   color: #d52a29;
 }
+
+.sky-btn {
+  background-color: $MAIN_SKY;
+  &:hover {
+    background-color: $HOVER_SKY;
+  }
+}
+
