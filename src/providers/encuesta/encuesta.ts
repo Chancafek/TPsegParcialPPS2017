@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Encuesta } from "../../models/encuesta";
+import { Curso } from "../../models/curso";
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -36,11 +37,11 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
-  deploy(encuesta: Encuesta, division: String, materia: String): Observable<Response> {
+  deploy(encuesta: Encuesta, curso: Curso): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.baseUrl + "encuestas/deploy/", { encuesta: encuesta, division: division, materia: materia }, options)
+    return this.http.post(this.baseUrl + "encuestas/deploy", { encuesta_id: encuesta.id, curso_id: curso.id }, options)
       .catch(this.handleError);
   }
 
@@ -50,12 +51,12 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
-  saveResultados(encuesta: Encuesta, user_id:Number, resultados:Boolean[]): Observable<Response>{
+  saveResultados(encuesta: Encuesta, user_id: Number, resultados: Boolean[]): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.baseUrl + "resultados", {
-      preguntas:encuesta.preguntas,user_id:user_id==null?2:user_id,resultados:resultados
+      preguntas: encuesta.preguntas, user_id: user_id == null ? 2 : user_id, resultados: resultados
     }, options)
       .catch(this.handleError);
   }
