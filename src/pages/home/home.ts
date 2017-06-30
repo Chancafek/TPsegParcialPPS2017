@@ -27,6 +27,6 @@ export class HomePage {
       */
     	//this.navCtrl.setRoot('WelcomePage');
     }
-    this.user= this.identifier.getIdentity()
+    // this.user= this.identifier.getIdentity()
   }
 }

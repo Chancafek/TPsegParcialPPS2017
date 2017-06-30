@@ -2,7 +2,7 @@ import { UserProvider } from './../../providers/user/user';
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the ListUserPage page.
@@ -29,7 +29,8 @@ export class ListUserPage {
     public navParams: NavParams,
     private identifier: IdentityProvider,
     private userProvider: UserProvider,
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private toastCtrl: ToastController
     ) {
       this.currentRol = 3;
   }
@@ -96,36 +97,53 @@ export class ListUserPage {
     switch(this.currentRol) {
       case 2:
         this.selectedGroup = this.profesores;
-        console.log('profesores');
+        // console.log('profesores');
         break;
       case 3:
         this.selectedGroup = this.alumnos;
-        console.log('alms');
+        // console.log('alms');
         break;
       case 4:
         this.selectedGroup = this.administrativos;
-        console.log('adms');
+        // console.log('adms');
         break;
     }
   }
 
-  lanzarOpciones() {
+  lanzarOpciones(usuario) {
+    let optionText = (usuario.activo == 0) ? 'Activar' : 'Bloquear';
     if (this.currentRol == 3) {
       let actionSheet = this.actionSheetCtrl.create({
         title: 'Opciones',
         cssClass: 'user-options-actionsheet',
         buttons: [
           {
-            text: 'Bloquear',
-            icon: 'md-images',
+            text: optionText,
+            icon: 'md-users',
             handler: () => {
-              //dar de baja
+              this.userProvider.removeUser(usuario.id)
+                .subscribe(
+                  data => {
+                    let toast = this.toastCtrl.create({
+                      message: 'Hecho!',
+                      duration: 2000
+                    });
+                    toast.present();
+                  },
+                  error => {
+                    let toast = this.toastCtrl.create({
+                      message: error,
+                      duration: 3000
+                    });
+                    toast.present();
+                  }
+                )
             }
           },{
             text: 'Asignar Materia',
             icon: 'md-camera',
             handler: () => {
-              //asignar materia
+
             }
           },{
             text: 'Cancel',
