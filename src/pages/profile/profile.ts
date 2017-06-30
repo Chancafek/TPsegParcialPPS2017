@@ -32,11 +32,11 @@ export class ProfilePage {
     private actionSheetCtrl: ActionSheetController,
     private camera: Camera
     ) {
-      // this.identifier.getUserProfile()
-      //   .subscribe(
-      //     data => this.perfil = data,
-      //     err => console.log(err)
-      //   );
+      this.identifier.getUserProfile()
+        .subscribe(
+          data => this.perfil = data,
+          err => console.log(err)
+        );
 
       this.cameraOptions = {
         quality: 100,
@@ -105,6 +105,14 @@ export class ProfilePage {
       enableBackdropDismiss: true
     });
     actionSheet.present();
+  }
+
+  mostrarCuestionarios() {
+
+  }
+
+  mostrarUsuarios() {
+    this.navCtrl.push('ListUserPage');
   }
 
 }
