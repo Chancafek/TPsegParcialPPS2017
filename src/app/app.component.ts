@@ -13,7 +13,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+// import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { NotificationProvider } from '../providers/notification/notification';
 
@@ -21,6 +21,7 @@ import { NotificationProvider } from '../providers/notification/notification';
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   rootPage:any = 'WelcomePage';
   activePage: any = 'WelcomePage';
   imgProfile: any = 'male.png';
@@ -45,7 +46,7 @@ export class MyApp {
     public notification: NotificationProvider,
     private identifier: IdentityProvider,
     private auth: AuthProvider,
-    private screenOrientation: ScreenOrientation,
+    // private screenOrientation: ScreenOrientation,
     private androidFullScreen: AndroidFullScreen
               )
   {
@@ -60,7 +61,7 @@ export class MyApp {
       this.androidFullScreen.isImmersiveModeSupported()
         .then(() => this.androidFullScreen.immersiveMode())
         .catch((error: any) => console.log(error));
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
       if (this.platform.is('cordova'))
       {

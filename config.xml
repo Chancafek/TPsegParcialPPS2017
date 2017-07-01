@@ -94,5 +94,4 @@
     </plugin>
     <plugin name="cordova-plugin-fullscreen" spec="^1.1.0" />
     <engine name="android" spec="~6.2.3" />
-    <plugin name="cordova-plugin-device-orientation" spec="^1.0.7" />
 </widget>
