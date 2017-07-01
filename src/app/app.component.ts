@@ -28,14 +28,13 @@ export class MyApp {
 
   pages: any[] = [
     { mask: 'Bienvenido', title: 'WelcomePage', component: WelcomePage},
-    { mask: 'Mi Perfil', title: 'ProfilePage', component: ProfilePage},
     { mask:'Inicio', title: 'HomePage', component: HomePage},
-    { mask: 'Login', title: 'LoginPage', component: LoginPage},
-    { mask: 'Registro', title: 'SignupPage', component: SignupPage},
+    { mask: 'Mi Perfil', title: 'ProfilePage', component: ProfilePage},
     { mask: 'Encuestas', title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
     { mask: 'Preguntas', title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
     { mask: 'Form Encuestas', title: 'EncuestaFormPage', component: EncuestaFormPage},
-    { mask: 'Lista Encuestas', title: 'EncuestaListPage', component: EncuestaListPage}
+    { mask: 'Lista Encuestas', title: 'EncuestaListPage', component: EncuestaListPage},
+    { mask: 'Logout', title: 'LoginPage', component: LoginPage},
   ]
 
   constructor(private platform: Platform, statusBar: StatusBar,

@@ -48,11 +48,14 @@
       </div>
       </ion-row>
       <div padding>
-        <button ion-button color="primary" block [disabled]="loading || !loginForm.valid">Ingresar</button>
+        <button ion-button class="sky-btn" block [disabled]="loading || !loginForm.valid">Ingresar</button>
       </div>
       <div padding text-center>
         <small>No tenes cuenta? <a class="linker" (click)="goRegistro()">Registrate</a> </small>
       </div>
     </ion-list>
   </form>
+  <ion-item class="bg-transparente">
+      <button ion-button class="sky-btn" block (click)="test()">Test con Usuarios</button>
+  </ion-item>
 </ion-content>

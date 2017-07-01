@@ -1,6 +1,6 @@
 import { AuthProvider } from './../../providers/auth/auth';
 import { UserProvider } from './../../providers/user/user';
-import { MenuController } from 'ionic-angular';
+import { MenuController, ActionSheetController } from 'ionic-angular';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
@@ -33,13 +33,13 @@ export class LoginPage {
     private _authService: AuthProvider,
     public alertCtrl: AlertController,
     private fb: FormBuilder,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private actionSheetCtrl: ActionSheetController
     ) {
     /*
         Deshabilito el sidemenu,
         para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
     */
-    this.menu.enable(false);
     this.user = new User();
     this.loginForm = fb.group({
       'email' : [null, Validators.compose([Validators.required, Validators.email])],
@@ -48,6 +48,7 @@ export class LoginPage {
   }
 
   ionViewDidEnter() {
+    this.menu.enable(false);
     this._authService.logout();
   }
 
@@ -93,5 +94,46 @@ export class LoginPage {
 
   goRegistro() {
     this.navCtrl.push('SignupPage');
+  }
+
+  test() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Test de Usuarios',
+      cssClass: 'profile-img-actionsheet',
+      buttons: [
+        {
+          text: 'Admin',
+          icon: 'md-briefcase',
+          handler: () => {
+            this.loginForm.controls['email'].setValue('admin@slim.com');
+            this.loginForm.controls['password'].setValue('121212');
+          }
+        },{
+          text: 'Administrativo',
+          icon: 'md-clipboard',
+          handler: () => {
+            this.loginForm.controls['email'].setValue('administrativo@slim.com');
+            this.loginForm.controls['password'].setValue('121212');
+          }
+        },{
+          text: 'Profesor',
+          icon: 'md-contact',
+          handler: () => {
+            this.loginForm.controls['email'].setValue('profesor1@slim.com');
+            this.loginForm.controls['password'].setValue('121212');
+          }
+        },
+        {
+          text: 'Alumno',
+          icon: 'md-ionitron',
+          handler: () => {
+            this.loginForm.controls['email'].setValue('alumno1@slim.com');
+            this.loginForm.controls['password'].setValue('121212');
+          }
+        }
+      ],
+      enableBackdropDismiss: true
+    });
+    actionSheet.present();
   }
 }
