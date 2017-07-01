@@ -1,3 +1,4 @@
+import { MateriasProvider } from './../providers/materias/materias';
 import { Camera } from '@ionic-native/camera';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -29,6 +30,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { GeolocalizacionProvider } from '../providers/geolocalizacion/geolocalizacion';
 import { UploaderProvider } from '../providers/uploader/uploader';
+import { CursosProvider } from '../providers/cursos/cursos';
 
 
 export const firebaseConfig = {
@@ -91,9 +93,13 @@ const cloudSettings: CloudSettings = {
     UserProvider,
     IdentityProvider,
     EncuestaProvider,
+    MateriasProvider,
+    CursosProvider,
     AuthProvider,
     GeolocalizacionProvider,
-    UploaderProvider
+    UploaderProvider,
+    MateriasProvider,
+    CursosProvider
   ]
 })
 export class AppModule {}
