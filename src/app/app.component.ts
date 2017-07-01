@@ -13,7 +13,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { NotificationProvider } from '../providers/notification/notification';
 
 @Component({
@@ -37,20 +38,31 @@ export class MyApp {
     { mask: 'Logout', title: 'LoginPage', component: LoginPage},
   ]
 
-  constructor(private platform: Platform, statusBar: StatusBar,
-              splashScreen: SplashScreen,
-              public notification: NotificationProvider,
-              private identifier: IdentityProvider,
-              private auth: AuthProvider
+  constructor (
+    private platform: Platform,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    public notification: NotificationProvider,
+    private identifier: IdentityProvider,
+    private auth: AuthProvider,
+    private screenOrientation: ScreenOrientation,
+    private androidFullScreen: AndroidFullScreen
               )
   {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+      this.statusBar.styleDefault();
+      setTimeout(
+        () => this.splashScreen.hide(), 2000
+        );
 
-      if (platform.is('cordova'))
+      this.androidFullScreen.isImmersiveModeSupported()
+        .then(() => this.androidFullScreen.immersiveMode())
+        .catch((error: any) => console.log(error));
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+
+      if (this.platform.is('cordova'))
       {
         this.notification.registerToken();
         this.notification.getNotifications();
