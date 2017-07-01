@@ -4,6 +4,7 @@ import { Encuesta } from "../../models/encuesta";
 import { Pregunta } from "../../models/pregunta";
 import { ETipoPregunta } from "../../models/ETipoPregunta";
 import { EncuestaProvider } from "../../providers/encuesta/encuesta";
+import { IdentityProvider } from "../../providers/identifier/identifier";
 
 /**
  * Generated class for the EncuestaFormPage page.
@@ -37,7 +38,8 @@ export class EncuestaFormPage implements OnInit {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public encuestaService: EncuestaProvider, public alertCtrl: AlertController) {
+    public encuestaService: EncuestaProvider, public alertCtrl: AlertController,
+    public identityService: IdentityProvider) {
 
   }
 
@@ -97,21 +99,26 @@ export class EncuestaFormPage implements OnInit {
       this.resultados.push(this.corregirPregunta());
       console.log(this.resultados);
       if (this.encuesta.preguntas.length > this.numeroPregunta + 1) {
-        this.navCtrl.push('EncuestaFormPage', { numeroPregunta: this.numeroPregunta + 1, encuesta: this.encuesta, resultados:this.resultados });
+        this.navCtrl.push('EncuestaFormPage', { numeroPregunta: this.numeroPregunta + 1, encuesta: this.encuesta, resultados: this.resultados });
       } else {
         //ACA IMPLEMENTAR UNA SALIDA DEL FORMULARIO
-        this.encuestaService.saveResultados(this.encuesta,null,this.resultados).subscribe(
+        this.encuestaService.saveResultados(this.encuesta, this.identityService.getIdentity().id, this.resultados).subscribe(
           response => {
-            console.log("grabé!",response);
+            console.log("grabé!", response);
             let alert = this.alertCtrl.create({
               title: 'Información',
               subTitle: 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.',
-              buttons: ['OK']
+              buttons: [{
+                text: 'Ok',
+                handler: () => {
+                  console.log('Volviendo a la lista');
+                  this.navCtrl.popTo('EncuestaListPage');
+                }
+              }]
             });
 
             alert.present();
-
-            this.navCtrl.popTo('EncuestaListPage');
+            
           },
           error => {
             console.error(error);

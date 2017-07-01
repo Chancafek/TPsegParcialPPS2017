@@ -29,6 +29,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { GeolocalizacionProvider } from '../providers/geolocalizacion/geolocalizacion';
 import { UploaderProvider } from '../providers/uploader/uploader';
+import { CursosProvider } from '../providers/cursos/cursos';
 
 
 export const firebaseConfig = {
@@ -93,7 +94,8 @@ const cloudSettings: CloudSettings = {
     EncuestaProvider,
     AuthProvider,
     GeolocalizacionProvider,
-    UploaderProvider
+    UploaderProvider,
+    CursosProvider
   ]
 })
 export class AppModule {}

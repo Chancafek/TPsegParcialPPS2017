@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IdentityProvider } from "../../providers/identifier/identifier";
 
 import { Encuesta } from "../../models/encuesta";
 
@@ -18,7 +19,7 @@ export class EncuestaBuilderPage {
 
   private encuesta: Encuesta = new Encuesta();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public identityService: IdentityProvider) {
   }
 
   ionViewDidLoad() {
@@ -28,7 +29,7 @@ export class EncuestaBuilderPage {
 
   crear() {
     /* Debemos instanciar la encuesta con el id del usuario */
-    
+    this.encuesta.id_user = this.identityService.getIdentity().id;
     this.navCtrl.push('PreguntaBuilderPage', {encuesta:this.encuesta});
     
   }

@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Encuesta } from "../../models/encuesta";
 import { Curso } from "../../models/curso";
 import { Observable } from 'rxjs/Observable';
+import { User } from "../../models/user";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -16,7 +17,7 @@ import 'rxjs/add/operator/map';
 export class EncuestaProvider {
 
   baseUrl: string = window.location.protocol + "//localhost/api_educadroid/public/";
-  //baseUrl: string = "??A DONDE LO SUBIMOS??";
+  //baseUrl: string = "http://educadroid.kennychancafe.com/";
   data: Encuesta[];
 
   constructor(public http: Http) {
@@ -37,17 +38,23 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
-  deploy(encuesta: Encuesta, curso: Curso): Observable<Response> {
+  deploy(encuesta_id: Number, curso_id_array: Number[]): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.baseUrl + "encuestas/deploy", { encuesta_id: encuesta.id, curso_id: curso.id }, options)
+    return this.http.post(this.baseUrl + "encuestas/deploy", { encuesta_id: encuesta_id, curso_id_array: curso_id_array }, options)
       .catch(this.handleError);
   }
 
   getById(id: Number): Observable<Encuesta> {
     return this.http.get(this.baseUrl + "encuestas/" + id)
       .map(response => response.json() as Encuesta)
+      .catch(this.handleError);
+  }
+
+  getByUser(user_id:Number) : Observable<Encuesta[]>{
+    return this.http.get(this.baseUrl + "encuestas/user/" + user_id.toString())
+      .map(response=>response.json() as Encuesta)
       .catch(this.handleError);
   }
 
@@ -58,6 +65,13 @@ export class EncuestaProvider {
     return this.http.post(this.baseUrl + "resultados", {
       preguntas: encuesta.preguntas, user_id: user_id == null ? 2 : user_id, resultados: resultados
     }, options)
+      .catch(this.handleError);
+  }
+
+  deleteEncuesta(encuesta_id:Number):Observable<Response>{
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.delete(this.baseUrl + "encuestas/" + encuesta_id, options)
       .catch(this.handleError);
   }
 
