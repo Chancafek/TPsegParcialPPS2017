@@ -1,3 +1,4 @@
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { MateriasProvider } from './../providers/materias/materias';
 import { Camera } from '@ionic-native/camera';
 import { Diagnostic } from '@ionic-native/diagnostic';
@@ -94,6 +95,7 @@ const cloudSettings: CloudSettings = {
     IdentityProvider,
     EncuestaProvider,
     MateriasProvider,
+    AndroidFullScreen,
     CursosProvider,
     AuthProvider,
     GeolocalizacionProvider,
