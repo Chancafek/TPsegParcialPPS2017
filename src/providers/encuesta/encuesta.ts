@@ -16,8 +16,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class EncuestaProvider {
 
-  baseUrl: string = window.location.protocol + "//localhost/api_educadroid/public/";
-  //baseUrl: string = "http://educadroid.kennychancafe.com/";
+  // private url = 'http://educadroid.dev';
+  private url = 'http://educadroid.kennychancafe.com';
+
+  baseUrl: string = 'http://educadroid.kennychancafe.com';
+  //baseUrl: string = "??A DONDE LO SUBIMOS??";
   data: Encuesta[];
 
   constructor(public http: Http) {

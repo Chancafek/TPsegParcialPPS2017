@@ -16,6 +16,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CursosProvider {
 
+  // private url = 'http://educadroid.dev';
+  private url = 'http://educadroid.kennychancafe.com';
+
   constructor(public http: Http) {
     console.log('Hello CursosProvider Provider');
   }
@@ -48,6 +51,32 @@ export class CursosProvider {
     }
     console.error(errMsg);
     return Observable.throw(errMsg);
+
+  }
+  
+  inscribirCurso(id: any, body: any) {
+    let payLoad = {
+      legajo: id,
+      cursos: body
+    }
+    return this.http.post(`${this.url}/inscripciones`, payLoad, this.jwt())
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().message || 'Server Error'));
+
+  }
+
+  private jwt() {
+    const currentUser = JSON.parse(localStorage.getItem('token_educadroid'));
+    if (currentUser) {
+      const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser });
+      return new RequestOptions({ headers: headers });
+    }
+  }
+
+  listarCursos() {
+    return this.http.get(`${this.url}/cursos`, this.jwt())
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().message || 'Server Error'));
   }
 
 }

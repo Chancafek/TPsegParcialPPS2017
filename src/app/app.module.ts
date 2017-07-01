@@ -1,3 +1,4 @@
+import { MateriasProvider } from './../providers/materias/materias';
 import { Camera } from '@ionic-native/camera';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -92,10 +93,12 @@ const cloudSettings: CloudSettings = {
     UserProvider,
     IdentityProvider,
     EncuestaProvider,
+    MateriasProvider,
+    CursosProvider,
     AuthProvider,
     GeolocalizacionProvider,
     UploaderProvider,
-    CursosProvider
+    MateriasProvider,
   ]
 })
 export class AppModule {}

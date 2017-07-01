@@ -1,8 +1,9 @@
+import { NotificationProvider } from './../../providers/notification/notification';
 import { User } from './../../models/user';
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { UserProvider } from './../../providers/user/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -30,7 +31,9 @@ export class ProfilePage {
     private _userService: UserProvider,
     private identifier: IdentityProvider,
     private actionSheetCtrl: ActionSheetController,
-    private camera: Camera
+    private camera: Camera,
+    private alertCtrl: AlertController,
+    private notificador: NotificationProvider
     ) {
       this.identifier.getUserProfile()
         .subscribe(
@@ -113,6 +116,37 @@ export class ProfilePage {
 
   mostrarUsuarios() {
     this.navCtrl.push('ListUserPage');
+  }
+
+  enviarPush() {
+    let prompt = this.alertCtrl.create({
+      title: 'Notificar',
+      message: "Ingrese un mensaje a notificar",
+      inputs: [
+        {
+          name: 'mensaje',
+          placeholder: 'Mensaje'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.notificador.postNotification(data)
+              .then(
+                d => console.log('Enviado')
+              )
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }

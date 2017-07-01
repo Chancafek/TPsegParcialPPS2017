@@ -1,3 +1,4 @@
+import { Legajo } from './legajo';
 import { ERol } from "../models/ERol";
 import { Domicilio } from "../models/domicilio";
 
@@ -7,7 +8,7 @@ export class User {
   public nombre?: String;
   public apellido?: String;
   public documento?: String;
-  public legajo?: String;
+  public legajo?: Legajo;
   public email?: String;
   public password?: String;
   public fnacimiento?: Date;
@@ -17,7 +18,6 @@ export class User {
   public domicilio?: Domicilio;
   public rol_id?: number;
   constructor() {
-
   }
 
 }
