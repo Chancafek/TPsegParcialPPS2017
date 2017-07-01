@@ -13,7 +13,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthProvider {
 
-  private url = 'http://educadroid.dev';
+  // private url = 'http://educadroid.dev';
+  private url = 'http://educadroid.kennychancafe.com';
 
   constructor(public http: Http) {}
 
