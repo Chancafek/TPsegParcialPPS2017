@@ -1,8 +1,9 @@
+import { CursosProvider } from './../../providers/cursos/cursos';
 import { UserProvider } from './../../providers/user/user';
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, ToastController, ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the ListUserPage page.
@@ -30,7 +31,9 @@ export class ListUserPage {
     private identifier: IdentityProvider,
     private userProvider: UserProvider,
     private actionSheetCtrl: ActionSheetController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private cursoProvider: CursosProvider,
+    private modalCtrl: ModalController
     ) {
       this.currentRol = 3;
   }
@@ -111,15 +114,15 @@ export class ListUserPage {
   }
 
   lanzarOpciones(usuario) {
-    let optionText = (usuario.activo == 0) ? 'Activar' : 'Bloquear';
+    let bloqueoText = (parseInt(usuario.activo) == 0) ? 'Activar' : 'Bloquear';
     if (this.currentRol == 3) {
       let actionSheet = this.actionSheetCtrl.create({
         title: 'Opciones',
         cssClass: 'user-options-actionsheet',
         buttons: [
           {
-            text: optionText,
-            icon: 'md-users',
+            text: bloqueoText,
+            icon: 'md-contacts',
             handler: () => {
               this.userProvider.removeUser(usuario.id)
                 .subscribe(
@@ -129,6 +132,7 @@ export class ListUserPage {
                       duration: 2000
                     });
                     toast.present();
+                    this.obtenerAlumnos();
                   },
                   error => {
                     let toast = this.toastCtrl.create({
@@ -140,10 +144,11 @@ export class ListUserPage {
                 )
             }
           },{
-            text: 'Asignar Materia',
-            icon: 'md-camera',
+            text: 'Inscribir a Materias',
+            icon: 'md-book',
             handler: () => {
-
+              const mdl = this.modalCtrl.create('ModalAlumnoCursoPage', { data: usuario.legajo.legajo });
+              mdl.present();
             }
           },{
             text: 'Cancel',
@@ -155,6 +160,11 @@ export class ListUserPage {
       });
       actionSheet.present();
     }
+  }
+
+  inscribirAlumno(legajo: any) {
+    const mdl = this.modalCtrl.create('ModalAlumnoCursoPage', { data: legajo });
+    mdl.present();
   }
 
 }
