@@ -1,3 +1,4 @@
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { MateriasProvider } from './../providers/materias/materias';
 import { Camera } from '@ionic-native/camera';
@@ -96,6 +97,7 @@ const cloudSettings: CloudSettings = {
     EncuestaProvider,
     MateriasProvider,
     AndroidFullScreen,
+    ScreenOrientation,
     CursosProvider,
     AuthProvider,
     GeolocalizacionProvider,

@@ -13,7 +13,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-// import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { NotificationProvider } from '../providers/notification/notification';
 
@@ -46,7 +46,7 @@ export class MyApp {
     public notification: NotificationProvider,
     private identifier: IdentityProvider,
     private auth: AuthProvider,
-    // private screenOrientation: ScreenOrientation,
+    private screenOrientation: ScreenOrientation,
     private androidFullScreen: AndroidFullScreen
               )
   {
@@ -55,13 +55,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       setTimeout(
-        () => this.splashScreen.hide(), 2000
+        () => this.splashScreen.hide(), 4000
         );
 
       this.androidFullScreen.isImmersiveModeSupported()
         .then(() => this.androidFullScreen.immersiveMode())
         .catch((error: any) => console.log(error));
-      // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
       if (this.platform.is('cordova'))
       {
