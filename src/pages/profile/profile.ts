@@ -3,7 +3,7 @@ import { User } from './../../models/user';
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { UserProvider } from './../../providers/user/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -33,8 +33,10 @@ export class ProfilePage {
     private actionSheetCtrl: ActionSheetController,
     private camera: Camera,
     private alertCtrl: AlertController,
-    private notificador: NotificationProvider
+    private notificador: NotificationProvider,
+    private menu: MenuController
     ) {
+      this.menu.enable(true);
       this.identifier.getUserProfile()
         .subscribe(
           data => this.perfil = data,

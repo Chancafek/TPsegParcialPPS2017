@@ -42,7 +42,6 @@ export class SignupPage {
         Deshabilito el sidemenu,
         para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
       */
-    //this.menu.enable(false);
     this.user = new User();
     this.user.domicilio = new Domicilio();
     this.regForm = this.fb.group({
@@ -60,6 +59,10 @@ export class SignupPage {
       this.localizador.getLocalizacion();
     }
 
+  }
+
+  ionViewWillLoad() {
+    this.menu.enable(false);
   }
 
   setUserData() {
