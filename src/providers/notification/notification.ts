@@ -33,7 +33,8 @@ export class NotificationProvider {
 
   public postNotification(message: string) {
   	let body: any = {
-      'tokens': [this.devicetoken],
+      // 'tokens': [this.devicetoken],
+      'send_to_all': true,
       'profile': this.profile,
       'notification': {'message': message}
 	};
