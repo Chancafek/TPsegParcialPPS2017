@@ -112,7 +112,7 @@ export class EncuestaFormPage implements OnInit {
                 text: 'Ok',
                 handler: () => {
                   console.log('Volviendo a la lista');
-                  this.navCtrl.popTo('EncuestaListPage');
+                  this.navCtrl.popToRoot();
                 }
               }]
             });

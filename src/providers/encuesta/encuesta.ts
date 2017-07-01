@@ -19,7 +19,7 @@ export class EncuestaProvider {
   // private url = 'http://educadroid.dev';
   private url = 'http://educadroid.kennychancafe.com';
 
-  baseUrl: string = 'http://educadroid.kennychancafe.com';
+  baseUrl: string = 'http://educadroid.kennychancafe.com/';
   //baseUrl: string = "??A DONDE LO SUBIMOS??";
   data: Encuesta[];
 

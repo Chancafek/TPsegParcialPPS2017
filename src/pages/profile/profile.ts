@@ -113,7 +113,7 @@ export class ProfilePage {
   }
 
   mostrarCuestionarios() {
-
+    this.navCtrl.push('EncuestaListPage');
   }
 
   mostrarUsuarios() {

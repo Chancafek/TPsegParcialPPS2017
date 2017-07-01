@@ -21,8 +21,8 @@ import { NotificationProvider } from '../providers/notification/notification';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'HomePage';
-  activePage: any = 'HomePage';
+  rootPage:any = 'WelcomePage';
+  activePage: any = 'WelcomePage';
   imgProfile: any = 'male.png';
 
   @ViewChild(Nav) nav: Nav;
@@ -31,9 +31,9 @@ export class MyApp {
     { mask: 'Bienvenido', title: 'WelcomePage', component: WelcomePage},
     { mask:'Inicio', title: 'HomePage', component: HomePage},
     { mask: 'Mi Perfil', title: 'ProfilePage', component: ProfilePage},
-    { mask: 'Encuestas', title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
-    { mask: 'Preguntas', title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
-    { mask: 'Form Encuestas', title: 'EncuestaFormPage', component: EncuestaFormPage},
+    // { mask: 'Encuestas', title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
+    // { mask: 'Preguntas', title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
+    // { mask: 'Form Encuestas', title: 'EncuestaFormPage', component: EncuestaFormPage},
     { mask: 'Lista Encuestas', title: 'EncuestaListPage', component: EncuestaListPage},
     { mask: 'Logout', title: 'LoginPage', component: LoginPage},
   ]

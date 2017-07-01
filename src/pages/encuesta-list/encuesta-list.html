@@ -14,13 +14,15 @@
 
 
 <ion-content padding>
+  <ion-fab top right edge *ngIf="isProfesor">
+      <button ion-fab mini (click)="addCuestionario()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
   <ion-list>
-
     <ion-list-header>
       <p item-start>Encuestas</p>
       <p item-right>Preguntas</p>
     </ion-list-header>
-
+    
     <button ion-item *ngFor="let item of encuestas" (click)="action(item)">
       {{item.tema}}
       <ion-badge color="secondary" item-right>{{item.preguntas.length}}</ion-badge>
