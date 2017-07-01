@@ -23,8 +23,8 @@ export class CursosProvider {
     console.log('Hello CursosProvider Provider');
   }
 
-  baseUrl: string = window.location.protocol + "//localhost/api_educadroid/public/";
-  //baseUrl: string = "http://educadroid.kennychancafe.com/";
+  //baseUrl: string = window.location.protocol + "//localhost/api_educadroid/public/";
+  baseUrl: string = "http://educadroid.kennychancafe.com/";
 
   getAll(): Observable<any[]> {
     return this.http.get(this.baseUrl + "cursos")
@@ -53,7 +53,7 @@ export class CursosProvider {
     return Observable.throw(errMsg);
 
   }
-  
+
   inscribirCurso(id: any, body: any) {
     let payLoad = {
       legajo: id,

@@ -35,8 +35,12 @@ export class EncuestaListPage implements OnInit {
 
   ngOnInit() {
 
-    //this.isProfesor = this.indentityService.isProfesor();
-    //this.isAlumno = this.indentityService.isAlumno();
+    this.isProfesor = this.indentityService.getIdentity().apellido == "Profesor";
+    this.isAlumno = this.indentityService.getIdentity().apellido != "Profesor";
+
+    console.log(this.isProfesor);
+    console.log(this.isAlumno);
+    console.log(this.indentityService.getIdentity());
 
     // this.encuestaService.getByUser(this.indentityService.getIdentity().id).subscribe(
     //   response => this.encuestas = response,
@@ -52,10 +56,14 @@ export class EncuestaListPage implements OnInit {
 
   }
 
+  addCuestionario(){
+    this.navCtrl.push('EncuestaBuilderPage');
+  }
+
   action(encuesta: Encuesta) {
     if (this.isAlumno) {
       this.navCtrl.push('EncuestaFormPage', { idEncuesta: encuesta.id });
-    } else if (true || this.isProfesor) {
+    } else if (this.isProfesor) {
       let action = this.actionSheetCtrl.create({
         title: 'Opciones',
         buttons: [
