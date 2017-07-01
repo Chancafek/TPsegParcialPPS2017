@@ -25,8 +25,8 @@ export class HomePage {
         si no es válido lo mando a registrarse o iniciar sesión,
         para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
       */
-    	//this.navCtrl.setRoot('WelcomePage');
+    	this.navCtrl.setRoot('WelcomePage');
     }
-    // this.user= this.identifier.getIdentity()
+    this.user= this.identifier.getIdentity();
   }
 }

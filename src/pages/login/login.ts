@@ -39,7 +39,7 @@ export class LoginPage {
         Deshabilito el sidemenu,
         para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
     */
-    //this.menu.enable(false);
+    this.menu.enable(false);
     this.user = new User();
     this.loginForm = fb.group({
       'email' : [null, Validators.compose([Validators.required, Validators.email])],
