@@ -11,7 +11,8 @@ export class IdentityProvider {
 
     jwtHelper: JwtHelper;
 
-    private url = 'http://educadroid.dev';
+    // private url = 'http://educadroid.dev';
+  private url = 'http://educadroid.kennychancafe.com';
 
     constructor(private http: Http) {
       this.jwtHelper = new JwtHelper();
