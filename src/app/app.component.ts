@@ -58,13 +58,12 @@ export class MyApp {
         () => this.splashScreen.hide(), 4000
         );
 
-      this.androidFullScreen.isImmersiveModeSupported()
-        .then(() => this.androidFullScreen.immersiveMode())
-        .catch((error: any) => console.log(error));
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-
-      if (this.platform.is('cordova'))
+      if (this.platform.is('cordova')) // funcionalidad exclusiva para celulares
       {
+        this.androidFullScreen.isImmersiveModeSupported()
+          .then(() => this.androidFullScreen.immersiveMode())
+          .catch((error: any) => console.log(error));
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
         this.notification.registerToken();
         this.notification.getNotifications();
       }
