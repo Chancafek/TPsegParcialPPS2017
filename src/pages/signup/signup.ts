@@ -6,7 +6,6 @@ import { User } from './../../models/user';
 import { MenuController, LoadingController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the SignupPage page.

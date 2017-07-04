@@ -1,5 +1,4 @@
 import { NotificationProvider } from './../../providers/notification/notification';
-import { User } from './../../models/user';
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { UserProvider } from './../../providers/user/user';
 import { Component } from '@angular/core';
