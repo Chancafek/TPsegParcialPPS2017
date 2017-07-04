@@ -29,14 +29,14 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { mask: 'Bienvenido', title: 'WelcomePage', component: WelcomePage},
+    //{ mask: 'Bienvenido', title: 'WelcomePage', component: WelcomePage},
     { mask:'Inicio', title: 'HomePage', component: HomePage},
     { mask: 'Mi Perfil', title: 'ProfilePage', component: ProfilePage},
     // { mask: 'Encuestas', title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
     // { mask: 'Preguntas', title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
     // { mask: 'Form Encuestas', title: 'EncuestaFormPage', component: EncuestaFormPage},
     { mask: 'Lista Encuestas', title: 'EncuestaListPage', component: EncuestaListPage},
-    { mask: 'Logout', title: 'LoginPage', component: LoginPage},
+    { mask: 'Logout', title: 'WelcomePage', component: LoginPage},
   ]
 
   constructor (
