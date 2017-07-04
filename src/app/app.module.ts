@@ -11,6 +11,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Vibration } from '@ionic-native/vibration';
 
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -84,6 +85,7 @@ const cloudSettings: CloudSettings = {
   ],
   providers: [
     StatusBar,
+    Vibration,
     SplashScreen,
     Diagnostic,
     GeolocalizacionProvider,

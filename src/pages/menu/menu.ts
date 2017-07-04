@@ -1,7 +1,9 @@
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Vibration } from '@ionic-native/vibration';
+import { NotificationProvider } from './../../providers/notification/notification';
 
 // https://www.youtube.com/watch?v=V8342s0xAsY
 
@@ -20,8 +22,13 @@ export class MenuPage {
   perfil: any;
 
   constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private alertCtrl: AlertController,
     private identifier: IdentityProvider,
-    public menu: MenuController)
+    public menu: MenuController,
+    private vibration: Vibration,
+    private notificador: NotificationProvider,
+    )
   {
       this.menu.enable(true);
       this.identifier.getUserProfile()
@@ -34,4 +41,45 @@ export class MenuPage {
   ionViewDidLoad() {
   }
 
+  mostrarCuestionarios() {
+  	this.vibration.vibrate(100);
+    this.navCtrl.push('EncuestaListPage');
+  }
+
+  mostrarUsuarios() {
+  	this.vibration.vibrate(100);
+    this.navCtrl.push('ListUserPage');
+  }
+
+  enviarPush() {
+  	this.vibration.vibrate(100);
+    let prompt = this.alertCtrl.create({
+      title: 'Notificar',
+      message: "Ingrese un mensaje a notificar",
+      inputs: [
+        {
+          name: 'mensaje',
+          placeholder: 'Mensaje'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.notificador.postNotification(data)
+              .then(
+                d => console.log('Enviado')
+              )
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 }
