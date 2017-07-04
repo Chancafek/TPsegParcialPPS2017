@@ -91,5 +91,4 @@ export class EncuestaProvider {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
-
 }
