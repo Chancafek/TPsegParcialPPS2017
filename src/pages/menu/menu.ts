@@ -17,25 +17,21 @@ import { tokenNotExpired } from 'angular2-jwt';
   templateUrl: 'menu.html',
 })
 export class MenuPage {
-  user: any;
+  perfil: any;
 
   constructor(public navCtrl: NavController,
     private identifier: IdentityProvider,
     public menu: MenuController)
   {
+      this.menu.enable(true);
+      this.identifier.getUserProfile()
+        .subscribe(
+          data => this.perfil = data,
+          err => console.log(err)
+        );
   }
 
   ionViewDidLoad() {
-    this.menu.enable(true);
-    /* Verifico que el usuario este logueado */
-  	if (!tokenNotExpired('access_token')) { // retorna false si el token no existe o es inválido
-      /*
-        si no es válido lo mando a registrarse o iniciar sesión,
-        para desarrollo lo dejo comentado por si necesitan acceder a otras páginas del menu
-      */
-    	//this.navCtrl.setRoot('WelcomePage');
-    }
-    this.user= this.identifier.getIdentity();
   }
 
 }

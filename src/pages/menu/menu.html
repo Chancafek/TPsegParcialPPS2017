@@ -14,5 +14,9 @@
 
 
 <ion-content padding>
-
+  <ion-row *ngIf="perfil" text-center>
+    <button ion-button class="sky-btn" block (click)="mostrarCuestionarios()">Mostrar Cuestionarios</button>
+    <button ion-button class="sky-btn" block (click)="enviarPush()" *ngIf="perfil.rol.id == 2">Enviar Notificación</button>
+    <button ion-button class="sky-btn" block (click)="mostrarUsuarios()" *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4">Mostrar usuarios</button>
+  </ion-row>
 </ion-content>
