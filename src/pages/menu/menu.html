@@ -12,24 +12,23 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-row *ngIf="perfil" text-center>
   	<ion-col>
     	<button (click)="mostrarCuestionarios()">
-    		<img src="assets/img/female.png">
+    		<img src="assets/img/female.png"><br>
     		Mostrar cuestionarios
     	</button>
-	</ion-col>
-	<ion-col *ngIf="perfil.rol.id == 2">
+	  </ion-col>
+	  <ion-col *ngIf="perfil.rol.id == 2">
     	<button (click)="enviarPush()">
-    		<img src="assets/img/female.png">
+    		<img src="assets/img/male.png"><br>
     		Enviar notificación
     	</button>
     </ion-col>
-	<ion-col *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4">
+	  <ion-col *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4">
     	<button (click)="mostrarUsuarios()">
-    		<img src="assets/img/female.png">
+    		<img src="assets/img/male.png"><br>
     		Mostrar usuarios
     	</button>
     </ion-col>
