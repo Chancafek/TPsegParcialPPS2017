@@ -7,29 +7,4 @@
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="isAdministrador || isAdministrativo">
-    <button ion-button block round large>Gestión de usuarios</button>
-    <button ion-button block round large>Inscrición de alumnos</button>
-    <button ion-button block round large>Asignación de profesores</button>
-  </div>
-
-  <div *ngIf="isProfesor">
-    <button ion-button block round large>Crear cuestionario</button>
-    <button ion-button block round large>Mis cuestionarios</button>
-    <button ion-button block round large>Desplegar cuestionario</button>
-  </div>
-
-  <div *ngIf="isAlumno">
-    <button ion-button block round large>Mis cuestionarios</button>
-    <button ion-button block round large>Mis cursos</button>
-  </div>
-
-  
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-
-  <p>User:</p>
-  <!--<p *ngIf="user">{{ user | json }}</p>-->
 </ion-content>
