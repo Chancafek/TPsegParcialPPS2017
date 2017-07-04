@@ -9,6 +9,7 @@ import { EncuestaBuilderPage } from "../pages/encuesta-builder/encuesta-builder"
 import { PreguntaBuilderPage } from '../pages/pregunta-builder/pregunta-builder';
 import { EncuestaFormPage } from "../pages/encuesta-form/encuesta-form";
 import { EncuestaListPage } from "../pages/encuesta-list/encuesta-list";
+import { MenuPage } from "../pages/menu/menu";
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -29,14 +30,15 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { mask: 'Bienvenido', title: 'WelcomePage', component: WelcomePage},
+    //{ mask: 'Bienvenido', title: 'WelcomePage', component: WelcomePage},
     { mask:'Inicio', title: 'HomePage', component: HomePage},
+    { mask: 'Menu', title: 'MenuPage', component: MenuPage},
     { mask: 'Mi Perfil', title: 'ProfilePage', component: ProfilePage},
     // { mask: 'Encuestas', title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
     // { mask: 'Preguntas', title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
     // { mask: 'Form Encuestas', title: 'EncuestaFormPage', component: EncuestaFormPage},
     { mask: 'Lista Encuestas', title: 'EncuestaListPage', component: EncuestaListPage},
-    { mask: 'Logout', title: 'LoginPage', component: LoginPage},
+    { mask: 'Logout', title: 'WelcomePage', component: LoginPage},
   ]
 
   constructor (
@@ -58,13 +60,13 @@ export class MyApp {
         () => this.splashScreen.hide(), 4000
         );
 
-      this.androidFullScreen.isImmersiveModeSupported()
-        .then(() => this.androidFullScreen.immersiveMode())
-        .catch((error: any) => console.log(error));
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-
       if (this.platform.is('cordova'))
       {
+        this.androidFullScreen.isImmersiveModeSupported()
+          .then(() => this.androidFullScreen.immersiveMode())
+          .catch((error: any) => console.log(error));
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+        
         this.notification.registerToken();
         this.notification.getNotifications();
       }

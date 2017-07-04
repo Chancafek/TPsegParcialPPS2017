@@ -1,0 +1,37 @@
+<!--
+  Generated template for the MenuPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>menu</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row *ngIf="perfil" text-center>
+  	<ion-col>
+    	<button (click)="mostrarCuestionarios()">
+    		<img src="assets/img/female.png">
+    		Mostrar cuestionarios
+    	</button>
+	</ion-col>
+	<ion-col *ngIf="perfil.rol.id == 2">
+    	<button (click)="enviarPush()">
+    		<img src="assets/img/female.png">
+    		Enviar notificación
+    	</button>
+    </ion-col>
+	<ion-col *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4">
+    	<button (click)="mostrarUsuarios()">
+    		<img src="assets/img/female.png">
+    		Mostrar usuarios
+    	</button>
+    </ion-col>
+  </ion-row>
+</ion-content>
