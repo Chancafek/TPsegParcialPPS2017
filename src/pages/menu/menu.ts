@@ -46,6 +46,11 @@ export class MenuPage {
     this.navCtrl.push('EncuestaListPage');
   }
 
+  mostrarGraficos() {
+    this.vibration.vibrate(100);
+    this.navCtrl.push('ChartsPage');
+  }
+
   mostrarUsuarios() {
   	this.vibration.vibrate(100);
     this.navCtrl.push('ListUserPage');

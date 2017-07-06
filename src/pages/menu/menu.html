@@ -20,14 +20,22 @@
     		Mostrar cuestionarios
     	</button>
 	  </ion-col>
-	  <ion-col *ngIf="perfil.rol.id == 2">
-    	<button (click)="enviarPush()">
+    <ion-col>
+      <button (click)="mostrarGraficos()">
+        <img src="assets/img/male.png"><br>
+        Mostrar graficos
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="perfil" text-center>
+	  <ion-col>
+    	<button *ngIf="perfil.rol.id == 2" (click)="enviarPush()">
     		<img src="assets/img/male.png"><br>
     		Enviar notificación
     	</button>
     </ion-col>
-	  <ion-col *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4">
-    	<button (click)="mostrarUsuarios()">
+	  <ion-col>
+    	<button *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4" (click)="mostrarUsuarios()">
     		<img src="assets/img/male.png"><br>
     		Mostrar usuarios
     	</button>
