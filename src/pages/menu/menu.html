@@ -7,12 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Menu</ion-title>
+    <ion-title>Menú principal</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
+<ion-content center text-center>
+  <h2 *ngIf="perfil">Bienvenido,<br>{{perfil.nombre}}</h2>
+
   <ion-row *ngIf="perfil" text-center>
   	<ion-col>
     	<button (click)="mostrarCuestionarios()">
