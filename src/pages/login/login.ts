@@ -70,8 +70,9 @@ export class LoginPage {
             this.loading = false;
             loader.dismiss();
             this.presentAlerta('Exito!', 'Te has logueado satisfactoriamente!');
-            setTimeout(() => this.navCtrl.setRoot('MenuPage'), 2500);
-            this.navCtrl.push('MenuPage');
+            //setTimeout(() => this.navCtrl.setRoot('MenuPage'), 2500);
+            //this.navCtrl.push('MenuPage');
+            this.navCtrl.setRoot('MenuPage');
           },
           error => {
             this.loading = false;
