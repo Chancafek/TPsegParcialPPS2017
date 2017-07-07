@@ -7,28 +7,38 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Menu</ion-title>
+    <ion-title>Menú principal</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
+<ion-content center text-center>
+  <h2 *ngIf="perfil">Bienvenido,<br>{{perfil.nombre}}</h2>
+
   <ion-row *ngIf="perfil" text-center>
   	<ion-col>
     	<button (click)="mostrarCuestionarios()">
-    		<img src="assets/img/female.png"><br>
+    		<img src="assets/img/Survey-Icon.png"><br>
     		Mostrar cuestionarios
     	</button>
 	  </ion-col>
-	  <ion-col *ngIf="perfil.rol.id == 2">
-    	<button (click)="enviarPush()">
-    		<img src="assets/img/male.png"><br>
+    <ion-col>
+      <button (click)="mostrarGraficos()">
+        <img src="assets/img/chart-folded-icon.png"><br>
+        Mostrar graficos
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="perfil" text-center>
+	  <ion-col>
+    	<button *ngIf="perfil.rol.id == 2" (click)="enviarPush()">
+    		<img src="assets/img/notification-flat.png"><br>
     		Enviar notificación
     	</button>
     </ion-col>
-	  <ion-col *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4">
-    	<button (click)="mostrarUsuarios()">
-    		<img src="assets/img/male.png"><br>
+	  <ion-col>
+    	<button *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4" (click)="mostrarUsuarios()">
+    		<img src="assets/img/people-icon.png"><br>
     		Mostrar usuarios
     	</button>
     </ion-col>
