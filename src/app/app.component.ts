@@ -1,15 +1,12 @@
+import { LoginPage } from './../pages/login/login';
+import { MenuPage } from './../pages/menu/menu';
 import { ProfilePage } from './../pages/profile/profile';
 import { AuthProvider } from './../providers/auth/auth';
 import { IdentityProvider } from './../providers/identifier/identifier';
-import { SignupPage } from './../pages/signup/signup';
-import { LoginPage } from './../pages/login/login';
-import { HomePage } from './../pages/home/home';
 // import { WelcomePage } from './../pages/welcome/welcome';
 // import { EncuestaBuilderPage } from "../pages/encuesta-builder/encuesta-builder";
 // import { PreguntaBuilderPage } from '../pages/pregunta-builder/pregunta-builder';
 // import { EncuestaFormPage } from "../pages/encuesta-form/encuesta-form";
-import { EncuestaListPage } from "../pages/encuesta-list/encuesta-list";
-import { MenuPage } from "../pages/menu/menu";
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
