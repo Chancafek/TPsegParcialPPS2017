@@ -49,7 +49,7 @@ export class EncuestaListPage implements OnInit {
     // );
 
     this.encuestaService.getAll().subscribe(
-      response => this.encuestas = response,
+      response => this.encuestas = response as Array<Encuesta>,
       error => console.error(error),
       () => console.log(this.encuestas)
     );
@@ -73,6 +73,14 @@ export class EncuestaListPage implements OnInit {
             handler: () => {
               console.log('Deploy encuestas');
               this.showAlert(encuesta);
+            }
+          },
+          {
+            text: 'Modificar cuestionario',
+            role: 'destructive',
+            handler: () => {
+              console.log('Modificar encuesta');
+              
             }
           },
           {

@@ -45,12 +45,16 @@ export class PreguntaBuilderPage implements OnInit {
   }
 
   ngOnInit() {
-    this.encuesta = this.navParams.get("encuesta");
-    console.log(this.encuesta);
 
-    if (this.encuesta != null) {
-      console.log(this.encuesta.preguntas);
+    if (this.navParams.get("pregunta_id") != null) {
+      this.encuestaService.getPregunta(this.navParams.get("pregunta_id")).subscribe(
+        response => this.armarPregunta(response),
+        error => console.error(error)
+      );
+    } else {
+      this.encuesta = this.navParams.get("encuesta");
     }
+
   }
 
   onChangeTipo(event: Event) {
@@ -81,65 +85,87 @@ export class PreguntaBuilderPage implements OnInit {
 
     } else {
 
-      let action = this.actionSheetCtrl.create({
-        title: '¿Qué desea seguir haciendo?',
-        buttons: [
-          {
-            text: 'Guardar y finalizar cuestionario',
-            role: 'destructive',
-            handler: () => {
-              console.log('Guardo y finalizo');
-              this.insertPregunta();
-              this.encuestaService.save(this.encuesta).subscribe(
-                response => {
-                  console.log(response);
-                  this.navCtrl.popToRoot();
-                },
-                error => {
-                  console.error(error);
-                }
-              );
+      if (this.navParams.get("pregunta_id")) {
+
+        let alert = this.alertCtrl.create({
+          title: 'Atención',
+          subTitle: 'Desea guardar los cambios?',
+          buttons: [{
+            text: 'No',
+            role: 'cancel',
+            handler: data => {
+              console.log('Cancel clicked');
             }
           },
           {
-            text: 'Guardar y agregar otra pregunta',
-            handler: () => {
-              console.log('Guardo y agrego otra');
-              this.insertPregunta();
-              this.navCtrl.push('PreguntaBuilderPage', { encuesta: this.encuesta })
+            text: 'Si',
+            handler: data => {
+              this.navCtrl.popToRoot();
             }
-          },
-          {
-            text: 'Cancelar cuestionario',
-            handler: () => {
-              console.log('Sigo editando la pregunta');
-              let alert = this.alertCtrl.create({
-                title: 'Atención',
-                subTitle: 'Los datos no guardados se perderán ¿Desea salir?',
-                buttons: [{
-                  text: 'No',
-                  role: 'cancel',
-                  handler: data => {
-                    console.log('Cancel clicked');
-                  }
-                },
-                {
-                  text: 'Si',
-                  handler: data => {
+          }]
+        });
+        alert.present();
+
+      } else {
+
+        let action = this.actionSheetCtrl.create({
+          title: '¿Qué desea seguir haciendo?',
+          buttons: [
+            {
+              text: 'Guardar y finalizar cuestionario',
+              role: 'destructive',
+              handler: () => {
+                console.log('Guardo y finalizo');
+                this.insertPregunta();
+                this.encuestaService.save(this.encuesta).subscribe(
+                  response => {
+                    console.log(response);
                     this.navCtrl.popToRoot();
+                  },
+                  error => {
+                    console.error(error);
                   }
-                }]
-              });
-              alert.present();
+                );
+              }
+            },
+            {
+              text: 'Guardar y agregar otra pregunta',
+              handler: () => {
+                console.log('Guardo y agrego otra');
+                this.insertPregunta();
+                this.navCtrl.push('PreguntaBuilderPage', { encuesta: this.encuesta })
+              }
+            },
+            {
+              text: 'Cancelar cuestionario',
+              handler: () => {
+                console.log('Sigo editando la pregunta');
+                let alert = this.alertCtrl.create({
+                  title: 'Atención',
+                  subTitle: 'Los datos no guardados se perderán ¿Desea salir?',
+                  buttons: [{
+                    text: 'No',
+                    role: 'cancel',
+                    handler: data => {
+                      console.log('Cancel clicked');
+                    }
+                  },
+                  {
+                    text: 'Si',
+                    handler: data => {
+                      this.navCtrl.popToRoot();
+                    }
+                  }]
+                });
+                alert.present();
+              }
             }
-          }
-        ]
-      });
+          ]
+        });
 
-      action.present();
+        action.present();
+      }
 
-      // this.insertPregunta();
-      // console.log(this.encuesta);
     }
 
   }
@@ -179,5 +205,9 @@ export class PreguntaBuilderPage implements OnInit {
     }
 
     this.encuesta.preguntas.push(this.pregunta);
+  }
+
+  armarPregunta(pregunta: any) {
+
   }
 }

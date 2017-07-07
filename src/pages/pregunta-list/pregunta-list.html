@@ -1,0 +1,34 @@
+<!--
+  Generated template for the PreguntaListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Preguntas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-fab top right edge>
+      <button ion-fab mini (click)="createPregunta()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+    <ion-item *ngFor="let item of preguntas">
+      <button ion-button icon-only item-end (click)="modify(item)">
+        <ion-icon name="create"></ion-icon>
+      </button> 
+      {{item.texto}}
+      <button ion-button icon-only item-end (click)="delete(item)">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-item>
+
+    <ion-item *ngIf="preguntas.length==0">No hay preguntas</ion-item>
+
+  </ion-list>
+</ion-content>
