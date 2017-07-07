@@ -34,6 +34,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { GeolocalizacionProvider } from '../providers/geolocalizacion/geolocalizacion';
 import { UploaderProvider } from '../providers/uploader/uploader';
 import { CursosProvider } from '../providers/cursos/cursos';
+import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
 
 
 export const firebaseConfig = {
@@ -105,6 +106,8 @@ const cloudSettings: CloudSettings = {
     GeolocalizacionProvider,
     UploaderProvider,
     MateriasProvider,
+    PushNotificationsProvider,
+    PushNotificationsProvider,
   ]
 })
 export class AppModule {}

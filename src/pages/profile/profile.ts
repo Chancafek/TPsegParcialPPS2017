@@ -1,3 +1,4 @@
+import { PushNotificationsProvider } from './../../providers/push-notifications/push-notifications';
 import { NotificationProvider } from './../../providers/notification/notification';
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { UserProvider } from './../../providers/user/user';
@@ -33,7 +34,8 @@ export class ProfilePage {
     private camera: Camera,
     private alertCtrl: AlertController,
     private notificador: NotificationProvider,
-    private menu: MenuController
+    private menu: MenuController,
+    private pushNotifier: PushNotificationsProvider
     ) {
       this.menu.enable(true);
       this.identifier.getUserProfile()
@@ -69,6 +71,15 @@ export class ProfilePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
 
+  }
+
+  enviar() {
+    console.log('Se envió el push');
+    this.pushNotifier.sendNotification('Educadroid dice: ', 'Mensaje de prueba').subscribe(
+      d => console.log(d),
+      e => console.log(e),
+      () => console.log('Fin')
+    );
   }
 
   cambiarFoto() {
