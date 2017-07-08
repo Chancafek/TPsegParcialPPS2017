@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Encuesta } from "../../models/encuesta";
 import { Curso } from "../../models/curso";
+import { Pregunta } from "../../models/pregunta";
 import { Observable } from 'rxjs/Observable';
 import { User } from "../../models/user";
 import 'rxjs/add/operator/catch';
@@ -19,8 +20,8 @@ export class EncuestaProvider {
   // private url = 'http://educadroid.dev';
   private url = 'http://educadroid.kennychancafe.com';
 
-  baseUrl: string = 'http://educadroid.kennychancafe.com/';
-  //baseUrl: string = "??A DONDE LO SUBIMOS??";
+  //baseUrl: string = 'http://educadroid.kennychancafe.com/';
+  baseUrl: string = "http://localhost/api_educadroid/public/";
   data: Encuesta[];
 
   constructor(public http: Http) {
@@ -55,9 +56,9 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
-  getByUser(user_id:Number) : Observable<Encuesta[]>{
+  getByUser(user_id: Number): Observable<Encuesta[]> {
     return this.http.get(this.baseUrl + "encuestas/user/" + user_id.toString())
-      .map(response=>response.json() as Encuesta)
+      .map(response => response.json() as Encuesta)
       .catch(this.handleError);
   }
 
@@ -71,10 +72,32 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
-  deleteEncuesta(encuesta_id:Number):Observable<Response>{
+  deleteEncuesta(encuesta_id: Number): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.delete(this.baseUrl + "encuestas/" + encuesta_id, options)
+      .catch(this.handleError);
+  }
+
+  getPregunta(pregunta_id: Number): Observable<Pregunta> {
+    return this.http.get(this.baseUrl + "preguntas/" + pregunta_id.toString())
+      .map(response => response.json() as Pregunta)
+      .catch(this.handleError);
+  }
+
+  savePregunta(pregunta: Pregunta, encuesta_id: Number): Observable<Number> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.baseUrl + "preguntas", { pregunta: pregunta, encuesta_id: encuesta_id }, options)
+      .map(response => response.json() as Number)
+      .catch(this.handleError);
+  }
+
+  deletePregunta(pregunta_id: Number){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.delete(this.baseUrl + "preguntas/" + pregunta_id.toString(), options)
+      .map(response => response.json() as Number)
       .catch(this.handleError);
   }
 

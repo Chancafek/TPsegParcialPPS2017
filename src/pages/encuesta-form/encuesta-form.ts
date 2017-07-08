@@ -73,7 +73,6 @@ export class EncuestaFormPage implements OnInit {
         response => {
           this.encuesta = response;
           this.pregunta = Pregunta.buildPregunta(this.encuesta.preguntas[0]);
-          console.log(this.pregunta);
         },
         error => console.error(error)
       );
