@@ -128,7 +128,7 @@ export class EncuestaListPage implements OnInit {
 
         if (cursos.length > 0) {
 
-          alert.setTitle('¿En qué curso desea deplegar el cuestionario?');
+          alert.setTitle('¿En qué curso desea desplegar el cuestionario?');
 
           cursos.forEach(item => {
             alert.addInput({
