@@ -24,6 +24,7 @@ export class MyApp {
   rootPage:any = 'WelcomePage';
   activePage: any = 'WelcomePage';
   imgProfile: any = 'male.png';
+  userName: string;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -98,6 +99,7 @@ export class MyApp {
       }
     });
       if (this.auth.loggedIn()) {
+        this.userName = this.identifier.getIdentity().nombre + ' ' + this.identifier.getIdentity().apellido;
         let u_img = this.identifier.getIdentity().image;
         if (u_img == null) {
           if (!this.identifier.isMale()) {

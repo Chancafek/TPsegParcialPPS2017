@@ -1,3 +1,4 @@
+import { PushNotificationsProvider } from './../../providers/push-notifications/push-notifications';
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
@@ -27,7 +28,7 @@ export class MenuPage {
     private identifier: IdentityProvider,
     public menu: MenuController,
     private vibration: Vibration,
-    private notificador: NotificationProvider,
+    private notificador: PushNotificationsProvider,
     )
   {
       this.menu.enable(true);
@@ -77,10 +78,8 @@ export class MenuPage {
         {
           text: 'Save',
           handler: data => {
-            this.notificador.postNotification(data)
-              .then(
-                d => console.log('Enviado')
-              )
+            this.notificador.sendNotification('Educadroid', data.toString())
+              .subscribe(res => console.log(res));
           }
         }
       ]
