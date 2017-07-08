@@ -80,7 +80,7 @@ export class EncuestaListPage implements OnInit {
             role: 'destructive',
             handler: () => {
               console.log('Modificar encuesta');
-              
+              this.navCtrl.push('PreguntaListPage', {preguntas:encuesta.preguntas});
             }
           },
           {

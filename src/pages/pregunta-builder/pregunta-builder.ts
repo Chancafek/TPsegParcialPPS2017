@@ -21,6 +21,8 @@ export class PreguntaBuilderPage implements OnInit {
 
   private encuesta: Encuesta;
 
+  private encuesta_id: Number;
+
   private pregunta: Pregunta = new Pregunta();
 
   private opcion1: String;
@@ -45,16 +47,11 @@ export class PreguntaBuilderPage implements OnInit {
   }
 
   ngOnInit() {
-
-    if (this.navParams.get("pregunta_id") != null) {
-      this.encuestaService.getPregunta(this.navParams.get("pregunta_id")).subscribe(
-        response => this.armarPregunta(response),
-        error => console.error(error)
-      );
-    } else {
+    if (this.navParams.get("encuesta") != null) {
       this.encuesta = this.navParams.get("encuesta");
+    } else if(this.navParams.get("id_encuesta") != null){
+      this.encuesta_id = this.navParams.get("encuesta_id");
     }
-
   }
 
   onChangeTipo(event: Event) {
@@ -85,11 +82,11 @@ export class PreguntaBuilderPage implements OnInit {
 
     } else {
 
-      if (this.navParams.get("pregunta_id")) {
+      if (this.encuesta_id!=null) {
 
         let alert = this.alertCtrl.create({
           title: 'Atención',
-          subTitle: 'Desea guardar los cambios?',
+          subTitle: '¿Desea agregar esta pregunta al cuestionario?',
           buttons: [{
             text: 'No',
             role: 'cancel',
@@ -100,7 +97,11 @@ export class PreguntaBuilderPage implements OnInit {
           {
             text: 'Si',
             handler: data => {
-              this.navCtrl.popToRoot();
+              this.encuestaService.savePregunta(this.pregunta,this.encuesta_id).subscribe(
+                response=>console.log(response),
+                error=>console.error(error)
+              );
+              this.navCtrl.pop();
             }
           }]
         });
@@ -207,7 +208,4 @@ export class PreguntaBuilderPage implements OnInit {
     this.encuesta.preguntas.push(this.pregunta);
   }
 
-  armarPregunta(pregunta: any) {
-
-  }
 }

@@ -14,17 +14,14 @@
 
 
 <ion-content padding>
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="createPregunta()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <ion-list>
-    <ion-fab top right edge>
-      <button ion-fab mini (click)="createPregunta()"><ion-icon name="add"></ion-icon></button>
-    </ion-fab>
-    <ion-item *ngFor="let item of preguntas">
-      <button ion-button icon-only item-end (click)="modify(item)">
-        <ion-icon name="create"></ion-icon>
-      </button> 
-      {{item.texto}}
-      <button ion-button icon-only item-end (click)="delete(item)">
-        <ion-icon name="close-circle"></ion-icon>
+    <ion-item *ngFor="let item of preguntas; index as i">
+      {{i+1}}. {{item.texto}}
+      <button ion-button color="danger" clear icon-only (click)="delete(item)" item-end>
+        <ion-icon name='close' is-active="false"></ion-icon>
       </button>
     </ion-item>
 

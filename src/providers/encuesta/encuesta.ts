@@ -85,6 +85,22 @@ export class EncuestaProvider {
       .catch(this.handleError);
   }
 
+  savePregunta(pregunta: Pregunta, encuesta_id: Number): Observable<Number> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.baseUrl + "preguntas", { pregunta: pregunta, encuesta_id: encuesta_id }, options)
+      .map(response => response.json() as Number)
+      .catch(this.handleError);
+  }
+
+  deletePregunta(pregunta_id: Number){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.delete(this.baseUrl + "preguntas/" + pregunta_id.toString(), options)
+      .map(response => response.json() as Number)
+      .catch(this.handleError);
+  }
+
   private handleError(error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
