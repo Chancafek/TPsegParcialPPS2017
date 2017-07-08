@@ -60,6 +60,8 @@ export class MyApp {
         () => this.splashScreen.hide(), 4000
         );
       let notificationOpenedCallback = function(jsonData) {
+        console.log(jsonData);
+        // console.log(jsonData.notification.ad)
         if(tokenNotExpired('token_educadroid')) {
           let alert = alertCtrl.create({
             title: jsonData.notification.payload.title,
@@ -68,9 +70,9 @@ export class MyApp {
               {
                 text: 'OK',
                 handler: () => {
-                  if(jsonData.notification.additionalData.idEncuesta) {
-                    const id_encuesta = jsonData.notification.additionalData.idEncuesta;
-                    this.navCtrl.setRoot('EncuestaFormPage', { idEncuesta : id_encuesta});
+                  if(jsonData.notification.payload.additionalData.idEncuesta) {
+                    const id_encuesta = parseInt(jsonData.notification.payload.additionalData.idEncuesta);
+                    this.nav.setRoot('EncuestaFormPage', { idEncuesta : id_encuesta});
                   }
                 }
               }

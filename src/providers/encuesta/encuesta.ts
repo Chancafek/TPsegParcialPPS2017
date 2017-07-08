@@ -18,10 +18,10 @@ import 'rxjs/add/operator/map';
 export class EncuestaProvider {
 
   // private url = 'http://educadroid.dev';
-  private url = 'http://educadroid.kennychancafe.com';
+  // private baseUrl = 'http://educadroid.kennychancafe.com';
 
-  //baseUrl: string = 'http://educadroid.kennychancafe.com/';
-  baseUrl: string = "http://localhost/api_educadroid/public/";
+  baseUrl: string = 'http://educadroid.kennychancafe.com/';
+  // baseUrl: string = "http://localhost/api_educadroid/public/";
   data: Encuesta[];
 
   constructor(public http: Http) {
