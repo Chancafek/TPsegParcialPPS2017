@@ -107,7 +107,6 @@ const cloudSettings: CloudSettings = {
     UploaderProvider,
     MateriasProvider,
     PushNotificationsProvider,
-    PushNotificationsProvider,
   ]
 })
 export class AppModule {}

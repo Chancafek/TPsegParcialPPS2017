@@ -9,7 +9,7 @@ import { IdentityProvider } from './../providers/identifier/identifier';
 // import { PreguntaBuilderPage } from '../pages/pregunta-builder/pregunta-builder';
 // import { EncuestaFormPage } from "../pages/encuesta-form/encuesta-form";
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, AlertController, NavController } from 'ionic-angular';
+import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -50,7 +50,6 @@ export class MyApp {
     private alertCtrl: AlertController,
     private screenOrientation: ScreenOrientation,
     private androidFullScreen: AndroidFullScreen,
-    public navCtrl: NavController,
               )
   {
     this.platform.ready().then(() => {

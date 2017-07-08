@@ -1,3 +1,4 @@
+import { PushNotificationsProvider } from './../../providers/push-notifications/push-notifications';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 import { Encuesta } from "../../models/encuesta";
@@ -26,7 +27,9 @@ export class EncuestaListPage implements OnInit {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public encuestaService: EncuestaProvider, public indentityService: IdentityProvider,
     public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController,
-    public cursosService: CursosProvider) {
+    public cursosService: CursosProvider,
+    private notifier: PushNotificationsProvider
+    ) {
   }
 
   ionViewDidLoad() {
@@ -142,7 +145,7 @@ export class EncuestaListPage implements OnInit {
             alert.addInput({
               type: 'checkbox',
               label: item.materia.nombre + ' - ' + item.division.codigo,
-              value: item.id
+              value: item.materia.nombre + ' - ' + item.division.codigo
             });
           });
 
@@ -158,7 +161,10 @@ export class EncuestaListPage implements OnInit {
             handler: data => {
               console.log('Checkbox data:', data);
               this.encuestaService.deploy(encuesta.id, data).subscribe(
-                response => console.log(response),
+                response => {
+                  console.log(response);
+                  this.notifier.sendNotification('Educadroid: Nuevo cuestionario disponible', data, { 'idEncuesta': encuesta.id });
+                },
                 error => console.error(error)
               );
             }
