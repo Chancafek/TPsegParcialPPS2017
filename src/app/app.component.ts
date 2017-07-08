@@ -1,17 +1,14 @@
+import { LoginPage } from './../pages/login/login';
+import { MenuPage } from './../pages/menu/menu';
 import { ProfilePage } from './../pages/profile/profile';
 import { AuthProvider } from './../providers/auth/auth';
 import { IdentityProvider } from './../providers/identifier/identifier';
-import { SignupPage } from './../pages/signup/signup';
-import { LoginPage } from './../pages/login/login';
-import { HomePage } from './../pages/home/home';
 // import { WelcomePage } from './../pages/welcome/welcome';
 // import { EncuestaBuilderPage } from "../pages/encuesta-builder/encuesta-builder";
 // import { PreguntaBuilderPage } from '../pages/pregunta-builder/pregunta-builder';
 // import { EncuestaFormPage } from "../pages/encuesta-form/encuesta-form";
-import { EncuestaListPage } from "../pages/encuesta-list/encuesta-list";
-import { MenuPage } from "../pages/menu/menu";
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -49,6 +46,7 @@ export class MyApp {
     public notification: NotificationProvider,
     private identifier: IdentityProvider,
     private auth: AuthProvider,
+    private alertCtrl: AlertController,
     private screenOrientation: ScreenOrientation,
     private androidFullScreen: AndroidFullScreen
               )
@@ -60,7 +58,19 @@ export class MyApp {
       setTimeout(
         () => this.splashScreen.hide(), 4000
         );
-
+      let notificationOpenedCallback = function(jsonData) {
+        let alert = alertCtrl.create({
+          title: jsonData.notification.payload.title,
+          subTitle: jsonData.notification.payload.body,
+          buttons: ['OK']
+        });
+        alert.present();
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+      window["plugins"].OneSignal
+        .startInit("ab09245a-0262-4d50-9a12-c9c19c5391f4", "educadroid-eb6d1")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
       if (this.platform.is('cordova'))
       {
         this.androidFullScreen.isImmersiveModeSupported()
