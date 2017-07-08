@@ -70,7 +70,7 @@ export class MyApp {
                 handler: () => {
                   if(jsonData.notification.additionalData.idEncuesta) {
                     const id_encuesta = jsonData.notification.additionalData.idEncuesta;
-                    this.navCtrl.setRoot('EncuestaFormPage', { idEncuesta : id_encuesta});
+                    this.nav.setRoot('EncuestaFormPage', { idEncuesta : id_encuesta});
                   }
                 }
               }
