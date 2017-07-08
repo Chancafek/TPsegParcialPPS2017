@@ -32,9 +32,9 @@
   </ion-row>
   <ion-row *ngIf="perfil" text-center>
 	  <ion-col>
-    	<button *ngIf="perfil.rol.id == 2" (click)="enviarPush()">
+    	<button *ngIf="perfil.rol.id != 3" (click)="enviarPush()">
     		<img src="assets/img/notification-flat.png"><br>
-    		Enviar notificación
+    		Enviar notificación {{perfil.rol.id}}
     	</button>
     </ion-col>
 	  <ion-col>
