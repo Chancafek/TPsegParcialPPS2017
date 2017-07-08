@@ -24,7 +24,11 @@ export class EncuestaBuilderPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EncuestaBuilderPage');
-    this.encuesta = new Encuesta();
+    if(this.navParams.get('encuesta')!=null){
+      this.encuesta = this.navParams.get('encuesta');
+    } else {
+      this.encuesta = new Encuesta();
+    }
   }
 
   crear() {
