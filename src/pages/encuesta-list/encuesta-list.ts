@@ -160,13 +160,7 @@ export class EncuestaListPage implements OnInit {
             text: 'Aceptar',
             handler: data => {
               console.log('Checkbox data:', data);
-              this.encuestaService.deploy(encuesta.id, data).subscribe(
-                response => {
-                  console.log(response);
-                  this.notifier.sendNotification('Educadroid: Nuevo cuestionario disponible', data, { 'idEncuesta': encuesta.id });
-                },
-                error => console.error(error)
-              );
+              this.notifier.sendNotification('Educadroid: Nuevo cuestionario disponible', data, { 'idEncuesta': encuesta.id });
             }
           });
 

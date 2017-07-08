@@ -47,6 +47,9 @@ export class PreguntaBuilderPage implements OnInit {
   }
 
   ngOnInit() {
+
+    console.log(this.navParams.get("encuesta_id"));
+
     if (this.navParams.get("encuesta") != null) {
       this.encuesta = this.navParams.get("encuesta");
     } else if(this.navParams.get("id_encuesta") != null){

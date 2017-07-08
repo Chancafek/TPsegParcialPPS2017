@@ -30,7 +30,7 @@ export class PreguntaListPage implements OnInit {
   }
 
   createPregunta(){
-    this.navCtrl.push("PreguntaBuilderPage",this.preguntas[0].encuesta_id);
+    this.navCtrl.push("PreguntaBuilderPage",{encuesta_id:this.preguntas[0].encuesta_id});
   }
 
   delete(pregunta){
