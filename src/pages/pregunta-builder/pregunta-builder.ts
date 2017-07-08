@@ -48,11 +48,9 @@ export class PreguntaBuilderPage implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.navParams.get("encuesta_id"));
-
     if (this.navParams.get("encuesta") != null) {
       this.encuesta = this.navParams.get("encuesta");
-    } else if(this.navParams.get("id_encuesta") != null){
+    } else if(this.navParams.get("encuesta_id") != null){
       this.encuesta_id = this.navParams.get("encuesta_id");
     }
   }
@@ -84,7 +82,7 @@ export class PreguntaBuilderPage implements OnInit {
       alert.present();
 
     } else {
-
+      console.log(this.encuesta_id);
       if (this.encuesta_id!=null) {
 
         let alert = this.alertCtrl.create({
@@ -104,7 +102,7 @@ export class PreguntaBuilderPage implements OnInit {
                 response=>console.log(response),
                 error=>console.error(error)
               );
-              this.navCtrl.pop();
+              this.navCtrl.popTo(this.navCtrl.getByIndex(1));
             }
           }]
         });

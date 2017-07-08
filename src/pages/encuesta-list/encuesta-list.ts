@@ -36,6 +36,14 @@ export class EncuestaListPage implements OnInit {
     console.log('ionViewDidLoad EncuestaListPage');
   }
 
+  ionViewWillEnter(){
+    this.encuestaService.getAll().subscribe(
+      response => this.encuestas = response as Array<Encuesta>,
+      error => console.error(error),
+      () => console.log(this.encuestas)
+    );
+  }
+
   ngOnInit() {
 
     this.isProfesor = this.indentityService.getIdentity().apellido == "Profesor";
@@ -50,12 +58,6 @@ export class EncuestaListPage implements OnInit {
     //   error => console.error(error),
     //   () => console.log(this.encuestas)
     // );
-
-    this.encuestaService.getAll().subscribe(
-      response => this.encuestas = response as Array<Encuesta>,
-      error => console.error(error),
-      () => console.log(this.encuestas)
-    );
 
   }
 
@@ -104,7 +106,7 @@ export class EncuestaListPage implements OnInit {
                   handler: data => {
                     console.log('Elimino');
                     this.encuestaService.deleteEncuesta(encuesta.id).subscribe(
-                      response => this.ngOnInit(),
+                      response => this.ionViewWillEnter(),
                       error => console.error(error)
                     );
                   }
@@ -160,6 +162,7 @@ export class EncuestaListPage implements OnInit {
             text: 'Aceptar',
             handler: data => {
               console.log('Checkbox data:', data);
+              console.log(encuesta);
               this.notifier.sendNotification('Educadroid: Nuevo cuestionario disponible', data, { 'idEncuesta': encuesta.id });
             }
           });
