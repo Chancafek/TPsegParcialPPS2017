@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EncuestaBuilderPage } from './encuesta-builder';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { EncuestaBuilderPage } from './encuesta-builder';
   ],
   imports: [
     IonicPageModule.forChild(EncuestaBuilderPage),
+    TranslateModule.forChild()
   ],
   exports: [
     EncuestaBuilderPage

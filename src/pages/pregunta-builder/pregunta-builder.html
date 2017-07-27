@@ -6,68 +6,68 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>Crear pregunta</ion-title>
+    <ion-title text-center>{{'CREAR_PREGUNTA' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
   <form #preguntaForm="ngForm" (ngSubmit)="done()">
-    <ion-item-divider color="light">Pregunta</ion-item-divider>
+    <ion-item-divider color="light">{{'PREGUNTA' | translate}}</ion-item-divider>
     <ion-item>
-      <ion-label color="primary" stacked>Descripción</ion-label>
+      <ion-label color="primary" stacked>{{'PREGUNTA' | translate}}</ion-label>
       <ion-textarea [(ngModel)]="pregunta.consigna" name="consigna" rows="3" required></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label color="primary" stacked>Tipo de pregunta</ion-label>
-      <ion-select [(ngModel)]="pregunta.tipo" placeholder="Seleccione el tipo" name="tipo" interface="popover" (ionChange)="onChangeTipo($event)"
+      <ion-label color="primary" stacked>{{'TIPO_PREGUNTA' | translate}}</ion-label>
+      <ion-select [(ngModel)]="pregunta.tipo" placeholder="{{'SELECCIONAR_TIPO' | translate}}" name="tipo" interface="popover" (ionChange)="onChangeTipo($event)"
         required>
         <ion-option value=1>Checks</ion-option>
         <ion-option value=2>Radio</ion-option>
-        <ion-option value=3>Texto</ion-option>
+        <ion-option value=3>{{'TEXTO' | translate}}</ion-option>
       </ion-select>
     </ion-item>
 
     <!--Muestro solo si es check o radio-->
     <div class="divider" *ngIf="pregunta.tipo == 1 || pregunta.tipo == 2">
-      <ion-item-divider color="light">Opciones</ion-item-divider>
+      <ion-item-divider color="light">{{'OPCIONES' | translate}}</ion-item-divider>
       <ion-item>
-        <ion-label color="primary" floating>Opción 1</ion-label>
+        <ion-label color="primary" floating>{{'OPCION' | translate}} 1</ion-label>
         <ion-input [(ngModel)]="opcion1" name="opcion1" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color="primary" floating>Opción 2</ion-label>
+        <ion-label color="primary" floating>{{'OPCION' | translate}} 2</ion-label>
         <ion-input [(ngModel)]="opcion2" name="opcion2" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color="primary" floating>Opción 3</ion-label>
+        <ion-label color="primary" floating>{{'OPCION' | translate}} 3</ion-label>
         <ion-input [(ngModel)]="opcion3" name="opcion3" required></ion-input>
       </ion-item>
     </div>
 
     <!--Muestro solo si es text-->
     <div class="divider" *ngIf="pregunta.tipo == 3">
-      <ion-item-divider color="light">Respuesta</ion-item-divider>
+      <ion-item-divider color="light">{{'RESPUESTA' | translate}}</ion-item-divider>
       <ion-item>
-        <ion-label color="primary" floating>Respuesta</ion-label>
+        <ion-label color="primary" floating>{{'RESPUESTA' | translate}}</ion-label>
         <ion-input [(ngModel)]="respuestaTexto" name="respuesta" required></ion-input>
       </ion-item>
     </div>
 
     <!--Muestro solo si es radio-->
     <div class="divider" *ngIf="pregunta.tipo == 2">
-      <ion-item-divider color="light">Respuesta</ion-item-divider>
+      <ion-item-divider color="light">{{'RESPUESTA' | translate}}</ion-item-divider>
       <ion-list radio-group [(ngModel)]="respuestaRadio" name="respuestaRadio" required>
         <ion-item>
-          <ion-label>Opción 1</ion-label>
+          <ion-label>{{'OPCION' | translate}} 1</ion-label>
           <ion-radio value="1"></ion-radio>
         </ion-item>
         <ion-item>
-          <ion-label>Opción 2</ion-label>
+          <ion-label>{{'OPCION' | translate}} 2</ion-label>
           <ion-radio value="2"></ion-radio>
         </ion-item>
         <ion-item>
-          <ion-label>Opción 3</ion-label>
+          <ion-label>{{'OPCION' | translate}} 3</ion-label>
           <ion-radio value="3"></ion-radio>
         </ion-item>
       </ion-list>
@@ -75,21 +75,21 @@
 
     <!--Muestro solo si es checkbox-->
     <div class="divider" *ngIf="pregunta.tipo == 1">
-      <ion-item-divider color="light">Respuesta</ion-item-divider>
+      <ion-item-divider color="light">{{'RESPUESTA' | translate}}</ion-item-divider>
       <ion-item>
-        <ion-label>Opción 1</ion-label>
+        <ion-label>{{'OPCION' | translate}} 1</ion-label>
         <ion-checkbox [(ngModel)]="respuestaCheck1" name="respuestaCheck1"></ion-checkbox>
       </ion-item>
       <ion-item>
-        <ion-label>Opción 2</ion-label>
+        <ion-label>{{'OPCION' | translate}} 2</ion-label>
         <ion-checkbox [(ngModel)]="respuestaCheck2" name="respuestaCheck2"></ion-checkbox>
       </ion-item>
       <ion-item>
-        <ion-label>Opción 3</ion-label>
+        <ion-label>{{'OPCION' | translate}} 3</ion-label>
         <ion-checkbox [(ngModel)]="respuestaCheck3" name="respuestaCheck3"></ion-checkbox>
       </ion-item>
     </div>
 
-    <button *ngIf="pregunta.tipo != null" ion-button block type="submit" [disabled]="!preguntaForm.form.valid">Terminar pregunta</button>
+    <button *ngIf="pregunta.tipo != null" ion-button block type="submit" [disabled]="!preguntaForm.form.valid">{{'TERMINAR_PREGUNTA' | translate}}</button>
   </form>
 </ion-content>

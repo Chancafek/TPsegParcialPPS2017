@@ -2,9 +2,8 @@ import { PushNotificationsProvider } from './../../providers/push-notifications/
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
-import { tokenNotExpired } from 'angular2-jwt';
 import { Vibration } from '@ionic-native/vibration';
-import { NotificationProvider } from './../../providers/notification/notification';
+import { TranslateService } from '@ngx-translate/core';
 
 // https://www.youtube.com/watch?v=V8342s0xAsY
 
@@ -29,6 +28,7 @@ export class MenuPage {
     public menu: MenuController,
     private vibration: Vibration,
     private notificador: PushNotificationsProvider,
+    private translate: TranslateService
     )
   {
       this.menu.enable(true);
@@ -60,23 +60,23 @@ export class MenuPage {
   enviarPush() {
   	this.vibration.vibrate(100);
     let prompt = this.alertCtrl.create({
-      title: 'Notificar',
-      message: "Ingrese un mensaje a notificar",
+      title: this.translate.getDefaultLang()=="es" ? 'Notificar' : "Notify" ,
+      message: this.translate.getDefaultLang()=="es" ? "Ingrese un mensaje a notificar" : "Input a message to send",
       inputs: [
         {
-          name: 'mensaje',
-          placeholder: 'Mensaje'
+          name: this.translate.getDefaultLang()=="es" ? 'Mensaje' : "Message",
+          placeholder: this.translate.getDefaultLang()=="es" ? 'Mensaje' : "Message"
         },
       ],
       buttons: [
         {
-          text: 'Cancel',
+          text: this.translate.getDefaultLang()=="es" ? 'Cancelar' : 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: 'Save',
+          text: this.translate.getDefaultLang()=="es" ? 'Enviar' : 'Send',
           handler: data => {
             this.notificador.sendNotification('Educadroid', data.toString())
               .subscribe(res => console.log(res));

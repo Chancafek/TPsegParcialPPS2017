@@ -6,6 +6,7 @@ import { User } from './../../models/user';
 import { MenuController, LoadingController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the SignupPage page.
@@ -35,7 +36,8 @@ export class SignupPage {
     private loadingCtrl: LoadingController,
     private _userService: UserProvider,
     private alertCtrl: AlertController,
-    private localizador: GeolocalizacionProvider
+    private localizador: GeolocalizacionProvider,
+    private translate: TranslateService
     ) {
       /*
         Deshabilito el sidemenu,

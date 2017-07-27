@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { NotificationProvider } from '../providers/notification/notification';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   templateUrl: 'app.html'
@@ -51,8 +52,11 @@ export class MyApp {
     private alertCtrl: AlertController,
     private screenOrientation: ScreenOrientation,
     private androidFullScreen: AndroidFullScreen,
+    private translate: TranslateService
               )
   {
+    translate.setDefaultLang('en');
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -124,6 +128,34 @@ export class MyApp {
 
   exitApp() {
     this.platform.exitApp();
+  }
+
+  changeLenguage(){
+    let alert = this.alertCtrl.create();
+    alert.setTitle(this.translate.getDefaultLang()=="es" ? 'Seleccione lenguaje' : 'Select lenguage');
+
+    alert.addInput({
+      type: 'radio',
+      label: this.translate.getDefaultLang()=="es" ? 'Español' : 'Spanish',
+      value: 'es',
+      checked: this.translate.getDefaultLang()=="es"
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: this.translate.getDefaultLang()=="es" ? 'Inglés' : 'English',
+      value: 'en',
+      checked: this.translate.getDefaultLang()=="en"
+    });
+
+    alert.addButton(this.translate.getDefaultLang()=="es" ? 'Cancelar' : 'Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        this.translate.setDefaultLang(data);
+      }
+    });
+    alert.present();
   }
 }
 

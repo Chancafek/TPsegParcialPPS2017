@@ -1,6 +1,6 @@
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @IonicPage()

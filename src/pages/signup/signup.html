@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>Registro EducaDroid</ion-title>
+    <ion-title text-center>{{'REGISTRO' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -10,12 +10,12 @@
     <ion-list>
 
       <ion-item>
-        <ion-label stacked>Nombre</ion-label>
+        <ion-label stacked>{{'NOMBRE' | translate}}</ion-label>
         <ion-input type="text" formControlName="nombre" name="nombre"></ion-input>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.nombre) || (regForm.controls['nombre'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="regForm.controls['nombre'].valid || (!regForm.controls['nombre'].touched && !submitAttempt)">
-          El nombre es requerido
+          {{'NOMBRE_REQUERIDO' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.nombre">
           {{ errors.nombre | first | capitalize }}
@@ -23,12 +23,12 @@
       </ion-row>
 
       <ion-item>
-        <ion-label stacked>Apellido</ion-label>
+        <ion-label stacked>{{'APELLIDO' | translate}}</ion-label>
         <ion-input type="text" formControlName="apellido" name="apellido"></ion-input>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.apellido) || (regForm.controls['apellido'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="regForm.controls['apellido'].valid || (!regForm.controls['apellido'].touched && !submitAttempt)">
-          El apellido es requerido
+          {{'APELLIDO_REQUERIDO' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.apellido">
           {{ errors.apellido | first | capitalize }}
@@ -36,12 +36,12 @@
       </ion-row>
 
       <ion-item>
-        <ion-label stacked>Nro Documento</ion-label>
+        <ion-label stacked>{{'DOCUMENTO' | translate}}</ion-label>
         <ion-input type="text" formControlName="documento" name="documento"></ion-input>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.documento) || (regForm.controls['documento'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="regForm.controls['documento'].valid || (!regForm.controls['documento'].touched && !submitAttempt)">
-          El Nro de documento es requerido
+          {{'DOCUMENTO_REQUERIDO' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.documento">
           {{ errors.documento | first | capitalize }}
@@ -49,12 +49,12 @@
       </ion-row>
 
       <ion-item>
-        <ion-label stacked>Fecha Nacimiento</ion-label>
-        <ion-datetime placeholder="dd-mm-aaaa" displayFormat="DD-MM-YYYY" [(ngModel)]="today" doneText="Aceptar" formControlName="fnacimiento" name="fnacimiento"></ion-datetime>
+        <ion-label stacked>{{'NACIMIENTO' | translate}}</ion-label>
+        <ion-datetime placeholder="{{'FECHA_MOSTRAR' | translate}}" displayFormat="{{'FECHA_FORMATO' | translate}}" [(ngModel)]="today" doneText="{{'ACEPTAR' | translate}}" formControlName="fnacimiento" name="fnacimiento"></ion-datetime>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.fnacimiento) || (regForm.controls['fnacimiento'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="regForm.controls['fnacimiento'].valid || (!regForm.controls['fnacimiento'].touched && !submitAttempt)">
-          El fecha de nacimiento es requerida
+          {{'NACIMIENTO_REQUERIDO' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.fnacimiento">
           {{ errors.fnacimiento | first | capitalize }}
@@ -62,15 +62,15 @@
       </ion-row>
 
       <ion-item>
-        <ion-label stacked>Sexo</ion-label>
+        <ion-label stacked>{{'SEXO' | translate}}</ion-label>
         <ion-select formControlName="sexo" name="sexo">
-          <ion-option value="m" selected>Masculino</ion-option>
-          <ion-option value="f">Femenino</ion-option>
+          <ion-option value="m" selected>{{'MASCULINO' | translate}}</ion-option>
+          <ion-option value="f">{{'FEMENINO' | translate}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.sexo) || (regForm.controls['sexo'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="regForm.controls['sexo'].valid || (!regForm.controls['sexo'].touched && !submitAttempt)">
-          El sexo es requerido.
+          {{'SEXO_REQUERIDO' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.sexo">
           {{ errors.sexo | first | capitalize }}
@@ -78,12 +78,12 @@
       </ion-row>
 
       <ion-item>
-        <ion-label stacked>Dirección</ion-label>
-        <ion-input type="text" formControlName="direccion" name="direccion" placeholder="Dirección"></ion-input>
+        <ion-label stacked>{{'DIRECCION' | translate}}</ion-label>
+        <ion-input type="text" formControlName="direccion" name="direccion"></ion-input>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.direccion) || (regForm.controls['direccion'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="regForm.controls['direccion'].valid || (!regForm.controls['direccion'].touched && !submitAttempt)">
-          El dirección es requerida.
+          {{'DIRECCION_REQUERIDO' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.direccion">
           {{ errors.sexo | first | capitalize }}
@@ -92,11 +92,11 @@
 
       <ion-item>
         <ion-label stacked>Email</ion-label>
-        <ion-input type="email" formControlName="email" name="email" placeholder="Ingrese su email"></ion-input>
+        <ion-input type="email" formControlName="email" name="email" placeholder="{{'INGRESE_EMAIL' | translate}}"></ion-input>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.email) || (regForm.controls['email'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="regForm.controls['email'].valid || (!regForm.controls['email'].touched && !submitAttempt)">
-          El email es requerido (Ingrese un email válido).
+          {{'EMAIL_REQUERIDO' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.email">
           {{ errors.email | first | capitalize }}
@@ -104,19 +104,19 @@
       </ion-row>
 
       <ion-item>
-        <ion-label stacked>Contraseña</ion-label>
-        <ion-input type="password" formControlName="password" name="password" placeholder="Ingrese una contraseña"></ion-input>
+        <ion-label stacked>{{'CONTRASEÑA' | translate}}</ion-label>
+        <ion-input type="password" formControlName="password" name="password" placeholder="{{'INGRESE_CONTRASEÑA' | translate}}"></ion-input>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.password) || (regForm.controls['password'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="regForm.controls['password'].valid || (!regForm.controls['password'].touched && !submitAttempt)">
-          La contraseña es requerida (Entre 6 y 12 caracteres).
+          {{'CONTRASEÑA_REQUERIDA' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.password">
           {{ errors.password | first | capitalize }}
         </div>
       </ion-row>
       <div padding>
-        <button ion-button color="primary" block>Registrarse</button>
+        <button ion-button color="primary" block>{{'REGISTRASE' | translate}}</button>
       </div>
     </ion-list>
   </form>

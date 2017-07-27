@@ -9,24 +9,24 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title text-center>Menú principal</ion-title>
+    <ion-title text-center>{{'MENU_PRINCIPAL' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content center text-center>
-  <h2 *ngIf="perfil">Bienvenido,<br>{{perfil.nombre}}</h2>
+  <h2 *ngIf="perfil">{{'BIENVENIDO' | translate}},<br>{{perfil.nombre}}</h2>
 
   <ion-row *ngIf="perfil" text-center>
   	<ion-col>
     	<button (click)="mostrarCuestionarios()">
     		<img src="assets/img/Survey-Icon.png"><br>
-    		Mostrar cuestionarios
+    		{{'MOSTRAR_CUESTIONARIO' | translate}}
     	</button>
 	  </ion-col>
     <ion-col>
       <button (click)="mostrarGraficos()">
         <img src="assets/img/chart-folded-icon.png"><br>
-        Mostrar graficos
+        {{'MOSTRAR_GRAFICOS' | translate}}
       </button>
     </ion-col>
   </ion-row>
@@ -34,13 +34,13 @@
 	  <ion-col>
     	<button *ngIf="perfil.rol.id != 3" (click)="enviarPush()">
     		<img src="assets/img/notification-flat.png"><br>
-    		Enviar notificación {{perfil.rol.id}}
+    		{{'ENVIAR_NOTIFICACION' | translate}}
     	</button>
     </ion-col>
 	  <ion-col>
     	<button *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4" (click)="mostrarUsuarios()">
     		<img src="assets/img/people-icon.png"><br>
-    		Mostrar usuarios
+    		{{'MOSTRAR_USUARIOS' | translate}}
     	</button>
     </ion-col>
   </ion-row>

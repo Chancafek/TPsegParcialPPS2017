@@ -21,7 +21,7 @@
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.email) || (loginForm.controls['email'].touched && !submitAttempt)">
         <div class="mi-alert" [hidden]="loginForm.controls['email'].valid || (!loginForm.controls['email'].touched && !submitAttempt)">
-          El email es requerido (Ingrese un email válido).
+          {{'EMAIL_REQUERIDO' | translate}}
         </div>
         <div class="mi-alert" *ngIf="errors && errors.email">
           {{ errors.email | first | capitalize }}
@@ -36,26 +36,26 @@
       </ion-item>
       -->
       <ion-item>
-        <ion-label stacked>Contraseña</ion-label>
+        <ion-label stacked>{{'CONTRASEÑA' | translate}}</ion-label>
         <ion-input type="password" formControlName="password" name="password"></ion-input>
       </ion-item>
       <ion-row class="bg-white" *ngIf="(errors && errors.password) || (loginForm.controls['password'].touched && !submitAttempt)">
       <div class="mi-alert" [hidden]="loginForm.controls['password'].valid || (!loginForm.controls['password'].touched && !submitAttempt)">
-        La contraseña es requerida (Entre 6 y 12 caracteres).
+        {{'CONTRASEÑA_REQUERIDA' | translate}}
       </div>
       <div class="mi-alert" *ngIf="errors && errors.password">
         {{ errors.password | first | capitalize }}
       </div>
       </ion-row>
       <div padding>
-        <button ion-button class="sky-btn" block [disabled]="loading || !loginForm.valid">Ingresar</button>
+        <button ion-button class="sky-btn" block [disabled]="loading || !loginForm.valid">{{'INGRESAR'|translate}}</button>
       </div>
       <div padding text-center>
-        <small>No tenes cuenta? <a class="linker" (click)="goRegistro()">Registrate</a> </small>
+        <small>{{'SIN_CUENTA'|translate}} <a class="linker" (click)="goRegistro()">{{'REGISTRASE'|translate}}</a> </small>
       </div>
     </ion-list>
   </form>
   <ion-item class="bg-transparente">
-      <button ion-button class="sky-btn" block (click)="test()">Test con Usuarios</button>
+      <button ion-button class="sky-btn" block (click)="test()">{{'TEST_USUARIOS'|translate}}</button>
   </ion-item>
 </ion-content>

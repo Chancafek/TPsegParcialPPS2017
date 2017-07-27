@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { MenuController } from 'ionic-angular';
 import { NotificationProvider } from '../../providers/notification/notification';
 import { AuthProvider } from './../../providers/auth/auth';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the WelcomePage page.
@@ -24,7 +25,8 @@ export class WelcomePage {
     public notification: NotificationProvider,
     private alertCtrl : AlertController,
     private localizador: GeolocalizacionProvider,
-    private _authService: AuthProvider
+    private _authService: AuthProvider,
+    private translate: TranslateService
     ) {
      /*
         Deshabilito el sidemenu,
@@ -48,5 +50,15 @@ export class WelcomePage {
 
   signup() {
     this.navCtrl.push('SignupPage');
+  }
+
+  translateEN(){
+    this.translate.setDefaultLang("en");
+    console.log(this.translate.getDefaultLang()=="es" ? "hola" : "hello");
+  }
+
+  translateES(){
+    this.translate.setDefaultLang("es");
+    console.log(this.translate.getDefaultLang()=="es" ? "hola" : "hello");
   }
 }

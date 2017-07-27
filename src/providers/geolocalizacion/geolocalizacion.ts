@@ -14,8 +14,6 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class GeolocalizacionProvider {
 
-  private localization_storage_id: string;
-
   constructor(
     private diagnostic: Diagnostic,
     private androidPermissions: AndroidPermissions,

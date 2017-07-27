@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Response, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -14,7 +13,6 @@ import 'rxjs/add/operator/catch';
 export class MateriasProvider {
 
   // private url = 'http://educadroid.dev';
-  private url = 'http://educadroid.kennychancafe.com';
 
   constructor(public http: Http) {
     // console.log('Hello MateriasProvider Provider');

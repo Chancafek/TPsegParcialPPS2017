@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar text-center>
-    <ion-title text-center>Cuestionarios</ion-title>
+    <ion-title text-center>{{'CUESTIONARIOS' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,8 +17,8 @@
   </ion-fab>
   <ion-list>
     <ion-list-header>
-      <p item-start>Encuestas</p>
-      <p item-right>Preguntas</p>
+      <p item-start>{{'CUESTIONARIOS' | translate}}</p>
+      <p item-right>{{'PREGUNTAS' | translate}}</p>
     </ion-list-header>
 
     <button ion-item *ngFor="let item of encuestas" (click)="action(item)">
@@ -26,7 +26,7 @@
       <ion-badge color="secondary" item-right>{{item.preguntas.length}}</ion-badge>
     </button>
 
-    <ion-item *ngIf="encuestas.length==0">No hay encuestas</ion-item>
+    <ion-item *ngIf="encuestas.length==0">{{'NO_CUESTIONARIOS' | translate}}</ion-item>
 
   </ion-list>
 </ion-content>

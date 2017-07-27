@@ -40,13 +40,4 @@ export class UploaderProvider {
       })
     }
 
-  private jwt() {
-        const currentUser = JSON.parse(localStorage.getItem('token_educadroid'));
-        if (currentUser) {
-            const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser });
-            return new RequestOptions({ headers: headers });
-        }
-    }
-
-
 }

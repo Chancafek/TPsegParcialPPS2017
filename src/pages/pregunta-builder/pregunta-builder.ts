@@ -3,6 +3,7 @@ import { Pregunta } from '../../models/pregunta';
 import { Component, OnInit } from '@angular/core';
 import { ETipoPregunta } from "../../models/ETipoPregunta";
 import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 import { EncuestaProvider } from "../../providers/encuesta/encuesta";
 
@@ -37,9 +38,14 @@ export class PreguntaBuilderPage implements OnInit {
 
   private respuestaRadio: String;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController,
-    public encuestaService: EncuestaProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController, 
+    public actionSheetCtrl: ActionSheetController,
+    public encuestaService: EncuestaProvider,
+    public translate: TranslateService
+    ) {
   }
 
   ionViewDidLoad() {
@@ -74,8 +80,8 @@ export class PreguntaBuilderPage implements OnInit {
       !(this.respuestaCheck1 || this.respuestaCheck2 || this.respuestaCheck3)) {
 
       let alert = this.alertCtrl.create({
-        title: 'Atención',
-        subTitle: 'Indique al menos una opción correcta',
+        title: this.translate.getDefaultLang()=="es" ? 'Atención' : "Warning",
+        subTitle: this.translate.getDefaultLang()=="es" ? 'Indique al menos una opción correcta' : "You must select at least one correct option",
         buttons: ['OK']
       });
 
@@ -86,8 +92,8 @@ export class PreguntaBuilderPage implements OnInit {
       if (this.encuesta_id!=null) {
 
         let alert = this.alertCtrl.create({
-          title: 'Atención',
-          subTitle: '¿Desea agregar esta pregunta al cuestionario?',
+          title: this.translate.getDefaultLang()=="es" ? 'Atención' : "Warning",
+          subTitle: this.translate.getDefaultLang()=="es" ? '¿Desea agregar esta pregunta al cuestionario?' : "Do you want to add this question to the questionnaire?",
           buttons: [{
             text: 'No',
             role: 'cancel',
@@ -96,7 +102,7 @@ export class PreguntaBuilderPage implements OnInit {
             }
           },
           {
-            text: 'Si',
+            text: this.translate.getDefaultLang()=="es" ? 'Si' : "Yes",
             handler: data => {
               this.encuestaService.savePregunta(this.pregunta,this.encuesta_id).subscribe(
                 response=>console.log(response),
@@ -111,10 +117,10 @@ export class PreguntaBuilderPage implements OnInit {
       } else {
 
         let action = this.actionSheetCtrl.create({
-          title: '¿Qué desea seguir haciendo?',
+          title: this.translate.getDefaultLang()=="es" ? 'Opciones' : "Options",
           buttons: [
             {
-              text: 'Guardar y finalizar cuestionario',
+              text: this.translate.getDefaultLang()=="es" ? 'Guardar y finalizar cuestionario' : "Save and finish questionnaire",
               role: 'destructive',
               handler: () => {
                 console.log('Guardo y finalizo');
@@ -131,7 +137,7 @@ export class PreguntaBuilderPage implements OnInit {
               }
             },
             {
-              text: 'Guardar y agregar otra pregunta',
+              text: this.translate.getDefaultLang()=="es" ? 'Guardar y agregar otra pregunta' : "Save and add another question",
               handler: () => {
                 console.log('Guardo y agrego otra');
                 this.insertPregunta();
@@ -139,12 +145,12 @@ export class PreguntaBuilderPage implements OnInit {
               }
             },
             {
-              text: 'Cancelar cuestionario',
+              text: this.translate.getDefaultLang()=="es" ? 'Cancelar cuestionario' : "Cancel questionnaire",
               handler: () => {
                 console.log('Sigo editando la pregunta');
                 let alert = this.alertCtrl.create({
-                  title: 'Atención',
-                  subTitle: 'Los datos no guardados se perderán ¿Desea salir?',
+                  title: this.translate.getDefaultLang()=="es" ? 'Atención' : "Warning",
+                  subTitle: this.translate.getDefaultLang()=="es" ? 'Los datos no guardados se perderán ¿Desea salir?' : "Unsaved data will be lost. Do you want to leave?",
                   buttons: [{
                     text: 'No',
                     role: 'cancel',
@@ -153,9 +159,9 @@ export class PreguntaBuilderPage implements OnInit {
                     }
                   },
                   {
-                    text: 'Si',
+                    text: this.translate.getDefaultLang()=="es" ? 'Si' : "Yes",
                     handler: data => {
-                      this.navCtrl.popToRoot();
+                      this.navCtrl.popTo("EncuestaListPage");
                     }
                   }]
                 });

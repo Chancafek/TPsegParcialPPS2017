@@ -13,7 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Vibration } from '@ionic-native/vibration';
 
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { NotificationProvider } from '../providers/notification/notification';
@@ -24,7 +24,6 @@ import { EncuestaProvider } from '../providers/encuesta/encuesta';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 
 /* Firebase */
 import { AngularFireModule } from 'angularfire2';
@@ -36,6 +35,8 @@ import { UploaderProvider } from '../providers/uploader/uploader';
 import { CursosProvider } from '../providers/cursos/cursos';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBJlf1cacuUbTVvwg8JdZoBapDFcxtoa1Q",
@@ -45,6 +46,10 @@ export const firebaseConfig = {
     storageBucket: "educadroid-eb6d1.appspot.com",
     messagingSenderId: "535933385921"
 };
+
+export function createTranslateLoader(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 const cloudSettings: CloudSettings = {
   core: {
@@ -72,6 +77,13 @@ const cloudSettings: CloudSettings = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+      }
+    }),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

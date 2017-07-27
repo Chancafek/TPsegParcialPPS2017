@@ -5,6 +5,7 @@ import { Encuesta } from "../../models/encuesta";
 import { EncuestaProvider } from "../../providers/encuesta/encuesta";
 import { IdentityProvider } from "../../providers/identifier/identifier";
 import { CursosProvider } from "../../providers/cursos/cursos";
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the EncuestaListPage page.
@@ -28,7 +29,8 @@ export class EncuestaListPage implements OnInit {
     public encuestaService: EncuestaProvider, public indentityService: IdentityProvider,
     public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController,
     public cursosService: CursosProvider,
-    private notifier: PushNotificationsProvider
+    private notifier: PushNotificationsProvider,
+    private translate: TranslateService
     ) {
   }
 
@@ -70,10 +72,10 @@ export class EncuestaListPage implements OnInit {
       this.navCtrl.push('EncuestaFormPage', { idEncuesta: encuesta.id });
     } else if (this.isProfesor) {
       let action = this.actionSheetCtrl.create({
-        title: 'Opciones',
+        title: this.translate.getDefaultLang()=="es" ? 'Opciones' : "Options",
         buttons: [
           {
-            text: 'Desplegar cuestionario',
+            text: this.translate.getDefaultLang()=="es" ? 'Desplegar cuestionario' : "Deploy questionnaire",
             role: 'destructive',
             handler: () => {
               console.log('Deploy encuestas');
@@ -81,7 +83,7 @@ export class EncuestaListPage implements OnInit {
             }
           },
           {
-            text: 'Modificar cuestionario',
+            text: this.translate.getDefaultLang()=="es" ? 'Modificar cuestionario' : "Modify questionnaire",
             role: 'destructive',
             handler: () => {
               console.log('Modificar encuesta');
@@ -89,11 +91,11 @@ export class EncuestaListPage implements OnInit {
             }
           },
           {
-            text: 'Eliminar cuestionario',
+            text: this.translate.getDefaultLang()=="es" ? 'Eliminar cuestionario' : "Delete questionnaire",
             handler: () => {
               let alert = this.alertCtrl.create({
-                title: 'Atención',
-                subTitle: '¿Está seguro que desea eliminar este cuestionario?',
+                title: this.translate.getDefaultLang()=="es" ? 'Atención' : "Warning",
+                subTitle: this.translate.getDefaultLang()=="es" ? '¿Está seguro que desea eliminar este cuestionario?' : "Are you sure you want to delete the questionnaire?",
                 buttons: [{
                   text: 'No',
                   role: 'cancel',
@@ -102,7 +104,7 @@ export class EncuestaListPage implements OnInit {
                   }
                 },
                 {
-                  text: 'Si',
+                  text: this.translate.getDefaultLang()=="es" ? 'Si' : "Yes",
                   handler: data => {
                     console.log('Elimino');
                     this.encuestaService.deleteEncuesta(encuesta.id).subscribe(
@@ -141,7 +143,7 @@ export class EncuestaListPage implements OnInit {
 
         if (cursos.length > 0) {
 
-          alert.setTitle('¿En qué curso desea desplegar el cuestionario?');
+          alert.setTitle(this.translate.getDefaultLang()=="es" ? '¿En qué curso desea desplegar el cuestionario?' : "What course want deploy this questionnaire?");
 
           cursos.forEach(item => {
             alert.addInput({
@@ -151,18 +153,12 @@ export class EncuestaListPage implements OnInit {
             });
           });
 
-          alert.addInput({
-            type: 'checkbox',
-            label: 'Bespin',
-            value: 'value2'
-          });
-
-          alert.addButton('Cancelar');
+          alert.addButton(this.translate.getDefaultLang()=="es" ? 'Cancelar' : "Cancel");
           alert.addButton({
-            text: 'Aceptar',
+            text: this.translate.getDefaultLang()=="es" ? 'Aceptar' : "Accept",
             handler: data => {
               console.log('Checkbox data:', data);
-              this.notifier.sendNotification('Educadroid: Nuevo cuestionario disponible', data.toString(), { 'idEncuesta': encuesta.id.toString() })
+              this.notifier.sendNotification('Educadroid: ' + this.translate.getDefaultLang()=="es" ? 'Nuevo cuestionario disponible' : "New questionnaire available", data.toString(), { 'idEncuesta': encuesta.id.toString() })
                 .subscribe(
                   res => console.log(res)
               );
@@ -170,7 +166,7 @@ export class EncuestaListPage implements OnInit {
           });
 
         } else {
-          alert.setTitle('Usted no posee cursos asignados');
+          alert.setTitle(this.translate.getDefaultLang()=="es" ? 'Usted no posee cursos asignados' : "You don't have assigned courses");
           alert.addButton('OK');
         }
 
