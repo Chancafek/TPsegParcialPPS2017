@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the ProfilePage page.
@@ -35,7 +36,8 @@ export class ProfilePage {
     private alertCtrl: AlertController,
     private notificador: NotificationProvider,
     private menu: MenuController,
-    private pushNotifier: PushNotificationsProvider
+    private pushNotifier: PushNotificationsProvider,
+    private translate: TranslateService
     ) {
       this.menu.enable(true);
       this.identifier.getUserProfile()
@@ -73,22 +75,13 @@ export class ProfilePage {
 
   }
 
-  enviar() {
-    console.log('Se envió el push');
-    this.pushNotifier.sendNotification('Educadroid dice: ', 'Mensaje de prueba').subscribe(
-      d => console.log(d),
-      e => console.log(e),
-      () => console.log('Fin')
-    );
-  }
-
   cambiarFoto() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Cambiar imagen de perfil',
+      title: this.translate.currentLang=="es" ? 'Cambiar imagen de perfil' : "Change profile image",
       cssClass: 'profile-img-actionsheet',
       buttons: [
         {
-          text: 'Galeria',
+          text: this.translate.currentLang=="es" ? 'Galeria' : "Galery",
           icon: 'md-images',
           handler: () => {
             this.camera.getPicture(this.galleryOptions).then((imageData) => {
@@ -100,7 +93,7 @@ export class ProfilePage {
             });
           }
         },{
-          text: 'Foto',
+          text: this.translate.currentLang=="es" ? 'Foto' : "Photo",
           icon: 'md-camera',
           handler: () => {
             this.camera.getPicture(this.cameraOptions).then((imageData) => {
@@ -112,7 +105,7 @@ export class ProfilePage {
             });
           }
         },{
-          text: 'Cancel',
+          text: this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel',
           icon: 'md-redo',
           role: 'cancel',
         }
@@ -128,37 +121,6 @@ export class ProfilePage {
 
   mostrarUsuarios() {
     this.navCtrl.push('ListUserPage');
-  }
-
-  enviarPush() {
-    let prompt = this.alertCtrl.create({
-      title: 'Notificar',
-      message: "Ingrese un mensaje a notificar",
-      inputs: [
-        {
-          name: 'mensaje',
-          placeholder: 'Mensaje'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.notificador.postNotification(data)
-              .then(
-                d => console.log('Enviado')
-              )
-          }
-        }
-      ]
-    });
-    prompt.present();
   }
 
 }

@@ -6,17 +6,17 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>Inscripcion</ion-title>
+    <ion-title text-center>{{'INSCRIPCION' | translate}}</ion-title>
     <ion-buttons end>
-      <button ion-button (click)="closeModal()">Cerrar</button>
+      <button ion-button (click)="closeModal()">{{'CERRAR' | translate}}</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <ion-list>
     <ion-item *ngIf="cursos">
-      <ion-label>Seleccionar</ion-label>
-      <ion-select [(ngModel)]="cursosInscritos" name="cursos" multiple="true" cancelText="Cancelar" okText="Aceptar" (ionChange)="inscribirAlumno()">
+      <ion-label>{{'SELECCIONAR' | translate}}</ion-label>
+      <ion-select [(ngModel)]="cursosInscritos" name="cursos" multiple="true" cancelText="{{'CANCELAR' | translate}}" okText="{{'ACEPTAR' | translate}}" (ionChange)="inscribirAlumno()">
         <ion-option *ngFor="let c of cursos" [value]="c.id">{{ c.division.codigo }} - {{ c.materia.nombre }}</ion-option>
       </ion-select>
     </ion-item>

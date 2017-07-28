@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>Mi perfil</ion-title>
+    <ion-title text-center>{{'MI_PERFIL' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -22,13 +22,10 @@
       </ion-row>
   <ion-list *ngIf="perfil">
   <ion-list-header>
-    Datos Personales
+    {{'MIS_DATOS' | translate}}
   </ion-list-header>
   <ion-item><ion-icon ios="ios-contact" md="md-contact" item-start></ion-icon>{{ perfil.nombre | firstWord | capitalize }} {{ perfil.apellido | firstWord | capitalize }}</ion-item>
   <ion-item><ion-icon ios="ios-mail" md="md-mail" item-start></ion-icon>{{ perfil.email }}</ion-item>
   <ion-item><ion-icon ios="ios-man" md="md-man" item-start></ion-icon>{{ perfil.rol.nombre }}</ion-item>
   </ion-list>
- <ion-item>
-   <button ion-button block (click)="enviar()">Push Test</button>
- </ion-item>
 </ion-content>

@@ -7,26 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title text-center>Listado Usuarios</ion-title>
+    <ion-title text-center>{{'LISTADO_USUARIOS' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 <ion-item>
-    <ion-label>Tipo de Usuario</ion-label>
+    <ion-label>{{'TIPO_USUARIO' | translate}}</ion-label>
     <ion-select (ionChange)="selectedRol()" [(ngModel)]="currentRol">
-      <ion-option value="3" selected>Alumnos</ion-option>
-      <ion-option value="2">Maestros</ion-option>
-      <ion-option value="4">Administrativos</ion-option>
+      <ion-option value="3" selected>{{'ALUMNO' | translate}}</ion-option>
+      <ion-option value="2">{{'PROFESOR' | translate}}</ion-option>
+      <ion-option value="4">{{'ADMINISTRATIVO' | translate}}</ion-option>
     </ion-select>
   </ion-item>
-  <ion-item *ngIf="selectedGroup">
-    <ion-list inset>
+    <ion-list inset *ngIf="selectedGroup">
       <button ion-item *ngFor="let u of selectedGroup" (click)="lanzarOpciones(u)">
         {{ u.nombre }} {{ u.apellido }}
-        <ion-icon *ngIf="!u.activo" item-end name="close-circle"></ion-icon>
+        <ion-icon *ngIf="!u.activo" item-end name="lock"></ion-icon>
       </button>
     </ion-list>
-  </ion-item>
 </ion-content>

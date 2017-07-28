@@ -1,6 +1,6 @@
 import { PushNotificationsProvider } from './../../providers/push-notifications/push-notifications';
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, LoadingController } from 'ionic-angular';
 import { Encuesta } from "../../models/encuesta";
 import { EncuestaProvider } from "../../providers/encuesta/encuesta";
 import { IdentityProvider } from "../../providers/identifier/identifier";
@@ -30,7 +30,8 @@ export class EncuestaListPage implements OnInit {
     public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController,
     public cursosService: CursosProvider,
     private notifier: PushNotificationsProvider,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private loadingCtrl: LoadingController
     ) {
   }
 
@@ -39,10 +40,14 @@ export class EncuestaListPage implements OnInit {
   }
 
   ionViewWillEnter(){
+    let loader = this.loadingCtrl.create({
+      content: this.translate.currentLang=="es" ? "Recuperando datos..." : "Loading data...",
+    });
+    loader.present();
     this.encuestaService.getAll().subscribe(
       response => this.encuestas = response as Array<Encuesta>,
       error => console.error(error),
-      () => console.log(this.encuestas)
+      () => loader.dismiss()
     );
   }
 
@@ -72,10 +77,10 @@ export class EncuestaListPage implements OnInit {
       this.navCtrl.push('EncuestaFormPage', { idEncuesta: encuesta.id });
     } else if (this.isProfesor) {
       let action = this.actionSheetCtrl.create({
-        title: this.translate.getDefaultLang()=="es" ? 'Opciones' : "Options",
+        title: this.translate.currentLang=="es" ? 'Opciones' : "Options",
         buttons: [
           {
-            text: this.translate.getDefaultLang()=="es" ? 'Desplegar cuestionario' : "Deploy questionnaire",
+            text: this.translate.currentLang=="es" ? 'Desplegar cuestionario' : "Deploy questionnaire",
             role: 'destructive',
             handler: () => {
               console.log('Deploy encuestas');
@@ -83,7 +88,7 @@ export class EncuestaListPage implements OnInit {
             }
           },
           {
-            text: this.translate.getDefaultLang()=="es" ? 'Modificar cuestionario' : "Modify questionnaire",
+            text: this.translate.currentLang=="es" ? 'Modificar cuestionario' : "Modify questionnaire",
             role: 'destructive',
             handler: () => {
               console.log('Modificar encuesta');
@@ -91,11 +96,11 @@ export class EncuestaListPage implements OnInit {
             }
           },
           {
-            text: this.translate.getDefaultLang()=="es" ? 'Eliminar cuestionario' : "Delete questionnaire",
+            text: this.translate.currentLang=="es" ? 'Eliminar cuestionario' : "Delete questionnaire",
             handler: () => {
               let alert = this.alertCtrl.create({
-                title: this.translate.getDefaultLang()=="es" ? 'Atención' : "Warning",
-                subTitle: this.translate.getDefaultLang()=="es" ? '¿Está seguro que desea eliminar este cuestionario?' : "Are you sure you want to delete the questionnaire?",
+                title: this.translate.currentLang=="es" ? 'Atención' : "Warning",
+                subTitle: this.translate.currentLang=="es" ? '¿Está seguro que desea eliminar este cuestionario?' : "Are you sure you want to delete the questionnaire?",
                 buttons: [{
                   text: 'No',
                   role: 'cancel',
@@ -104,12 +109,17 @@ export class EncuestaListPage implements OnInit {
                   }
                 },
                 {
-                  text: this.translate.getDefaultLang()=="es" ? 'Si' : "Yes",
+                  text: this.translate.currentLang=="es" ? 'Si' : "Yes",
                   handler: data => {
                     console.log('Elimino');
+                    let loader = this.loadingCtrl.create({
+                      content: this.translate.currentLang=="es" ? "Eliminando datos..." : "Deleting data...",
+                    });
+                    loader.present();
                     this.encuestaService.deleteEncuesta(encuesta.id).subscribe(
                       response => this.ionViewWillEnter(),
-                      error => console.error(error)
+                      error => console.error(error),
+                      ()=>loader.dismiss()
                     );
                   }
                 }]
@@ -143,7 +153,7 @@ export class EncuestaListPage implements OnInit {
 
         if (cursos.length > 0) {
 
-          alert.setTitle(this.translate.getDefaultLang()=="es" ? '¿En qué curso desea desplegar el cuestionario?' : "What course want deploy this questionnaire?");
+          alert.setTitle(this.translate.currentLang=="es" ? '¿En qué curso desea desplegar el cuestionario?' : "What course want deploy this questionnaire?");
 
           cursos.forEach(item => {
             alert.addInput({
@@ -153,20 +163,26 @@ export class EncuestaListPage implements OnInit {
             });
           });
 
-          alert.addButton(this.translate.getDefaultLang()=="es" ? 'Cancelar' : "Cancel");
+          alert.addButton(this.translate.currentLang=="es" ? 'Cancelar' : "Cancel");
           alert.addButton({
-            text: this.translate.getDefaultLang()=="es" ? 'Aceptar' : "Accept",
+            text: this.translate.currentLang=="es" ? 'Aceptar' : "Accept",
             handler: data => {
+              let loader = this.loadingCtrl.create({
+                content: this.translate.currentLang=="es" ? "Enviando datos..." : "Sending data...",
+              });
+              loader.present();
               console.log('Checkbox data:', data);
-              this.notifier.sendNotification('Educadroid: ' + this.translate.getDefaultLang()=="es" ? 'Nuevo cuestionario disponible' : "New questionnaire available", data.toString(), { 'idEncuesta': encuesta.id.toString() })
+              this.notifier.sendNotification('Educadroid: ' + this.translate.currentLang=="es" ? 'Nuevo cuestionario disponible' : "New questionnaire available", data.toString(), { 'idEncuesta': encuesta.id.toString() })
                 .subscribe(
-                  res => console.log(res)
+                  res => console.log(res),
+                  error =>console.error(error),
+                  ()=>loader.dismiss()
               );
             }
           });
 
         } else {
-          alert.setTitle(this.translate.getDefaultLang()=="es" ? 'Usted no posee cursos asignados' : "You don't have assigned courses");
+          alert.setTitle(this.translate.currentLang=="es" ? 'Usted no posee cursos asignados' : "You don't have assigned courses");
           alert.addButton('OK');
         }
 

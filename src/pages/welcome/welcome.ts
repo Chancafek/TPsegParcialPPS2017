@@ -52,13 +52,36 @@ export class WelcomePage {
     this.navCtrl.push('SignupPage');
   }
 
-  translateEN(){
-    this.translate.setDefaultLang("en");
-    console.log(this.translate.getDefaultLang()=="es" ? "hola" : "hello");
-  }
+  changeLenguage(){
+    let alert = this.alertCtrl.create();
+    alert.setTitle(this.translate.currentLang=="es" ? 'Seleccione lenguaje' : 'Select language');
 
-  translateES(){
-    this.translate.setDefaultLang("es");
-    console.log(this.translate.getDefaultLang()=="es" ? "hola" : "hello");
+    alert.addInput({
+      type: 'radio',
+      label: this.translate.currentLang=="es" ? 'Español' : 'Spanish',
+      value: 'es',
+      checked: this.translate.currentLang=="es"
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: this.translate.currentLang=="es" ? 'Inglés' : 'English',
+      value: 'en',
+      checked: this.translate.currentLang=="en"
+    });
+
+    alert.addButton(this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        console.log(data);
+        //this.translate.setDefaultLang(data);
+        console.info(this.translate.getLangs());
+        this.translate.use(data).subscribe(
+          res=>console.log(res,this.translate.currentLang)
+        );
+      }
+    });
+    alert.present();
   }
 }

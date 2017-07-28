@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { EncuestaProvider } from "../../providers/encuesta/encuesta";
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the PreguntaListPage page.
@@ -17,7 +18,10 @@ export class PreguntaListPage implements OnInit {
 
   private preguntas;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public encuestaService: EncuestaProvider) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams, public encuestaService: EncuestaProvider,
+    public loadingCtrl: LoadingController, public translate: TranslateService
+      ) {
   }
 
   ionViewDidLoad() {
@@ -34,9 +38,14 @@ export class PreguntaListPage implements OnInit {
   }
 
   delete(pregunta){
+    let loader = this.loadingCtrl.create({
+      content: this.translate.currentLang=="es" ? "Eliminando datos..." : "Deleting data...",
+    });
+    loader.present();
     this.encuestaService.deletePregunta(pregunta.id).subscribe(
       response=>console.log(response),
-      error=>console.error(error)
+      error=>console.error(error),
+      ()=>loader.dismiss()
     );
   }
 

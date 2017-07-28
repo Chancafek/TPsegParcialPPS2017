@@ -17,7 +17,7 @@
       <ion-list class="orange-bg">
         <button no-lines menuClose ion-item *ngFor="let p of pages" [class.menu-side-item]="!checkActive(p)" [class.activeHighlighter]="checkActive(p)" (click)="openPage(p)">
           <!--<ion-icon name="cart" item-end></ion-icon>-->
-          {{p.mask}}
+          {{p.mask | translate}}
         </button>
         <button menuClose ion-item class="menu-side-item" (click)="changeLenguage()">
           {{'LENGUAJE' | translate}}

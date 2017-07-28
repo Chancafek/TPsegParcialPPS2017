@@ -56,14 +56,13 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-    console.log(this.translate.getDefaultLang());
   }
 
   logForm() {
     this.submitAttempt = true;
     this.loading = true;
     let loader = this.loadingCtrl.create({
-      content: this.translate.getDefaultLang()=="es" ? "Verificando datos..." : "Verifying data...",
+      content: this.translate.currentLang=="es" ? "Verificando datos..." : "Verifying data...",
     });
     loader.present();
     if(this.loginForm.valid) {
@@ -72,7 +71,7 @@ export class LoginPage {
           res => {
             this.loading = false;
             loader.dismiss();
-            this.presentAlerta(this.translate.getDefaultLang()=="es" ? 'Exito!' : "Success!" , this.translate.getDefaultLang()=="es" ? 'Te has logueado satisfactoriamente!' : "You have successfully logged in!");
+            this.presentAlerta(this.translate.currentLang=="es" ? 'Exito!' : "Success!" , this.translate.currentLang=="es" ? 'Te has logueado satisfactoriamente!' : "You have successfully logged in!");
             //setTimeout(() => this.navCtrl.setRoot('MenuPage'), 2500);
             //this.navCtrl.push('MenuPage');
             this.navCtrl.setRoot('MenuPage');
@@ -80,7 +79,7 @@ export class LoginPage {
           error => {
             this.loading = false;
             loader.dismiss();
-            this.presentAlerta(this.translate.getDefaultLang()=="es" ? 'Falló!' : "Fail!", this.translate.getDefaultLang()=="es" ? 'Parece que hubo un error' : "An error has occurred");
+            this.presentAlerta(this.translate.currentLang=="es" ? 'Falló!' : "Fail!", this.translate.currentLang=="es" ? 'Parece que hubo un error' : "An error has occurred");
             this.errors = error;
             console.log(error);
           }
@@ -103,25 +102,25 @@ export class LoginPage {
 
   test() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: this.translate.getDefaultLang()=="es" ? 'Test de Usuarios' : "Test with users",
+      title: this.translate.currentLang=="es" ? 'Test de Usuarios' : "Test with users",
       cssClass: 'profile-img-actionsheet',
       buttons: [
         {
-          text: this.translate.getDefaultLang()=="es" ? 'Admin' : "Root",
+          text: this.translate.currentLang=="es" ? 'Admin' : "Root",
           icon: 'md-briefcase',
           handler: () => {
             this.loginForm.controls['email'].setValue('admin@slim.com');
             this.loginForm.controls['password'].setValue('121212');
           }
         },{
-          text: this.translate.getDefaultLang()=="es" ? 'Administrativo' : "Administrative",
+          text: this.translate.currentLang=="es" ? 'Administrativo' : "Administrative",
           icon: 'md-clipboard',
           handler: () => {
             this.loginForm.controls['email'].setValue('administrativo@slim.com');
             this.loginForm.controls['password'].setValue('121212');
           }
         },{
-          text: this.translate.getDefaultLang()=="es" ? 'Profesor' : "Teacher",
+          text: this.translate.currentLang=="es" ? 'Profesor' : "Teacher",
           icon: 'md-contact',
           handler: () => {
             this.loginForm.controls['email'].setValue('profesor1@slim.com');
@@ -129,7 +128,7 @@ export class LoginPage {
           }
         },
         {
-          text: this.translate.getDefaultLang()=="es" ? 'Alumno' : "Student",
+          text: this.translate.currentLang=="es" ? 'Alumno' : "Student",
           icon: 'md-ionitron',
           handler: () => {
             this.loginForm.controls['email'].setValue('alumno1@slim.com');

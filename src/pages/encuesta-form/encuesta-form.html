@@ -7,8 +7,8 @@
 <ion-header>
 
   <ion-navbar hideBackButton>
-    <ion-title text-center>Cuestionario</ion-title>
-    <ion-title text-center><ion-label>Tema: {{encuesta.tema}}</ion-label></ion-title>
+    <ion-title text-center>{{'CUESTIONARIO' | translate}}</ion-title>
+    <ion-title text-center><ion-label>{{'TEMATICA' | translate}}: {{encuesta.tema}}</ion-label></ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -49,10 +49,10 @@
     </ion-list>
 
     <ion-item *ngIf="pregunta.tipo==3">
-      <ion-label color="primary" floating>Respuesta</ion-label>
+      <ion-label color="primary" floating>{{'RESPUESTA' | translate}}</ion-label>
       <ion-input [(ngModel)]="respuestaTexto" name="respuestaTexto" required></ion-input>
     </ion-item>
 
-    <button ion-button type="submit" [disabled]="!encuestaForm.form.valid">Siguente</button>
+    <button ion-button type="submit" [disabled]="!encuestaForm.form.valid">{{'SIGUIENTE' | translate}}</button>
   </form>
 </ion-content>

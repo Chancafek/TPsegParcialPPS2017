@@ -88,7 +88,7 @@ export class SignupPage {
   registerForm() {
     this.submitAttempt = true;
     let loader = this.loadingCtrl.create({
-      content: "Verificando datos...",
+      content: this.translate.currentLang=="es" ? "Verificando datos..." : 'Verifying data...',
     });
     loader.present();
     if(this.regForm.valid) {
@@ -98,13 +98,13 @@ export class SignupPage {
           res => {
             this.submitAttempt = false;
             loader.dismiss();
-            this.presentAlerta('Exito', 'Te has registrado!');
+            this.presentAlerta(this.translate.currentLang=="es" ? 'Exito!' : 'Success!' , this.translate.currentLang=="es" ? 'Te has registrado!' : 'You have registered!');
             setTimeout(() => this.navCtrl.setRoot('LoginPage'));
           },
           error => {
             this.submitAttempt = false;
             loader.dismiss();
-            this.presentAlerta('Falló', 'Parece que hubo un error');
+            this.presentAlerta(this.translate.currentLang=="es" ? 'Falló' : 'Fail', 'An error has occurred');
             this.errors = error;
             console.log(this.errors);
           }

@@ -4,6 +4,7 @@ import { IdentityProvider } from './../../providers/identifier/identifier';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ToastController, ModalController } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the ListUserPage page.
@@ -33,7 +34,8 @@ export class ListUserPage {
     private actionSheetCtrl: ActionSheetController,
     private toastCtrl: ToastController,
     private cursoProvider: CursosProvider,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private translate: TranslateService
     ) {
       this.currentRol = 3;
   }
@@ -114,10 +116,10 @@ export class ListUserPage {
   }
 
   lanzarOpciones(usuario) {
-    let bloqueoText = (parseInt(usuario.activo) == 0) ? 'Activar' : 'Bloquear';
+    let bloqueoText = (parseInt(usuario.activo) == 0) ? this.translate.currentLang=="es" ? 'Activar' : "Activate" : this.translate.currentLang=="es" ? 'Bloquear' : "Block";
     if (this.currentRol == 3) {
       let actionSheet = this.actionSheetCtrl.create({
-        title: 'Opciones',
+        title: this.translate.currentLang=="es" ? 'Opciones' : "Options",
         cssClass: 'user-options-actionsheet',
         buttons: [
           {
@@ -144,14 +146,14 @@ export class ListUserPage {
                 )
             }
           },{
-            text: 'Inscribir a Materias',
+            text: this.translate.currentLang=="es" ? 'Inscribir a cursos' : "Enroll to courses",
             icon: 'md-book',
             handler: () => {
               const mdl = this.modalCtrl.create('ModalAlumnoCursoPage', { data: usuario.legajo.legajo });
               mdl.present();
             }
           },{
-            text: 'Cancel',
+            text: this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel',
             icon: 'md-redo',
             role: 'cancel',
           }

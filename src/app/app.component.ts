@@ -4,10 +4,6 @@ import { MenuPage } from './../pages/menu/menu';
 import { ProfilePage } from './../pages/profile/profile';
 import { AuthProvider } from './../providers/auth/auth';
 import { IdentityProvider } from './../providers/identifier/identifier';
-// import { WelcomePage } from './../pages/welcome/welcome';
-// import { EncuestaBuilderPage } from "../pages/encuesta-builder/encuesta-builder";
-// import { PreguntaBuilderPage } from '../pages/pregunta-builder/pregunta-builder';
-// import { EncuestaFormPage } from "../pages/encuesta-form/encuesta-form";
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -15,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { NotificationProvider } from '../providers/notification/notification';
+
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -32,14 +29,14 @@ export class MyApp {
   pages: any[] = [
     //{ mask: 'Bienvenido', title: 'WelcomePage', component: WelcomePage},
     //{ mask:'Inicio', title: 'HomePage', component: HomePage},
-    { mask:'Inicio', title: 'MenuPage', component: MenuPage},
+    { mask:'MENU_PRINCIPAL', title: 'MenuPage', component: MenuPage},
     //{ mask: 'Menu', title: 'MenuPage', component: MenuPage},
-    { mask: 'Mi Perfil', title: 'ProfilePage', component: ProfilePage},
+    { mask: 'MI_PERFIL', title: 'ProfilePage', component: ProfilePage},
     // { mask: 'Encuestas', title: 'EncuestaBuilderPage', component: EncuestaBuilderPage},
     // { mask: 'Preguntas', title: 'PreguntaBuilderPage', component: PreguntaBuilderPage},
     // { mask: 'Form Encuestas', title: 'EncuestaFormPage', component: EncuestaFormPage},
     //{ mask: 'Lista Encuestas', title: 'EncuestaListPage', component: EncuestaListPage},
-    { mask: 'Logout', title: 'WelcomePage', component: LoginPage},
+    { mask: 'CERRAR_SESION', title: 'WelcomePage', component: LoginPage},
   ]
 
   constructor (
@@ -55,9 +52,10 @@ export class MyApp {
     private translate: TranslateService
               )
   {
-    translate.setDefaultLang('en');
-
     this.platform.ready().then(() => {
+      this.translate.setDefaultLang('en');
+      this.translate.use('es');
+      this.translate.addLangs(['en','es']);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -132,27 +130,32 @@ export class MyApp {
 
   changeLenguage(){
     let alert = this.alertCtrl.create();
-    alert.setTitle(this.translate.getDefaultLang()=="es" ? 'Seleccione lenguaje' : 'Select lenguage');
+    alert.setTitle(this.translate.currentLang=="es" ? 'Seleccione lenguaje' : 'Select language');
 
     alert.addInput({
       type: 'radio',
-      label: this.translate.getDefaultLang()=="es" ? 'Español' : 'Spanish',
+      label: this.translate.currentLang=="es" ? 'Español' : 'Spanish',
       value: 'es',
-      checked: this.translate.getDefaultLang()=="es"
+      checked: this.translate.currentLang=="es"
     });
 
     alert.addInput({
       type: 'radio',
-      label: this.translate.getDefaultLang()=="es" ? 'Inglés' : 'English',
+      label: this.translate.currentLang=="es" ? 'Inglés' : 'English',
       value: 'en',
-      checked: this.translate.getDefaultLang()=="en"
+      checked: this.translate.currentLang=="en"
     });
 
-    alert.addButton(this.translate.getDefaultLang()=="es" ? 'Cancelar' : 'Cancel');
+    alert.addButton(this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel');
     alert.addButton({
       text: 'OK',
       handler: data => {
-        this.translate.setDefaultLang(data);
+        console.log(data);
+        //this.translate.setDefaultLang(data);
+        console.info(this.translate.getLangs());
+        this.translate.use(data).subscribe(
+          res=>console.log(res,this.translate.currentLang)
+        );
       }
     });
     alert.present();

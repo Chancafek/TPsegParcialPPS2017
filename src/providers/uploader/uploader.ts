@@ -1,6 +1,5 @@
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*

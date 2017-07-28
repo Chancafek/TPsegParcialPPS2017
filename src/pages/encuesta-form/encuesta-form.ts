@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { Encuesta } from "../../models/encuesta";
 import { Pregunta } from "../../models/pregunta";
 import { ETipoPregunta } from "../../models/ETipoPregunta";
 import { EncuestaProvider } from "../../providers/encuesta/encuesta";
 import { IdentityProvider } from "../../providers/identifier/identifier";
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the EncuestaFormPage page.
@@ -39,7 +40,8 @@ export class EncuestaFormPage implements OnInit {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public encuestaService: EncuestaProvider, public alertCtrl: AlertController,
-    public identityService: IdentityProvider) {
+    public identityService: IdentityProvider, public translate: TranslateService,
+    public loadingCtrl: LoadingController) {
 
   }
 
@@ -69,12 +71,17 @@ export class EncuestaFormPage implements OnInit {
 
       let id: Number = this.navParams.get('idEncuesta');
       console.log("voy a cargar este cuestionario : " + id);
+      let loader = this.loadingCtrl.create({
+        content: this.translate.currentLang=="es" ? "Recuperando datos..." : "Loading data...",
+      });
+      loader.present();
       this.encuestaService.getById(id).subscribe(
         response => {
           this.encuesta = response;
           this.pregunta = Pregunta.buildPregunta(this.encuesta.preguntas[0]);
         },
-        error => console.error(error)
+        error => console.error(error),
+        ()=>loader.dismiss()
       );
 
     }
@@ -86,8 +93,8 @@ export class EncuestaFormPage implements OnInit {
       !(this.respuestaCheck1 || this.respuestaCheck2 || this.respuestaCheck3)) {
 
       let alert = this.alertCtrl.create({
-        title: 'Atención',
-        subTitle: 'Indique al menos una opción correcta',
+        title: this.translate.currentLang=="es" ? 'Atención' : 'Warning',
+        subTitle: this.translate.currentLang=="es" ? 'Indique al menos una opción correcta' : "You must select at least one correct option",
         buttons: ['OK']
       });
 
@@ -101,12 +108,16 @@ export class EncuestaFormPage implements OnInit {
         this.navCtrl.push('EncuestaFormPage', { numeroPregunta: this.numeroPregunta + 1, encuesta: this.encuesta, resultados: this.resultados });
       } else {
         //ACA IMPLEMENTAR UNA SALIDA DEL FORMULARIO
+        let loader = this.loadingCtrl.create({
+          content: this.translate.currentLang=="es" ? "Enviando datos..." : "Sending data...",
+        });
+        loader.present();
         this.encuestaService.saveResultados(this.encuesta, this.identityService.getIdentity().id, this.resultados).subscribe(
           response => {
             console.log("grabé!", response);
             let alert = this.alertCtrl.create({
-              title: 'Información',
-              subTitle: 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.',
+              title: this.translate.currentLang=="es" ? 'Información' : 'Information',
+              subTitle: this.translate.currentLang=="es" ? 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.' : 'The questionnaire has been sent. The results are available to the teacher.',
               buttons: [{
                 text: 'Ok',
                 handler: () => {
@@ -121,7 +132,8 @@ export class EncuestaFormPage implements OnInit {
           },
           error => {
             console.error(error);
-          }
+          },
+          ()=>loader.dismiss()
         )
       }
 
