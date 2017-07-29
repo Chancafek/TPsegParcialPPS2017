@@ -21,7 +21,7 @@ export class EncuestaProvider {
   // private baseUrl = 'http://educadroid.kennychancafe.com';
 
   baseUrl: string = 'http://educadroid.kennychancafe.com/';
-  // baseUrl: string = "http://localhost/api_educadroid/public/";
+  // baseUrl: string = "http://educadroid.dev/";
   data: Encuesta[];
 
   constructor(public http: Http) {

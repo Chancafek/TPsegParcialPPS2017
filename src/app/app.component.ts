@@ -67,17 +67,7 @@ export class MyApp {
           let alert = alertCtrl.create({
             title: jsonData.notification.payload.title,
             subTitle: jsonData.notification.payload.body,
-            buttons: [
-              {
-                text: 'OK',
-                handler: () => {
-                  if(jsonData.notification.payload.additionalData.idEncuesta) {
-                    const id_encuesta = parseInt(jsonData.notification.payload.additionalData.idEncuesta);
-                    this.nav.setRoot('EncuestaFormPage', { idEncuesta : id_encuesta});
-                  }
-                }
-              }
-            ]
+            buttons: ['OK']
           });
           alert.present();
         }
@@ -120,6 +110,10 @@ export class MyApp {
 
   checkActive(page) {
     return this.activePage === page.title;
+  }
+
+  mostrarAyuda() {
+    this.nav.push('AyudaPage');
   }
 
   exitApp() {

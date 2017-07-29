@@ -6,6 +6,9 @@
 -->
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title text-center>Mi perfil</ion-title>
   </ion-navbar>
 </ion-header>
@@ -28,7 +31,4 @@
   <ion-item><ion-icon ios="ios-mail" md="md-mail" item-start></ion-icon>{{ perfil.email }}</ion-item>
   <ion-item><ion-icon ios="ios-man" md="md-man" item-start></ion-icon>{{ perfil.rol.nombre }}</ion-item>
   </ion-list>
- <ion-item>
-   <button ion-button block (click)="enviar()">Push Test</button>
- </ion-item>
 </ion-content>

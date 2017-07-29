@@ -36,6 +36,7 @@ import { UploaderProvider } from '../providers/uploader/uploader';
 import { CursosProvider } from '../providers/cursos/cursos';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
 
+// import { BrowserAnimationsModule } from '@angular/animations';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBJlf1cacuUbTVvwg8JdZoBapDFcxtoa1Q",
@@ -67,7 +68,7 @@ const cloudSettings: CloudSettings = {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +76,7 @@ const cloudSettings: CloudSettings = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    // BrowserAnimationsModule,
     CloudModule.forRoot(cloudSettings),
     FormsModule,
     ReactiveFormsModule,
@@ -82,7 +84,7 @@ const cloudSettings: CloudSettings = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
   ],
   providers: [
     StatusBar,

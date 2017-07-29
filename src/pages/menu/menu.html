@@ -10,37 +10,42 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title text-center>Menú principal</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="mostrarAyuda($event)">
+        <ion-icon name="help-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content center text-center>
-  <h2 *ngIf="perfil">Bienvenido,<br>{{perfil.nombre}}</h2>
+<ion-content center text-center style="background-color: #29a5f2">
+  <h5 *ngIf="perfil" style="color: #FFF">Bienvenido {{perfil.nombre}} </h5>
 
   <ion-row *ngIf="perfil" text-center>
-  	<ion-col>
-    	<button (click)="mostrarCuestionarios()">
+  	<ion-col style="color: #FFF !important;">
+    	<button (click)="mostrarCuestionarios()" style="background-color: transparent !important; color: #FFF">
     		<img src="assets/img/Survey-Icon.png"><br>
-    		Mostrar cuestionarios
+    		MOSTRAR CUESTIONARIOS
     	</button>
 	  </ion-col>
-    <ion-col>
-      <button (click)="mostrarGraficos()">
+    <ion-col style="color: #FFF">
+      <button (click)="mostrarGraficos()" style="background-color: transparent !important; color: #FFF">
         <img src="assets/img/chart-folded-icon.png"><br>
-        Mostrar graficos
+        MOSTRAR GRAFICOS
       </button>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="perfil" text-center>
 	  <ion-col>
-    	<button *ngIf="perfil.rol.id != 3" (click)="enviarPush()">
+    	<button *ngIf="perfil.rol.id != 3" (click)="enviarPush()" style="background-color: transparent !important; color: #FFF">
     		<img src="assets/img/notification-flat.png"><br>
-    		Enviar notificación {{perfil.rol.id}}
+    		ENVIAR NOTIFICACION
     	</button>
     </ion-col>
 	  <ion-col>
-    	<button *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4" (click)="mostrarUsuarios()">
+    	<button *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4" (click)="mostrarUsuarios()" style="background-color: transparent !important; color: #FFF">
     		<img src="assets/img/people-icon.png"><br>
-    		Mostrar usuarios
+    		MOSTRAR USUARIOS
     	</button>
     </ion-col>
   </ion-row>

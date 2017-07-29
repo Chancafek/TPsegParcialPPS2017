@@ -1,0 +1,105 @@
+<!--
+  Generated template for the AyudaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- Generated template for the AyudaComponent component -->
+<!-- <ion-content>
+  <ion-slides (ionSlideDidChange)="slideChanged()">
+  <ion-slide>
+    <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+      <h1>Slide 1</h1>
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+      <h1>Slide 2</h1>
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+      <h1>Slide 3</h1>
+    </div>
+  </ion-slide>
+</ion-slides>
+<button ion-button id="skip">Ok</button>
+</ion-content> -->
+
+<ion-content  class="no-scroll">
+  <ion-slides pager (ionSlideDidChange)="slideChanged()" (ionSlideDrag)="slideMoved()">
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <img src="assets/img/appicon.png">
+      </div>
+      <div>
+        <h2>Necesitas ayuda?</h2>
+        <p>Te mostramos una breve introducción para el uso básico de Educadroid</p>
+        <br>
+        <p><small>Deslizar para ir a la siguiente página</small></p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <!-- <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon> -->
+        <h2>Si eres alumno</h2>
+        <img src="assets/img/help_cuestionarios1.png">
+        <p>Después de loguearte, en el menú tendrás esta opción para ver tus cuestionarios pendientes.</p>
+        <br>
+        <p><small>Deslizar para ir a la siguiente página</small></p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <!-- <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon> -->
+        <h2>Lista de cuestionarios</h2>
+        <img src="assets/img/help_alumno1.png">
+        <p>Podrás seleccionar los cuestionarios, se te informará el tema y la cantidad de preguntas</p>
+        <br>
+        <p><small>Deslizar para ir a la siguiente página</small></p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <!-- <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon> -->
+        <h2>Al seleccionar un cuestionario</h2>
+        <img src="assets/img/help_alumno2.png">
+        <p>Selecciona tu(s) respuesta(s) y continua con la(s) siguiente(s) preguntas hasta finalizar. Eso es todo!.</p>
+        <br>
+        <p><small>Deslizar para ir a la siguiente página</small></p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <!-- <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon> -->
+        <h2>Si eres profesor</h2>
+        <img src="assets/img/help_profesor_1.png">
+        <p>Después de loguearte, en el menú tendrás esta opción para manejar tus cuestionarios.
+          Adicionalmente podrás enviar notificaciones desde el menú y dentro de la lista de cuestionarios.</p>
+        <br>
+        <p><small>Deslizar para ir a la siguiente página</small></p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <!-- <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon> -->
+        <h2>Tus cuestionarios</h2>
+        <img src="assets/img/help_profesor2.png">
+        <p>En el menú de cuestionarios podrás ver tus cuestionarios creados y agregar nuevos.</p>
+        <p>Además al seleccionar uno podrás informar por notificaciones, modificar o eliminarlos.</p>
+        <br>
+        <p><small>Deslizar para ir a la siguiente página</small></p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <!-- <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon> -->
+        <h2>Menu Lateral</h2>
+       <img src="assets/img/menu_side.png">
+        <p>Desde nuestro menú podrás acceder a tu perfil y personalizar tu imagen. Así como cerrar sesión o salír de la aplicación.</p>
+      </div>
+
+    </ion-slide>
+  </ion-slides>
+    <button (click)="skip()" id="skip">{{ skipMsg }}</button>
+</ion-content>

@@ -1,8 +1,14 @@
 import { PushNotificationsProvider } from './../../providers/push-notifications/push-notifications';
 import { IdentityProvider } from './../../providers/identifier/identifier';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
-import { tokenNotExpired } from 'angular2-jwt';
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  MenuController,
+  AlertController
+} from 'ionic-angular';
+import {tokenNotExpired} from 'angular2-jwt';
 import { Vibration } from '@ionic-native/vibration';
 import { NotificationProvider } from './../../providers/notification/notification';
 
@@ -32,14 +38,17 @@ export class MenuPage {
     )
   {
       this.menu.enable(true);
-      this.identifier.getUserProfile()
-        .subscribe(
-          data => this.perfil = data,
-          err => console.log(err)
-        );
   }
 
   ionViewDidLoad() {
+    this.identifier.getUserProfile()
+        .subscribe(
+          data => {
+            this.perfil = data;
+            console.log(data);
+          },
+          err => console.log(err)
+        );
   }
 
   mostrarCuestionarios() {
@@ -85,5 +94,10 @@ export class MenuPage {
       ]
     });
     prompt.present();
+  }
+
+  mostrarAyuda($event) {
+    // console.log('clic en ayuda');
+    this.navCtrl.push('AyudaPage');
   }
 }

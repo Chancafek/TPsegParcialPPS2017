@@ -46,8 +46,8 @@ export class EncuestaListPage implements OnInit {
 
   ngOnInit() {
 
-    this.isProfesor = this.indentityService.getIdentity().apellido == "Profesor";
-    this.isAlumno = this.indentityService.getIdentity().apellido != "Profesor";
+    this.isProfesor = this.indentityService.isProfesor();
+    this.isAlumno = this.indentityService.isAlumno();
 
     console.log(this.isProfesor);
     console.log(this.isAlumno);
