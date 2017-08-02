@@ -43,6 +43,7 @@ export class WelcomePage {
     // this.notification.postNotification('Prueba de notificacion');
     this.menu.enable(false);
     this._authService.logout();
+    console.log(this.translate.instant('CONTRASEÑA_REQUERIDA'));
   }
   login() {
     this.navCtrl.push('LoginPage');
@@ -54,23 +55,23 @@ export class WelcomePage {
 
   changeLenguage(){
     let alert = this.alertCtrl.create();
-    alert.setTitle(this.translate.currentLang=="es" ? 'Seleccione lenguaje' : 'Select language');
+    alert.setTitle(this.translate.instant('SELECCIONAR_LENGUAJE'));
 
     alert.addInput({
       type: 'radio',
-      label: this.translate.currentLang=="es" ? 'Español' : 'Spanish',
+      label: this.translate.instant('ESPAÑOL'),
       value: 'es',
       checked: this.translate.currentLang=="es"
     });
 
     alert.addInput({
       type: 'radio',
-      label: this.translate.currentLang=="es" ? 'Inglés' : 'English',
+      label: this.translate.instant('INGLES'),
       value: 'en',
       checked: this.translate.currentLang=="en"
     });
 
-    alert.addButton(this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel');
+    alert.addButton(this.translate.instant('CANCELAR'));
     alert.addButton({
       text: 'OK',
       handler: data => {

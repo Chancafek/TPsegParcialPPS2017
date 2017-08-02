@@ -72,7 +72,7 @@ export class EncuestaFormPage implements OnInit {
       let id: Number = this.navParams.get('idEncuesta');
       console.log("voy a cargar este cuestionario : " + id);
       let loader = this.loadingCtrl.create({
-        content: this.translate.currentLang=="es" ? "Recuperando datos..." : "Loading data...",
+        content: this.translate.instant('RECUPERANDO_DATOS'),
       });
       loader.present();
       this.encuestaService.getById(id).subscribe(
@@ -93,8 +93,8 @@ export class EncuestaFormPage implements OnInit {
       !(this.respuestaCheck1 || this.respuestaCheck2 || this.respuestaCheck3)) {
 
       let alert = this.alertCtrl.create({
-        title: this.translate.currentLang=="es" ? 'Atención' : 'Warning',
-        subTitle: this.translate.currentLang=="es" ? 'Indique al menos una opción correcta' : "You must select at least one correct option",
+        title: this.translate.instant('ATENCION'),
+        subTitle: this.translate.instant('OPCION_CORRECTA'),
         buttons: ['OK']
       });
 
@@ -109,15 +109,15 @@ export class EncuestaFormPage implements OnInit {
       } else {
         //ACA IMPLEMENTAR UNA SALIDA DEL FORMULARIO
         let loader = this.loadingCtrl.create({
-          content: this.translate.currentLang=="es" ? "Enviando datos..." : "Sending data...",
+          content: this.translate.instant('ENVIANDO_DATOS'),
         });
         loader.present();
         this.encuestaService.saveResultados(this.encuesta, this.identityService.getIdentity().id, this.resultados).subscribe(
           response => {
             console.log("grabé!", response);
             let alert = this.alertCtrl.create({
-              title: this.translate.currentLang=="es" ? 'Información' : 'Information',
-              subTitle: this.translate.currentLang=="es" ? 'Se ha enviado el cuestionario. Los resultados se encuentran a disposición del docente.' : 'The questionnaire has been sent. The results are available to the teacher.',
+              title: this.translate.instant('INFORMACION'),
+              subTitle: this.translate.instant('CUESTIONARIO_ENVIADO_CORRECTAMENTE'),
               buttons: [{
                 text: 'Ok',
                 handler: () => {

@@ -60,23 +60,23 @@ export class MenuPage {
   enviarPush() {
   	this.vibration.vibrate(100);
     let prompt = this.alertCtrl.create({
-      title: this.translate.currentLang=="es" ? 'Notificar' : "Notify" ,
-      message: this.translate.currentLang=="es" ? "Ingrese un mensaje a notificar" : "Input a message to send",
+      title: this.translate.instant('NOTIFICAR') ,
+      message: this.translate.instant('MENSAJE_NOTIFICAR'),
       inputs: [
         {
-          name: this.translate.currentLang=="es" ? 'Mensaje' : "Message",
-          placeholder: this.translate.currentLang=="es" ? 'Mensaje' : "Message"
+          name: this.translate.instant('MENSAJE'),
+          placeholder: this.translate.instant('MENSAJE')
         },
       ],
       buttons: [
         {
-          text: this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel',
+          text: this.translate.instant('CANCELAR'),
           handler: data => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: this.translate.currentLang=="es" ? 'Enviar' : 'Send',
+          text: this.translate.instant('ENVIAR'),
           handler: data => {
             this.notificador.sendNotification('Educadroid', data.toString())
               .subscribe(res => console.log(res));

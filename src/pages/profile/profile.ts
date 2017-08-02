@@ -77,11 +77,11 @@ export class ProfilePage {
 
   cambiarFoto() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: this.translate.currentLang=="es" ? 'Cambiar imagen de perfil' : "Change profile image",
+      title: this.translate.instant('CAMBIAR_FOTO'),
       cssClass: 'profile-img-actionsheet',
       buttons: [
         {
-          text: this.translate.currentLang=="es" ? 'Galeria' : "Galery",
+          text: this.translate.instant('GALERIA'),
           icon: 'md-images',
           handler: () => {
             this.camera.getPicture(this.galleryOptions).then((imageData) => {
@@ -93,7 +93,7 @@ export class ProfilePage {
             });
           }
         },{
-          text: this.translate.currentLang=="es" ? 'Foto' : "Photo",
+          text: this.translate.instant('FOTO'),
           icon: 'md-camera',
           handler: () => {
             this.camera.getPicture(this.cameraOptions).then((imageData) => {
@@ -105,7 +105,7 @@ export class ProfilePage {
             });
           }
         },{
-          text: this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel',
+          text: this.translate.instant('CANCELAR'),
           icon: 'md-redo',
           role: 'cancel',
         }

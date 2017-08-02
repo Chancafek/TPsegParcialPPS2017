@@ -62,7 +62,7 @@ export class LoginPage {
     this.submitAttempt = true;
     this.loading = true;
     let loader = this.loadingCtrl.create({
-      content: this.translate.currentLang=="es" ? "Verificando datos..." : "Verifying data...",
+      content: this.translate.instant('VERIFICANDO_DATOS'),
     });
     loader.present();
     if(this.loginForm.valid) {
@@ -71,7 +71,7 @@ export class LoginPage {
           res => {
             this.loading = false;
             loader.dismiss();
-            this.presentAlerta(this.translate.currentLang=="es" ? 'Exito!' : "Success!" , this.translate.currentLang=="es" ? 'Te has logueado satisfactoriamente!' : "You have successfully logged in!");
+            this.presentAlerta(this.translate.instant('EXITO') , this.translate.instant('EXITO_LOGIN'));
             //setTimeout(() => this.navCtrl.setRoot('MenuPage'), 2500);
             //this.navCtrl.push('MenuPage');
             this.navCtrl.setRoot('MenuPage');
@@ -79,7 +79,7 @@ export class LoginPage {
           error => {
             this.loading = false;
             loader.dismiss();
-            this.presentAlerta(this.translate.currentLang=="es" ? 'Falló!' : "Fail!", this.translate.currentLang=="es" ? 'Parece que hubo un error' : "An error has occurred");
+            this.presentAlerta(this.translate.instant('FALLO'), this.translate.instant('OCURRIO_ERROR'));
             this.errors = error;
             console.log(error);
           }
@@ -102,25 +102,25 @@ export class LoginPage {
 
   test() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: this.translate.currentLang=="es" ? 'Test de Usuarios' : "Test with users",
+      title: this.translate.instant('TEST_USUARIOS'),
       cssClass: 'profile-img-actionsheet',
       buttons: [
         {
-          text: this.translate.currentLang=="es" ? 'Admin' : "Root",
+          text: this.translate.instant('ADMIN'),
           icon: 'md-briefcase',
           handler: () => {
             this.loginForm.controls['email'].setValue('admin@slim.com');
             this.loginForm.controls['password'].setValue('121212');
           }
         },{
-          text: this.translate.currentLang=="es" ? 'Administrativo' : "Administrative",
+          text: this.translate.instant('ADMINISTRATIVO'),
           icon: 'md-clipboard',
           handler: () => {
             this.loginForm.controls['email'].setValue('administrativo@slim.com');
             this.loginForm.controls['password'].setValue('121212');
           }
         },{
-          text: this.translate.currentLang=="es" ? 'Profesor' : "Teacher",
+          text: this.translate.instant('PROFESOR'),
           icon: 'md-contact',
           handler: () => {
             this.loginForm.controls['email'].setValue('profesor1@slim.com');
@@ -128,7 +128,7 @@ export class LoginPage {
           }
         },
         {
-          text: this.translate.currentLang=="es" ? 'Alumno' : "Student",
+          text: this.translate.instant('ALUMNO'),
           icon: 'md-ionitron',
           handler: () => {
             this.loginForm.controls['email'].setValue('alumno1@slim.com');

@@ -116,10 +116,10 @@ export class ListUserPage {
   }
 
   lanzarOpciones(usuario) {
-    let bloqueoText = (parseInt(usuario.activo) == 0) ? this.translate.currentLang=="es" ? 'Activar' : "Activate" : this.translate.currentLang=="es" ? 'Bloquear' : "Block";
+    let bloqueoText = (parseInt(usuario.activo) == 0) ? this.translate.instant('ACTIVAR') : this.translate.instant('BLOQUEAR');
     if (this.currentRol == 3) {
       let actionSheet = this.actionSheetCtrl.create({
-        title: this.translate.currentLang=="es" ? 'Opciones' : "Options",
+        title: this.translate.instant('OPCIONES'),
         cssClass: 'user-options-actionsheet',
         buttons: [
           {
@@ -146,14 +146,14 @@ export class ListUserPage {
                 )
             }
           },{
-            text: this.translate.currentLang=="es" ? 'Inscribir a cursos' : "Enroll to courses",
+            text: this.translate.instant('INSCRIBIR_CURSOS'),
             icon: 'md-book',
             handler: () => {
               const mdl = this.modalCtrl.create('ModalAlumnoCursoPage', { data: usuario.legajo.legajo });
               mdl.present();
             }
           },{
-            text: this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel',
+            text: this.translate.instant('CANCELAR'),
             icon: 'md-redo',
             role: 'cancel',
           }

@@ -41,7 +41,7 @@ export class EncuestaListPage implements OnInit {
 
   ionViewWillEnter(){
     let loader = this.loadingCtrl.create({
-      content: this.translate.currentLang=="es" ? "Recuperando datos..." : "Loading data...",
+      content: this.translate.instant('RECUPERANDO_DATOS'),
     });
     loader.present();
     this.encuestaService.getAll().subscribe(
@@ -77,10 +77,10 @@ export class EncuestaListPage implements OnInit {
       this.navCtrl.push('EncuestaFormPage', { idEncuesta: encuesta.id });
     } else if (this.isProfesor) {
       let action = this.actionSheetCtrl.create({
-        title: this.translate.currentLang=="es" ? 'Opciones' : "Options",
+        title: this.translate.instant('OPCIONES'),
         buttons: [
           {
-            text: this.translate.currentLang=="es" ? 'Desplegar cuestionario' : "Deploy questionnaire",
+            text: this.translate.instant('DESPLEGAR_CUESTIONARIO'),
             role: 'destructive',
             handler: () => {
               console.log('Deploy encuestas');
@@ -88,7 +88,7 @@ export class EncuestaListPage implements OnInit {
             }
           },
           {
-            text: this.translate.currentLang=="es" ? 'Modificar cuestionario' : "Modify questionnaire",
+            text: this.translate.instant('MODIFICAR_CUESTIONARIO'),
             role: 'destructive',
             handler: () => {
               console.log('Modificar encuesta');
@@ -96,11 +96,11 @@ export class EncuestaListPage implements OnInit {
             }
           },
           {
-            text: this.translate.currentLang=="es" ? 'Eliminar cuestionario' : "Delete questionnaire",
+            text: this.translate.instant('ELIMINAR_CUESTIONARIO'),
             handler: () => {
               let alert = this.alertCtrl.create({
-                title: this.translate.currentLang=="es" ? 'Atención' : "Warning",
-                subTitle: this.translate.currentLang=="es" ? '¿Está seguro que desea eliminar este cuestionario?' : "Are you sure you want to delete the questionnaire?",
+                title: this.translate.instant('ATENCION'),
+                subTitle: this.translate.instant('DESEA_ELIMINAR_CUESTIONARIO'),
                 buttons: [{
                   text: 'No',
                   role: 'cancel',
@@ -109,11 +109,11 @@ export class EncuestaListPage implements OnInit {
                   }
                 },
                 {
-                  text: this.translate.currentLang=="es" ? 'Si' : "Yes",
+                  text: this.translate.instant('SI'),
                   handler: data => {
                     console.log('Elimino');
                     let loader = this.loadingCtrl.create({
-                      content: this.translate.currentLang=="es" ? "Eliminando datos..." : "Deleting data...",
+                      content: this.translate.instant('ELIMINANDO_DATOS'),
                     });
                     loader.present();
                     this.encuestaService.deleteEncuesta(encuesta.id).subscribe(
@@ -153,7 +153,7 @@ export class EncuestaListPage implements OnInit {
 
         if (cursos.length > 0) {
 
-          alert.setTitle(this.translate.currentLang=="es" ? '¿En qué curso desea desplegar el cuestionario?' : "What course want deploy this questionnaire?");
+          alert.setTitle(this.translate.instant('DONDE_DESPLEGAR_CUESTIONARIO'));
 
           cursos.forEach(item => {
             alert.addInput({
@@ -163,16 +163,16 @@ export class EncuestaListPage implements OnInit {
             });
           });
 
-          alert.addButton(this.translate.currentLang=="es" ? 'Cancelar' : "Cancel");
+          alert.addButton(this.translate.instant('CANCELAR'));
           alert.addButton({
-            text: this.translate.currentLang=="es" ? 'Aceptar' : "Accept",
+            text: this.translate.instant('ACEPTAR'),
             handler: data => {
               let loader = this.loadingCtrl.create({
-                content: this.translate.currentLang=="es" ? "Enviando datos..." : "Sending data...",
+                content: this.translate.instant('ENVIANDO_DATOS'),
               });
               loader.present();
               console.log('Checkbox data:', data);
-              this.notifier.sendNotification('Educadroid: ' + this.translate.currentLang=="es" ? 'Nuevo cuestionario disponible' : "New questionnaire available", data.toString(), { 'idEncuesta': encuesta.id.toString() })
+              this.notifier.sendNotification('Educadroid: ' + this.translate.instant('NUEVO_CUESTIONARIO'), data.toString(), { 'idEncuesta': encuesta.id.toString() })
                 .subscribe(
                   res => console.log(res),
                   error =>console.error(error),
@@ -182,7 +182,7 @@ export class EncuestaListPage implements OnInit {
           });
 
         } else {
-          alert.setTitle(this.translate.currentLang=="es" ? 'Usted no posee cursos asignados' : "You don't have assigned courses");
+          alert.setTitle(this.translate.instant('NO_POSEE_CURSOS'));
           alert.addButton('OK');
         }
 

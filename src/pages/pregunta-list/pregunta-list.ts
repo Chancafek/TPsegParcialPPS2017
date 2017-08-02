@@ -39,7 +39,7 @@ export class PreguntaListPage implements OnInit {
 
   delete(pregunta){
     let loader = this.loadingCtrl.create({
-      content: this.translate.currentLang=="es" ? "Eliminando datos..." : "Deleting data...",
+      content: this.translate.instant('ELIMINANDO_DATOS'),
     });
     loader.present();
     this.encuestaService.deletePregunta(pregunta.id).subscribe(
