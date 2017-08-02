@@ -54,8 +54,9 @@ export class MyApp {
   {
     this.platform.ready().then(() => {
       this.translate.setDefaultLang('en');
+      this.translate.use('pr');
       this.translate.use('es');
-      this.translate.addLangs(['en','es']);
+      this.translate.addLangs(['en','es','pr']);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -130,23 +131,30 @@ export class MyApp {
 
   changeLenguage(){
     let alert = this.alertCtrl.create();
-    alert.setTitle(this.translate.currentLang=="es" ? 'Seleccione lenguaje' : 'Select language');
+    alert.setTitle(this.translate.instant('SELECCIONAR_LENGUAJE'));
 
     alert.addInput({
       type: 'radio',
-      label: this.translate.currentLang=="es" ? 'Español' : 'Spanish',
+      label: this.translate.instant('ESPAÑOL'),
       value: 'es',
       checked: this.translate.currentLang=="es"
     });
 
     alert.addInput({
       type: 'radio',
-      label: this.translate.currentLang=="es" ? 'Inglés' : 'English',
+      label: this.translate.instant('INGLES'),
       value: 'en',
       checked: this.translate.currentLang=="en"
     });
 
-    alert.addButton(this.translate.currentLang=="es" ? 'Cancelar' : 'Cancel');
+    alert.addInput({
+      type: 'radio',
+      label: this.translate.instant('PORTUGUES'),
+      value: 'pr',
+      checked: this.translate.currentLang=="pr"
+    });
+
+    alert.addButton(this.translate.instant('CANCELAR'));
     alert.addButton({
       text: 'OK',
       handler: data => {

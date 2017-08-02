@@ -71,6 +71,13 @@ export class WelcomePage {
       checked: this.translate.currentLang=="en"
     });
 
+    alert.addInput({
+      type: 'radio',
+      label: this.translate.instant('PORTUGUES'),
+      value: 'pr',
+      checked: this.translate.currentLang=="pr"
+    });
+
     alert.addButton(this.translate.instant('CANCELAR'));
     alert.addButton({
       text: 'OK',

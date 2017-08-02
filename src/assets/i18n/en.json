@@ -104,5 +104,6 @@
     "NUEVO_CUESTIONARIO":"New questionnaire available",
     "NO_POSEE_CURSOS":"You don't have assigned courses",
     "INFORMACION":"Information",
-    "CUESTIONARIO_ENVIADO_CORRECTAMENTE":"The questionnaire has been sent. The results are available to the teacher."
+    "CUESTIONARIO_ENVIADO_CORRECTAMENTE":"The questionnaire has been sent. The results are available to the teacher.",
+    "PORTUGUES":"Portugues"
 }
