@@ -35,6 +35,7 @@ import { GeolocalizacionProvider } from '../providers/geolocalizacion/geolocaliz
 import { UploaderProvider } from '../providers/uploader/uploader';
 import { CursosProvider } from '../providers/cursos/cursos';
 import { PushNotificationsProvider } from '../providers/push-notifications/push-notifications';
+import { ThemeProvider } from '../providers/theme/theme';
 
 // import { BrowserAnimationsModule } from '@angular/animations';
 
@@ -109,6 +110,7 @@ const cloudSettings: CloudSettings = {
     UploaderProvider,
     MateriasProvider,
     PushNotificationsProvider,
+    ThemeProvider,
   ]
 })
 export class AppModule {}
