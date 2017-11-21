@@ -1,5 +1,8 @@
 {
   "name": "Educadroid",
   "app_id": "3f768b3b",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }
