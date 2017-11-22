@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { NotificationProvider } from '../providers/notification/notification';
+import { ThemeProvider } from '../providers/theme/theme';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,6 +26,7 @@ export class MyApp {
   activePage: any = 'WelcomePage';
   imgProfile: any = 'male.png';
   userName: string;
+  public selectedTheme: String;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -51,8 +53,11 @@ export class MyApp {
     private alertCtrl: AlertController,
     private screenOrientation: ScreenOrientation,
     private androidFullScreen: AndroidFullScreen,
-              )
+    public themes: ThemeProvider
+  )
   {
+    this.themes.getActiveTheme().subscribe(val => this.selectedTheme = val);
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -110,6 +115,14 @@ export class MyApp {
 
   checkActive(page) {
     return this.activePage === page.title;
+  }
+
+  toggleAppTheme() {
+    if (this.selectedTheme === 'dark-theme') {
+      this.themes.setActiveTheme('light-theme');
+    } else {
+      this.themes.setActiveTheme('dark-theme');
+    }
   }
 
   mostrarAyuda() {
