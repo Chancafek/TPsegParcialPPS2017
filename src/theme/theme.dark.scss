@@ -1,4 +1,12 @@
 .dark-theme {
+  $colors: (
+    primary:    #000,
+    secondary:  #000,
+    danger:     #000,
+    light:      #000,
+    dark:       #000
+  );
+
   ion-content {
     background-color: #090f2f;
     color: #fff;
@@ -11,5 +19,34 @@
   .header .toolbar-background {
     border-color: #ff0fff;
     background-color: #090f2f;
+  }
+
+  .menu-active {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  .user-profile-img {
+    border-radius: 50%;
+    text-align: center;
+    margin: auto;
+    max-height: 150px;
+  }
+
+  .menu-item {
+    background-color: #090f2f;
+  }
+
+  .menu-side-item {
+    background-color: #090f2f;
+    color: #ffffff;
+  }
+
+  .menu-name {
+    color: #ffffff;
+    display: block;
+    border: 0px;
+    width: 100%;
+    padding: 10px;
   }
 }

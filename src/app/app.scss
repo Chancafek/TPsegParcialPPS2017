@@ -14,32 +14,3 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
-.menu-active {
-  background-color: #29a5f2;
-  color: #ffffff;
-}
-
-.user-profile-img {
-  border-radius: 50%;
-  text-align: center;
-  margin: auto;
-  max-height: 150px;
-}
-
-.menu-item {
-  background-color: #1e9cef;
-}
-
-.menu-side-item {
-  background-color: #1e9cef;
-  color: #ffffff;
-}
-
-.menu-name {
-  color: #ffffff;
-  display: block;
-  border: 0px;
-  width: 100%;
-  padding: 10px;
-}

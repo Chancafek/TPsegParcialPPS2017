@@ -5,42 +5,42 @@ page-ayuda {
     width:100%;
     top: 0;
     height: 33%;
-}
+  }
 
-ion-icon {
+  ion-icon {
     margin-top:40%;
     font-size:7em;
-}
+  }
 
-h2 {
+  h2 {
     margin-top:30% !important;
     font-weight:bold;
     font-size:1em;
-}
+  }
 
-p {
+  p {
     width:80%;
     display:block;
     margin: 0 auto;
     font-size:.9em;
-}
+  }
 
-.swiper-pagination-bullet-active {
+  .swiper-pagination-bullet-active {
     // background:#C400FF;
     background: #1e9cef;
-}
+  }
 
-.swiper-pagination {
+  .swiper-pagination {
     bottom: 12% !important;
-}
+  }
 
   #skip {
-      position:absolute;
-      bottom: 20px;
-      width:100%;
-      background: none !important;
-      text-align: center;
-      cursor: pointer;
-      z-index: 5;
+    position:absolute;
+    bottom: 20px;
+    width:100%;
+    background: none !important;
+    text-align: center;
+    cursor: pointer;
+    z-index: 5;
   }
 }

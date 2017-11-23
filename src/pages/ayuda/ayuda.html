@@ -1,31 +1,3 @@
-<!--
-  Generated template for the AyudaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- Generated template for the AyudaComponent component -->
-<!-- <ion-content>
-  <ion-slides (ionSlideDidChange)="slideChanged()">
-  <ion-slide>
-    <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
-      <h1>Slide 1</h1>
-    </div>
-  </ion-slide>
-  <ion-slide>
-    <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
-      <h1>Slide 2</h1>
-    </div>
-  </ion-slide>
-  <ion-slide>
-    <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
-      <h1>Slide 3</h1>
-    </div>
-  </ion-slide>
-</ion-slides>
-<button ion-button id="skip">Ok</button>
-</ion-content> -->
-
 <ion-content  class="no-scroll">
   <ion-slides pager (ionSlideDidChange)="slideChanged()" (ionSlideDrag)="slideMoved()">
     <ion-slide>
@@ -101,5 +73,5 @@
 
     </ion-slide>
   </ion-slides>
-    <button (click)="skip()" id="skip">{{ skipMsg }}</button>
+  <button (click)="skip()" id="skip"><p>{{ skipMsg }}</p></button>
 </ion-content>
