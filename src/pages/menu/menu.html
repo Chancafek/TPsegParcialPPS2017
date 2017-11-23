@@ -19,17 +19,17 @@
 </ion-header>
 
 <ion-content center text-center>
-  <h5 *ngIf="perfil" style="color: #FFF">Bienvenido {{perfil.nombre}} </h5>
+  <h5 *ngIf="perfil" class="menu-col">Bienvenido {{perfil.nombre}} </h5>
 
   <ion-row *ngIf="perfil" text-center>
-  	<ion-col style="color: #FFF !important;">
-    	<button (click)="mostrarCuestionarios()" style="background-color: transparent !important; color: #FFF">
+  	<ion-col class="menu-col">
+    	<button (click)="mostrarCuestionarios()" class="menu-button">
     		<img src="assets/img/Survey-Icon.png"><br>
     		MOSTRAR CUESTIONARIOS
     	</button>
 	  </ion-col>
-    <ion-col style="color: #FFF">
-      <button (click)="mostrarGraficos()" style="background-color: transparent !important; color: #FFF">
+    <ion-col class="menu-col">
+      <button (click)="mostrarGraficos()" class="menu-button">
         <img src="assets/img/chart-folded-icon.png"><br>
         MOSTRAR GRAFICOS
       </button>
@@ -37,13 +37,13 @@
   </ion-row>
   <ion-row *ngIf="perfil" text-center>
 	  <ion-col>
-    	<button *ngIf="perfil.rol.id != 3" (click)="enviarPush()" style="background-color: transparent !important; color: #FFF">
+    	<button *ngIf="perfil.rol.id != 3" (click)="enviarPush()" class="menu-button">
     		<img src="assets/img/notification-flat.png"><br>
     		ENVIAR NOTIFICACION
     	</button>
     </ion-col>
 	  <ion-col>
-    	<button *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4" (click)="mostrarUsuarios()" style="background-color: transparent !important; color: #FFF">
+    	<button *ngIf="perfil.rol.id == 1 || perfil.rol.id == 4" (click)="mostrarUsuarios()" class="menu-button">
     		<img src="assets/img/people-icon.png"><br>
     		MOSTRAR USUARIOS
     	</button>
