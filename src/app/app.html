@@ -5,17 +5,17 @@
       </ion-toolbar>
     </ion-header>-->
 
-    <ion-content class="orange-bg">
+    <ion-content class="menu-item">
       <ion-row>
-        <ion-item text-center class="orange-bg">
-          <div class="orange-bg">
-            <img class="user-img-profile orange-bg" src="assets/img/{{ imgProfile }}"/>
+        <ion-item text-center class="menu-item">
+          <div class="menu-item">
+            <img class="user-profile-img menu-item" src="assets/img/{{ imgProfile }}"/>
           </div>
         </ion-item>
-        <div text-center class="orange-bg nombre-menu" *ngIf="userName"> {{ userName }}</div>
+        <div text-center class="menu-item menu-name" *ngIf="userName"> {{ userName }}</div>
       </ion-row>
-      <ion-list class="orange-bg">
-        <button no-lines menuClose ion-item *ngFor="let p of pages" [class.menu-side-item]="!checkActive(p)" [class.activeHighlighter]="checkActive(p)" (click)="openPage(p)">
+      <ion-list class="menu-item">
+        <button no-lines menuClose ion-item *ngFor="let p of pages" [class.menu-side-item]="!checkActive(p)" [class.menu-active]="checkActive(p)" (click)="openPage(p)">
           <!--<ion-icon name="cart" item-end></ion-icon>-->
           {{p.mask}}
         </button>

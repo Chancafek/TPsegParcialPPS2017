@@ -15,33 +15,29 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-$DARK_TRANSPARENCY: rgba(0, 0, 0, 0.3);
-$LIGHT_TRANSPARENCY: rgba(255, 255, 255, 0.3);
-$MAIN_SKY_BLUE: #1e9cef;
-$SIDE_MENU_ITEM_HOVER: #29a5f2;
-
-.activeHighlighter {
-  background-color: $SIDE_MENU_ITEM_HOVER;
-  color: #F8F8F8;
+.menu-active {
+  background-color: #29a5f2;
+  color: #ffffff;
 }
-.user-img-profile {
+
+.user-profile-img {
   border-radius: 50%;
   text-align: center;
   margin: auto;
   max-height: 150px;
-  // border: 4px solid $LIGHT_TRANSPARENCY;
 }
-.orange-bg {
-  background-color: $MAIN_SKY_BLUE;
+
+.menu-item {
+  background-color: #1e9cef;
 }
 
 .menu-side-item {
-  background-color: $MAIN_SKY_BLUE;
-  color: #F8F8F8;
+  background-color: #1e9cef;
+  color: #ffffff;
 }
 
-.nombre-menu {
-  color: #F8F8F8;
+.menu-name {
+  color: #ffffff;
   display: block;
   border: 0px;
   width: 100%;
