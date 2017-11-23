@@ -1,36 +1,28 @@
 <ion-menu [content]="content" >
-    <!--<ion-header>
-      <ion-toolbar>
-        <ion-title>Educadroid</ion-title>
-      </ion-toolbar>
-    </ion-header>-->
-
-    <ion-content class="menu-item">
-      <ion-row>
-        <ion-item text-center class="menu-item">
-          <div class="menu-item">
-            <img class="user-profile-img menu-item" src="assets/img/{{ imgProfile }}"/>
-          </div>
-        </ion-item>
-        <div text-center class="menu-item menu-name" *ngIf="userName"> {{ userName }}</div>
-      </ion-row>
-      <ion-list class="menu-item">
-        <button no-lines menuClose ion-item *ngFor="let p of pages" [class.menu-side-item]="!checkActive(p)" [class.menu-active]="checkActive(p)" (click)="openPage(p)">
-          <!--<ion-icon name="cart" item-end></ion-icon>-->
-          {{p.mask}}
-        </button>
-        <button no-lines menuClose ion-item class="menu-side-item" (click)="toggleAppTheme()">
-          <ion-icon name="bulb" item-end></ion-icon>Cambiar tema
-        </button>
-        <button no-lines menuClose ion-item class="menu-side-item" (click)="mostrarAyuda()">
-          <ion-icon name="help-circle" item-end></ion-icon>Ayuda
-        </button>
-        <button no-lines menuClose ion-item class="menu-side-item" (click)="exitApp()">
-          <ion-icon name="power" item-end></ion-icon>Salir de la App
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
+  <ion-content class="menu-item">
+    <ion-row>
+      <ion-item text-center class="menu-item">
+        <div class="menu-item">
+          <img class="user-profile-img menu-item" src="assets/img/{{ imgProfile }}"/>
+        </div>
+      </ion-item>
+      <div text-center class="menu-item menu-name" *ngIf="userName"> {{ userName }}</div>
+    </ion-row>
+    <ion-list class="menu-item">
+      <button no-lines menuClose ion-item *ngFor="let p of pages" [class.menu-side-item]="!checkActive(p)" [class.menu-active]="checkActive(p)" (click)="openPage(p)">
+        <!--<ion-icon name="cart" item-end></ion-icon>-->
+        {{p.mask}}
+      </button>
+      <button no-lines menuClose ion-item class="menu-side-item" (click)="toggleAppTheme()">
+        <ion-icon name="bulb" item-end></ion-icon>Cambiar tema
+      </button>
+      <button no-lines menuClose ion-item class="menu-side-item" (click)="mostrarAyuda()">
+        <ion-icon name="help-circle" item-end></ion-icon>Ayuda
+      </button>
+      <button no-lines menuClose ion-item class="menu-side-item" (click)="exitApp()">
+        <ion-icon name="power" item-end></ion-icon>Salir de la App
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 <ion-nav #content [root]="rootPage" [class]="selectedTheme"></ion-nav>
-<!--<ion-nav [root]="rootPage"></ion-nav>-->
