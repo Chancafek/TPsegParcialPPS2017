@@ -13,12 +13,12 @@
 
 <ion-content padding>
   <form #preguntaForm="ngForm" (ngSubmit)="done()">
-    <ion-item-divider color="light">Pregunta</ion-item-divider>
-    <ion-item>
+    <ion-item-divider color="light" class="background">Pregunta</ion-item-divider>
+    <ion-item class="background">
       <ion-label color="primary" stacked>Descripción</ion-label>
       <ion-textarea [(ngModel)]="pregunta.consigna" name="consigna" rows="3" required></ion-textarea>
     </ion-item>
-    <ion-item>
+    <ion-item class="background">
       <ion-label color="primary" stacked>Tipo de pregunta</ion-label>
       <ion-select [(ngModel)]="pregunta.tipo" placeholder="Seleccione el tipo" name="tipo" interface="popover" (ionChange)="onChangeTipo($event)"
         required>
@@ -30,16 +30,16 @@
 
     <!--Muestro solo si es check o radio-->
     <div class="divider" *ngIf="pregunta.tipo == 1 || pregunta.tipo == 2">
-      <ion-item-divider color="light">Opciones</ion-item-divider>
-      <ion-item>
+      <ion-item-divider color="light" class="background">Opciones</ion-item-divider>
+      <ion-item class="background">
         <ion-label color="primary" floating>Opción 1</ion-label>
         <ion-input [(ngModel)]="opcion1" name="opcion1" required></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="background">
         <ion-label color="primary" floating>Opción 2</ion-label>
         <ion-input [(ngModel)]="opcion2" name="opcion2" required></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="background">
         <ion-label color="primary" floating>Opción 3</ion-label>
         <ion-input [(ngModel)]="opcion3" name="opcion3" required></ion-input>
       </ion-item>
@@ -47,8 +47,8 @@
 
     <!--Muestro solo si es text-->
     <div class="divider" *ngIf="pregunta.tipo == 3">
-      <ion-item-divider color="light">Respuesta</ion-item-divider>
-      <ion-item>
+      <ion-item-divider color="light" class="background">Respuesta</ion-item-divider>
+      <ion-item class="background">
         <ion-label color="primary" floating>Respuesta</ion-label>
         <ion-input [(ngModel)]="respuestaTexto" name="respuesta" required></ion-input>
       </ion-item>
@@ -56,17 +56,17 @@
 
     <!--Muestro solo si es radio-->
     <div class="divider" *ngIf="pregunta.tipo == 2">
-      <ion-item-divider color="light">Respuesta</ion-item-divider>
+      <ion-item-divider color="light" class="background">Respuesta</ion-item-divider>
       <ion-list radio-group [(ngModel)]="respuestaRadio" name="respuestaRadio" required>
-        <ion-item>
+        <ion-item class="background">
           <ion-label>Opción 1</ion-label>
           <ion-radio value="1"></ion-radio>
         </ion-item>
-        <ion-item>
+        <ion-item class="background">
           <ion-label>Opción 2</ion-label>
           <ion-radio value="2"></ion-radio>
         </ion-item>
-        <ion-item>
+        <ion-item class="background">
           <ion-label>Opción 3</ion-label>
           <ion-radio value="3"></ion-radio>
         </ion-item>
@@ -75,16 +75,16 @@
 
     <!--Muestro solo si es checkbox-->
     <div class="divider" *ngIf="pregunta.tipo == 1">
-      <ion-item-divider color="light">Respuesta</ion-item-divider>
-      <ion-item>
+      <ion-item-divider color="light" class="background">Respuesta</ion-item-divider>
+      <ion-item class="background">
         <ion-label>Opción 1</ion-label>
         <ion-checkbox [(ngModel)]="respuestaCheck1" name="respuestaCheck1"></ion-checkbox>
       </ion-item>
-      <ion-item>
+      <ion-item class="background">
         <ion-label>Opción 2</ion-label>
         <ion-checkbox [(ngModel)]="respuestaCheck2" name="respuestaCheck2"></ion-checkbox>
       </ion-item>
-      <ion-item>
+      <ion-item class="background">
         <ion-label>Opción 3</ion-label>
         <ion-checkbox [(ngModel)]="respuestaCheck3" name="respuestaCheck3"></ion-checkbox>
       </ion-item>

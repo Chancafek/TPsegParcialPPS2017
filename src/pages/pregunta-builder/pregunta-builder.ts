@@ -19,7 +19,7 @@ import { EncuestaProvider } from "../../providers/encuesta/encuesta";
 })
 export class PreguntaBuilderPage implements OnInit {
 
-  private encuesta: Encuesta;
+  private encuesta: Encuesta = null;
 
   private encuesta_id: Number;
 
