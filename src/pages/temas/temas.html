@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>temas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item class="background">
+    <ion-label>Tema</ion-label>
+    <ion-select [(ngModel)]="theme">
+      <ion-option value="light">Claro</ion-option>
+      <ion-option value="dark">Oscuro</ion-option>
+      <ion-option value="custom">Personalizado</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="theme == 'custom'" class="background">
+    <ion-textarea placeholder="SCSS" [(ngModel)]="customscss"></ion-textarea>
+  </ion-item>
+  <ion-item class="background">
+    <button ion-button (click)="toggleAppTheme()">Cambiar tema</button>
+  </ion-item>
+</ion-content>

@@ -117,12 +117,8 @@ export class MyApp {
     return this.activePage === page.title;
   }
 
-  toggleAppTheme() {
-    if (this.selectedTheme === 'dark-theme') {
-      this.themes.setActiveTheme('light-theme');
-    } else {
-      this.themes.setActiveTheme('dark-theme');
-    }
+  mostrarTemas() {
+    this.nav.push('TemasPage');
   }
 
   mostrarAyuda() {

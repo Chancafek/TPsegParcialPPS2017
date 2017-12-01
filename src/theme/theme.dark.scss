@@ -25,18 +25,12 @@
   .header .toolbar-background {
     border-color: #ff0fff;
     background-color: #090f2f;
+    text-align: right;
   }
 
   .menu-active {
     background-color: #000000;
     color: #ffffff;
-  }
-
-  .user-profile-img {
-    border-radius: 50%;
-    text-align: center;
-    margin: auto;
-    max-height: 150px;
   }
 
   .menu-item {
